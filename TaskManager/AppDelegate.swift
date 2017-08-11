@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         setupNavigationBarAppearance()
+        CategoryMO.createAndStoreCategories()
+        print("\(NSHomeDirectory()),\n \(persistentContainer.persistentStoreDescriptions.debugDescription)")
 
         return true
     }
@@ -94,6 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupNavigationBarAppearance () {
         UINavigationBar.appearance().tintColor = UIColor.black
     }
+    
 
 }
 

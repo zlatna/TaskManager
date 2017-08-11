@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,18 +23,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wLU-Rt-u4o">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wLU-Rt-u4o">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="task" id="gfh-51-feM">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="taskCell" rowHeight="71" id="gfh-51-feM" customClass="TaskCell" customModule="TaskManager" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gfh-51-feM" id="8oT-X6-BUO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onN-qi-HTM">
+                                                    <rect key="frame" x="8" y="15.5" width="42" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0KH-x6-pA1">
+                                                    <rect key="frame" x="8" y="37" width="42" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="26" id="D5T-Nm-TGp"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSZ-CS-Hai">
+                                                    <rect key="frame" x="327" y="16" width="40" height="40"/>
+                                                    <color key="backgroundColor" red="0.99328859059999997" green="0.66442953019999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="aSZ-CS-Hai" secondAttribute="height" multiplier="1:1" id="6Ko-0c-Wms"/>
+                                                        <constraint firstAttribute="width" constant="40" id="KqQ-dI-2Us"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="0KH-x6-pA1" secondAttribute="bottom" constant="-0.5" id="3Ia-5K-lcV"/>
+                                                <constraint firstItem="0KH-x6-pA1" firstAttribute="leading" secondItem="onN-qi-HTM" secondAttribute="leading" id="Qf0-Qy-tzN"/>
+                                                <constraint firstItem="aSZ-CS-Hai" firstAttribute="trailing" secondItem="8oT-X6-BUO" secondAttribute="trailingMargin" id="Qip-QG-Fvt"/>
+                                                <constraint firstItem="aSZ-CS-Hai" firstAttribute="centerY" secondItem="8oT-X6-BUO" secondAttribute="centerY" id="bD2-uN-Sp3"/>
+                                                <constraint firstItem="0KH-x6-pA1" firstAttribute="top" secondItem="onN-qi-HTM" secondAttribute="bottom" constant="1" id="ddj-Yd-WPD"/>
+                                                <constraint firstItem="0KH-x6-pA1" firstAttribute="leading" secondItem="8oT-X6-BUO" secondAttribute="leadingMargin" id="oyK-yH-Mry"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="categoryColorView" destination="aSZ-CS-Hai" id="Qvx-hc-Jsp"/>
+                                            <outlet property="completionDateLabel" destination="0KH-x6-pA1" id="WXA-rn-FZJ"/>
+                                            <outlet property="taskTitleLabel" destination="onN-qi-HTM" id="Xdt-Mw-F7q"/>
                                             <segue destination="7XV-ww-08A" kind="show" identifier="openExistingTask" id="aIM-is-cUT"/>
                                         </connections>
                                     </tableViewCell>

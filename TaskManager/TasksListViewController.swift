@@ -12,15 +12,21 @@ class TasksListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
 
-    // TODO: have a structure with tasks and categories
+    var tasks: [String : [TaskMO]] = [:]
+    var categories = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Tasks"
         tableView.dataSource = self
         tableView.delegate = self
-        
-        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "task")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadData()
+        tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -33,39 +39,65 @@ class TasksListViewController: UIViewController {
             case "openExistingTask":
                 if let destinationViewController = segue.destination as? TaskViewController {
                     destinationViewController.mode = .update
+                    if let cell = sender as? TaskCell {
+                        destinationViewController.task = cell.task
+                    }
                 }
-            case "openSettings":
-                //            if segue.destination is SettingsViewController {
-                //
-                //            }
-                break
             default:
                 break
             }
         }
+    }
+    
+    private func loadData() {
+        let tasksMO = CoreDataHandler.fetchAllTasks()
+        tasks = [:]
+        for task in tasksMO {
+            let category = task.category.name
+            if tasks[category] != nil {
+                tasks[category]!.append(task)
+            } else {
+                tasks[category] = [task]
+            }
+        }
+        categories = Array(tasks.keys)
     }
 }
 
 extension TasksListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionCount = 1 // TODO: tasks for categories count
-        return sectionCount
+        let inSectionCount = tasks[categories[section]]?.count
+        return inSectionCount ?? 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 // TODO: categories count
+        let categoriesCount = categories.count
+        return categoriesCount
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "" //category Name
+        let sectionTitle = categories[section]
+        return sectionTitle
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "task")
-        // TODO: custom task cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell") as! TaskCell
         
-        return cell!
+        let task = tasks[categories[indexPath.section]]![indexPath.row]
+        
+        cell.categoryColorView.layer.cornerRadius = cell.categoryColorView.bounds.width / 2
+        cell.categoryColorView.backgroundColor = task.category.uiColor
+        cell.taskTitleLabel.text = task.title
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "MMM dd,yyyy - hh:mm"
+        cell.completionDateLabel.text = dateformatter.string(from: task.completionDate as Date)
+        if task.completionDate.compare(Date()) == .orderedAscending {
+            cell.backgroundColor = UIColor.lightGray
+        }
+        cell.task = task
+        
+        return cell
     }
 }
 
@@ -76,7 +108,13 @@ extension TasksListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // TODO: delete task
+            let task = tasks[categories[indexPath.section]]![indexPath.row]
+            if (tasks[categories[indexPath.section]]?.count)! > 1 {
+                tasks[categories[indexPath.section]]?.remove(at: indexPath.row)
+            } else {
+                tasks.removeValue(forKey: categories[indexPath.section])
+            }
+            CoreDataHandler.deleteTask(task)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }

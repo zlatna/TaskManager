@@ -14,6 +14,13 @@
 		21FAEA321F3C5D0400219128 /* TasksListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEA311F3C5D0400219128 /* TasksListViewController.swift */; };
 		21FAEA831F3DC99600219128 /* SettingsViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEA821F3DC99600219128 /* SettingsViewContoller.swift */; };
 		21FAEA851F3DCA1E00219128 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEA841F3DCA1E00219128 /* TaskViewController.swift */; };
+		21FAEAA51F3DD84700219128 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAA41F3DD84700219128 /* CoreDataHandler.swift */; };
+		21FAEAAF1F3DE20000219128 /* CategoryMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAAB1F3DE20000219128 /* CategoryMO+CoreDataClass.swift */; };
+		21FAEAB01F3DE20000219128 /* CategoryMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAAC1F3DE20000219128 /* CategoryMO+CoreDataProperties.swift */; };
+		21FAEAB11F3DE20000219128 /* TaskMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAAD1F3DE20000219128 /* TaskMO+CoreDataClass.swift */; };
+		21FAEAB21F3DE20000219128 /* TaskMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAAE1F3DE20000219128 /* TaskMO+CoreDataProperties.swift */; };
+		21FAEAB41F3DE93A00219128 /* CategoryMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAB31F3DE93A00219128 /* CategoryMO.swift */; };
+		21FAEAB71F3E29D800219128 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAB61F3E29D800219128 /* TaskCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +33,13 @@
 		21FAEA311F3C5D0400219128 /* TasksListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksListViewController.swift; sourceTree = "<group>"; };
 		21FAEA821F3DC99600219128 /* SettingsViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewContoller.swift; sourceTree = "<group>"; };
 		21FAEA841F3DCA1E00219128 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		21FAEAA41F3DD84700219128 /* CoreDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
+		21FAEAAB1F3DE20000219128 /* CategoryMO+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CategoryMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		21FAEAAC1F3DE20000219128 /* CategoryMO+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CategoryMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		21FAEAAD1F3DE20000219128 /* TaskMO+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		21FAEAAE1F3DE20000219128 /* TaskMO+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		21FAEAB31F3DE93A00219128 /* CategoryMO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryMO.swift; sourceTree = "<group>"; };
+		21FAEAB61F3E29D800219128 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +56,7 @@
 		21067D4D1F3C490C00DB93E6 = {
 			isa = PBXGroup;
 			children = (
+				21FAEA9B1F3DD71800219128 /* Core Data */,
 				21067D581F3C490C00DB93E6 /* TaskManager */,
 				21067D571F3C490C00DB93E6 /* Products */,
 			);
@@ -61,6 +76,7 @@
 				21067D591F3C490C00DB93E6 /* AppDelegate.swift */,
 				21067D5D1F3C490C00DB93E6 /* Main.storyboard */,
 				21067D601F3C490C00DB93E6 /* TaskManager.xcdatamodeld */,
+				21FAEAB51F3E299200219128 /* Views */,
 				21FAEA861F3DCA7800219128 /* View Controllers */,
 				21FAEA871F3DCA8D00219128 /* Supporting Files */,
 			);
@@ -84,6 +100,37 @@
 				21067D681F3C490C00DB93E6 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		21FAEA9B1F3DD71800219128 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				21FAEAAA1F3DE06400219128 /* Managed Objects */,
+				21FAEAA41F3DD84700219128 /* CoreDataHandler.swift */,
+			);
+			name = "Core Data";
+			path = "TaskManager/Core Data";
+			sourceTree = "<group>";
+		};
+		21FAEAAA1F3DE06400219128 /* Managed Objects */ = {
+			isa = PBXGroup;
+			children = (
+				21FAEAAB1F3DE20000219128 /* CategoryMO+CoreDataClass.swift */,
+				21FAEAAC1F3DE20000219128 /* CategoryMO+CoreDataProperties.swift */,
+				21FAEAAD1F3DE20000219128 /* TaskMO+CoreDataClass.swift */,
+				21FAEAAE1F3DE20000219128 /* TaskMO+CoreDataProperties.swift */,
+				21FAEAB31F3DE93A00219128 /* CategoryMO.swift */,
+			);
+			path = "Managed Objects";
+			sourceTree = "<group>";
+		};
+		21FAEAB51F3E299200219128 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				21FAEAB61F3E29D800219128 /* TaskCell.swift */,
+			);
+			name = Views;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,11 +205,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21FAEAAF1F3DE20000219128 /* CategoryMO+CoreDataClass.swift in Sources */,
 				21FAEA831F3DC99600219128 /* SettingsViewContoller.swift in Sources */,
+				21FAEAA51F3DD84700219128 /* CoreDataHandler.swift in Sources */,
+				21FAEAB01F3DE20000219128 /* CategoryMO+CoreDataProperties.swift in Sources */,
+				21FAEAB71F3E29D800219128 /* TaskCell.swift in Sources */,
+				21FAEAB11F3DE20000219128 /* TaskMO+CoreDataClass.swift in Sources */,
 				21067D621F3C490C00DB93E6 /* TaskManager.xcdatamodeld in Sources */,
+				21FAEAB21F3DE20000219128 /* TaskMO+CoreDataProperties.swift in Sources */,
 				21FAEA851F3DCA1E00219128 /* TaskViewController.swift in Sources */,
 				21FAEA321F3C5D0400219128 /* TasksListViewController.swift in Sources */,
 				21067D5A1F3C490C00DB93E6 /* AppDelegate.swift in Sources */,
+				21FAEAB41F3DE93A00219128 /* CategoryMO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
