@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         setupNavigationBarAppearance()
         CategoryMO.createAndStoreCategories()
-        print("\(NSHomeDirectory()),\n \(persistentContainer.persistentStoreDescriptions.debugDescription)")
+        print("\(persistentContainer.persistentStoreDescriptions.debugDescription)")
+        NotificationsHandler.requestNotificationAuthorization()
 
         return true
     }
@@ -40,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -96,7 +99,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupNavigationBarAppearance () {
         UINavigationBar.appearance().tintColor = UIColor.black
     }
-    
-
 }
 

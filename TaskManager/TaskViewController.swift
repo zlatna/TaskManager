@@ -8,9 +8,6 @@
 
 import UIKit
 import UserNotifications
-// TODO: Fetch categories
-// TODO: Create/Update task
-// TODO: onSave - create notification
 
 class TaskViewController: UITableViewController {
     
@@ -32,6 +29,7 @@ class TaskViewController: UITableViewController {
         
         categoryPicker.dataSource = self
         categoryPicker.delegate = self
+        titleTextView.autocorrectionType = .no
         
         switch mode! {
         case .update:
@@ -55,8 +53,26 @@ class TaskViewController: UITableViewController {
     }
     
     func onSaveButton() {
+        if let task = self.task {
+            let title = titleTextView.text
+            let date = datePicker.date
+            
+            if title == nil || title == "" {
+                showAllert(title: "Enter task title.", text: "")
+            } else {
+                if Date().compare(date) == .orderedDescending || Date().compare(date) == .orderedSame {
+                    showAllert(title: "Enter correct date", text: "")
+                } else {
+                    let category = categories[categoryPicker.selectedRow(inComponent: 0)]
+                    if task.title != title || task.completionDate.compare(date) != .orderedSame || task.category.objectID == category.objectID {
+                        CoreDataHandler.editTask(task, title: title, completionDate: date, category: categories[categoryPicker.selectedRow(inComponent: 0)])
+                        NotificationsHandler.removeNotification(forTask: task)
+                        NotificationsHandler.addNotification(forTask: task)
+                    }
+                }
+            }
+        }
         self.navigationController?.popViewController(animated: true)
-        print("save task")
     }
     
     func onCloseButton() {
@@ -74,15 +90,13 @@ class TaskViewController: UITableViewController {
             if Date().compare(date) == .orderedDescending || Date().compare(date) == .orderedSame {
                 showAllert(title: "Enter correct date", text: "")
             } else {
-                CoreDataHandler.addNewTask(withTitle: title!, completionDate: datePicker.date, category: categories[categoryPicker.selectedRow(inComponent: 0)])
-                self.navigationController?.popViewController(animated: true)
-                print("Add new task")
+                let category = categories[categoryPicker.selectedRow(inComponent: 0)]
+                if let task = CoreDataHandler.addNewTask(withTitle: title!, completionDate: date, category: category){
+                    NotificationsHandler.addNotification(forTask: task)
+                }
             }
         }
-    }
-    
-    private func createNotification() {
-        
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
@@ -98,10 +112,6 @@ extension TaskViewController: UIPickerViewDataSource {
 }
 
 extension TaskViewController: UIPickerViewDelegate {
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // TODO: set the task's category
-    }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let label = UILabel()

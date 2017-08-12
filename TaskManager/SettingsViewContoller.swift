@@ -17,14 +17,18 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Settings"
-        
+        notificationSwitch.isOn = NotificationsHandler.notificationsLocalyEnabled
     }
     
     @IBAction func onNotificationSwitch(_ sender: UISwitch) {
         if sender.isOn {
             notificationSwitchLabel.text = "Turn off notifications"
+            NotificationsHandler.resumeNotifications()
+            NotificationsHandler.notificationsLocalyEnabled = true
         } else {
             notificationSwitchLabel.text = "Turn on notifications"
+            NotificationsHandler.suspendNotifications()
+            NotificationsHandler.notificationsLocalyEnabled = false
         }
     }
 }
