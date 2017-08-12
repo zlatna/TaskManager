@@ -77,13 +77,21 @@
 				21067D591F3C490C00DB93E6 /* AppDelegate.swift */,
 				21067D5D1F3C490C00DB93E6 /* Main.storyboard */,
 				21067D601F3C490C00DB93E6 /* TaskManager.xcdatamodeld */,
-				2107934C1F3EE3CA00DD5173 /* NotificationsHandler.swift */,
+				2107934E1F3F777400DD5173 /* Notifications */,
 				21FAEA9B1F3DD71800219128 /* Core Data */,
 				21FAEAB51F3E299200219128 /* Views */,
 				21FAEA861F3DCA7800219128 /* View Controllers */,
 				21FAEA871F3DCA8D00219128 /* Supporting Files */,
 			);
 			path = TaskManager;
+			sourceTree = "<group>";
+		};
+		2107934E1F3F777400DD5173 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				2107934C1F3EE3CA00DD5173 /* NotificationsHandler.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		21FAEA861F3DCA7800219128 /* View Controllers */ = {
@@ -93,7 +101,7 @@
 				21FAEA821F3DC99600219128 /* SettingsViewContoller.swift */,
 				21FAEA841F3DCA1E00219128 /* TaskViewController.swift */,
 			);
-			name = "View Controllers";
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		21FAEA871F3DCA8D00219128 /* Supporting Files */ = {
