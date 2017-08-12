@@ -122,7 +122,11 @@ class NotificationsHandler {
     }
     
     class func requestNotificationAuthorization() {
-        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in }
+        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+            if granted {
+                notificationsLocalyEnabled = true
+            }
+        }
     }
 }
 
