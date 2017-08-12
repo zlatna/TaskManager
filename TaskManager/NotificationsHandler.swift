@@ -10,6 +10,10 @@ import Foundation
 import UserNotifications
 import UIKit
 
+// TODO: - globally turn off / on all local notifications - Currently support local turn off/on
+//           in case off -  the notifications are not triggered. Instead they are stored in UserDefaults when  turn on localy they are added to the NotificationCenter
+// TODO: - support notifications on running app
+
 class NotificationsHandler {
     
     static let userDefaultsKeyForNotifications = "Task Manager Notifications"
@@ -23,6 +27,13 @@ class NotificationsHandler {
         }
     }
     
+    static var notificationsGlobalyEnabled: Bool {
+        if let settings = UIApplication.shared.currentUserNotificationSettings?.types {
+            return settings.rawValue != 0
+        }
+        return false
+    }
+    
     class var notificationCenter: UNUserNotificationCenter {
         return UNUserNotificationCenter.current()
     }
@@ -32,8 +43,9 @@ class NotificationsHandler {
         notificationContent.title = task.title
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd,yyyy - hh:mm"
-        notificationContent.subtitle = dateFormatter.string(from: task.completionDate as Date)
+        notificationContent.body = dateFormatter.string(from: task.completionDate as Date)
         notificationContent.badge = 1
+        notificationContent.sound = UNNotificationSound.default()
         
         let timeinterval = task.completionDate.timeIntervalSince(Date())
         let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: timeinterval, repeats: false)
@@ -43,10 +55,9 @@ class NotificationsHandler {
     
     class func addNotification(forTask task: TaskMO) {
         
-        let notificationsEnabled = UserDefaults.standard.bool(forKey: userDefaultsKeyNotificationsEnabled)
         let notificatioRequest = createNotificationRequest(forTask: task)
         
-        if notificationsEnabled {
+        if notificationsLocalyEnabled {
             notificationCenter.add(notificatioRequest, withCompletionHandler: nil)
         } else {
             addRequestInUserDefaults(request: notificatioRequest)
@@ -54,9 +65,8 @@ class NotificationsHandler {
     }
     
     class func removeNotification(forTask task: TaskMO) {
-        let notificationsEnabled = UserDefaults.standard.bool(forKey: userDefaultsKeyNotificationsEnabled)
         let taskID = "\(task.objectID)"
-        if notificationsEnabled {
+        if notificationsLocalyEnabled {
             notificationCenter.removePendingNotificationRequests(withIdentifiers: [taskID])
         } else {
             if let currentRequests = getRequestsFromUserDefaults() {
@@ -67,7 +77,7 @@ class NotificationsHandler {
     }
     
     class func suspendNotifications() {
-        UserDefaults.standard.set(false, forKey: userDefaultsKeyNotificationsEnabled)
+        notificationsLocalyEnabled = false
         
         notificationCenter.getPendingNotificationRequests { (notificatioRequests) in
             storeRequestsInUserDefaults(requests: notificatioRequests)
@@ -80,7 +90,7 @@ class NotificationsHandler {
     }
     
     class func resumeNotifications() {
-        UserDefaults.standard.set(true, forKey: userDefaultsKeyNotificationsEnabled)
+        notificationsLocalyEnabled = true
         
         if let requests = getRequestsFromUserDefaults() {
             for request in requests {
@@ -90,8 +100,7 @@ class NotificationsHandler {
         }
     }
     
-    
-    class func getRequestsFromUserDefaults() -> [UNNotificationRequest]? {
+    private class func getRequestsFromUserDefaults() -> [UNNotificationRequest]? {
         if let archivedNotifications = UserDefaults.standard.data(forKey: userDefaultsKeyForNotifications),
             let notificationsArray = NSKeyedUnarchiver.unarchiveObject(with: archivedNotifications) as? [UNNotificationRequest] {
             return notificationsArray
@@ -99,12 +108,12 @@ class NotificationsHandler {
         return nil
     }
     
-    class func storeRequestsInUserDefaults(requests: [UNNotificationRequest]) {
+    private class func storeRequestsInUserDefaults(requests: [UNNotificationRequest]) {
         let archivedNotifications = NSKeyedArchiver.archivedData(withRootObject: requests)
         UserDefaults.standard.set(archivedNotifications, forKey: userDefaultsKeyForNotifications)
     }
     
-    class func addRequestInUserDefaults(request: UNNotificationRequest) {
+    private class func addRequestInUserDefaults(request: UNNotificationRequest) {
         var requestsList = getRequestsFromUserDefaults()
         if requestsList != nil {
             requestsList!.append(request)
@@ -113,10 +122,7 @@ class NotificationsHandler {
     }
     
     class func requestNotificationAuthorization() {
-        
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (didAllow, error) in
-        }
+        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in }
     }
 }
 

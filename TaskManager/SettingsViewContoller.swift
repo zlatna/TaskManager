@@ -17,7 +17,13 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Settings"
-        notificationSwitch.isOn = NotificationsHandler.notificationsLocalyEnabled
+        if NotificationsHandler.notificationsGlobalyEnabled == true {
+            notificationSwitch.isOn = NotificationsHandler.notificationsLocalyEnabled
+        } else {
+            notificationSwitch.isEnabled = false
+            NotificationsHandler.suspendNotifications()
+            notificationSwitch.isOn = false
+        }
     }
     
     @IBAction func onNotificationSwitch(_ sender: UISwitch) {

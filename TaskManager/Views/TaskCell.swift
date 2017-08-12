@@ -14,5 +14,6 @@ class TaskCell: UITableViewCell {
     @IBOutlet weak var categoryColorView: UIView!
     @IBOutlet weak var taskTitleLabel: UILabel!
     @IBOutlet weak var completionDateLabel: UILabel!
+    @IBOutlet weak var customSeparator: UIView!
     
 }

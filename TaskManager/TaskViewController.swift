@@ -14,6 +14,7 @@ class TaskViewController: UITableViewController {
     @IBOutlet weak var titleTextView: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var categoryPicker: UIPickerView!
+    @IBOutlet weak var deleteTaskButton: UIButton!
     
     enum Mode{
         case update
@@ -34,14 +35,15 @@ class TaskViewController: UITableViewController {
         switch mode! {
         case .update:
             navigationItem.title = "task Title"
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(TaskViewController.onSaveButton))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(TaskViewController.onSaveButton))
             
         case .create:
             navigationItem.title = "task Title"
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(TaskViewController.onAddTaskButton))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(TaskViewController.onAddTaskButton))
+            deleteTaskButton.isHidden = true
             
         }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(TaskViewController.onCloseButton))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(TaskViewController.onCloseButton))
         
         categories = CoreDataHandler.fetchAllCategories()
         
@@ -69,10 +71,10 @@ class TaskViewController: UITableViewController {
                         NotificationsHandler.removeNotification(forTask: task)
                         NotificationsHandler.addNotification(forTask: task)
                     }
+                    self.navigationController?.popViewController(animated: true)
                 }
             }
         }
-        self.navigationController?.popViewController(animated: true)
     }
     
     func onCloseButton() {
@@ -94,7 +96,14 @@ class TaskViewController: UITableViewController {
                 if let task = CoreDataHandler.addNewTask(withTitle: title!, completionDate: date, category: category){
                     NotificationsHandler.addNotification(forTask: task)
                 }
+                self.navigationController?.popViewController(animated: true)
             }
+        }
+    }
+    
+    @IBAction func deleteTask(_ sender: UIButton) {
+        if let task = self.task {
+            CoreDataHandler.deleteTask(task)
         }
         self.navigationController?.popViewController(animated: true)
     }

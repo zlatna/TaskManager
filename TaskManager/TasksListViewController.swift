@@ -11,9 +11,9 @@ import UIKit
 class TasksListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-
-    var tasks: [String : [TaskMO]] = [:]
-    var categories = [String]()
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    var tasks: [TaskMO] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,6 @@ class TasksListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadData()
-        tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,53 +49,54 @@ class TasksListViewController: UIViewController {
     }
     
     private func loadData() {
-        let tasksMO = CoreDataHandler.fetchAllTasks()
-        tasks = [:]
-        for task in tasksMO {
-            let category = task.category.name
-            if tasks[category] != nil {
-                tasks[category]!.append(task)
-            } else {
-                tasks[category] = [task]
+        //activityIndicator.startAnimating()
+        DispatchQueue.global(qos: DispatchQoS.userInitiated.qosClass).async {
+            let tasksMO = CoreDataHandler.fetchAllTasks()
+            let sortedTasks = tasksMO.sorted(by: { (leftTask, righTask) -> Bool in
+                let descending = (leftTask.completionDate.compare(Date()) == .orderedDescending)
+                return descending
+            })
+            
+            DispatchQueue.main.async {
+                self.tasks = sortedTasks
+                self.tableView.reloadData()
+                self.activityIndicator.stopAnimating()
             }
         }
-        categories = Array(tasks.keys)
     }
 }
 
 extension TasksListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let inSectionCount = tasks[categories[section]]?.count
-        return inSectionCount ?? 0
+        let rowsNumber = tasks.count
+        return rowsNumber
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        let categoriesCount = categories.count
-        return categoriesCount
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sectionTitle = categories[section]
-        return sectionTitle
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell") as! TaskCell
         
-        let task = tasks[categories[indexPath.section]]![indexPath.row]
+        let task = tasks[indexPath.row]
+        cell.task = task
         
         cell.categoryColorView.layer.cornerRadius = cell.categoryColorView.bounds.width / 2
-        cell.categoryColorView.backgroundColor = task.category.uiColor
+        let categoryColor = task.category.uiColor
+        cell.categoryColorView.backgroundColor = categoryColor
+        cell.customSeparator.backgroundColor = categoryColor
         cell.taskTitleLabel.text = task.title
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "MMM dd,yyyy - hh:mm"
         cell.completionDateLabel.text = dateformatter.string(from: task.completionDate as Date)
-        if task.completionDate.compare(Date()) == .orderedAscending {
-            cell.backgroundColor = UIColor.lightGray
+        let timeinterval = task.completionDate.timeIntervalSince(Date())
+        if timeinterval < 1 {
+            cell.backgroundColor = UIColor.groupTableViewBackground
+        }else{
+            cell.backgroundColor = UIColor.white
         }
-        cell.task = task
-        
         return cell
     }
 }
@@ -108,12 +108,8 @@ extension TasksListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let task = tasks[categories[indexPath.section]]![indexPath.row]
-            if (tasks[categories[indexPath.section]]?.count)! > 1 {
-                tasks[categories[indexPath.section]]?.remove(at: indexPath.row)
-            } else {
-                tasks.removeValue(forKey: categories[indexPath.section])
-            }
+            let task = tasks[indexPath.row]
+            tasks.remove(at: indexPath.row)
             CoreDataHandler.deleteTask(task)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
