@@ -9,14 +9,14 @@
 import UIKit
 import UserNotifications
 
-class TaskViewController: UITableViewController {
+class TaskViewController: UITableViewController, PresentAlertsProtocol {
     
     @IBOutlet weak var titleTextView: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var deleteTaskButton: UIButton!
     
-    enum Mode{
+    enum Mode {
         case update
         case create
     }
@@ -27,11 +27,9 @@ class TaskViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         categoryPicker.dataSource = self
         categoryPicker.delegate = self
         titleTextView.autocorrectionType = .no
-        
         switch mode! {
         case .update:
             navigationItem.title = "task Title"
@@ -54,16 +52,16 @@ class TaskViewController: UITableViewController {
         }
     }
     
-    func onSaveButton() {
+    @objc func onSaveButton() {
         if let task = self.task {
             let title = titleTextView.text
             let date = datePicker.date
             
             if title == nil || title == "" {
-                showAllert(title: "Enter task title.", text: "")
+                self.showInformationAlert(withTitle: "Enter task title.", message: "")
             } else {
                 if Date().compare(date) == .orderedDescending || Date().compare(date) == .orderedSame {
-                    showAllert(title: "Enter correct date", text: "")
+                    self.showInformationAlert(withTitle: "Enter correct date", message: "")
                 } else {
                     let category = categories[categoryPicker.selectedRow(inComponent: 0)]
                     if task.title != title || task.completionDate.compare(date) != .orderedSame || task.category.objectID == category.objectID {
@@ -81,19 +79,17 @@ class TaskViewController: UITableViewController {
         self.navigationController?.popViewController(animated: true)
         print("cancel task update")
     }
-    
     func onAddTaskButton() {
         let title = titleTextView.text
         let date = datePicker.date
-        
         if title == nil || title == "" {
-            showAllert(title: "Enter task title.", text: "")
+            self.showInformationAlert(withTitle: "Enter task title.", message: "")
         } else {
             if Date().compare(date) == .orderedDescending || Date().compare(date) == .orderedSame {
-                showAllert(title: "Enter correct date", text: "")
+                self.showInformationAlert(withTitle: "Enter correct date", message: "")
             } else {
                 let category = categories[categoryPicker.selectedRow(inComponent: 0)]
-                if let task = CoreDataHandler.addNewTask(withTitle: title!, completionDate: date, category: category){
+                if let task = CoreDataHandler.addNewTask(withTitle: title!, completionDate: date, category: category) {                    
                     NotificationsHandler.addNotification(forTask: task)
                 }
                 self.navigationController?.popViewController(animated: true)
@@ -110,34 +106,20 @@ class TaskViewController: UITableViewController {
 }
 
 extension TaskViewController: UIPickerViewDataSource {
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return categories.count
     }
 }
 
 extension TaskViewController: UIPickerViewDelegate {
-    
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let label = UILabel()
         label.text = categories[row].name
         label.textAlignment = .center
         label.backgroundColor = categories[row].uiColor
         return label
-    }
-}
-
-extension UIViewController {
-    
-    func showAllert(title: String, text: String) {
-        let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
     }
 }

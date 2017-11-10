@@ -10,10 +10,8 @@ import UIKit
 import UserNotifications
 
 class SettingsViewController: UITableViewController {
-    
     @IBOutlet weak var notificationSwitch: UISwitch!
     @IBOutlet weak var notificationSwitchLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Settings"
@@ -25,7 +23,6 @@ class SettingsViewController: UITableViewController {
             notificationSwitch.isOn = false
         }
     }
-    
     @IBAction func onNotificationSwitch(_ sender: UISwitch) {
         if sender.isOn {
             notificationSwitchLabel.text = "Turn off notifications"
@@ -38,5 +35,3 @@ class SettingsViewController: UITableViewController {
         }
     }
 }
-
-

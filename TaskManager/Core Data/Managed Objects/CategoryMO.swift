@@ -27,7 +27,7 @@ extension CategoryMO {
         let g = Int(color >> 8) & mask
         let b = Int(color) & mask
         
-        return UIColor(colorLiteralRed: Float(r)/255, green: Float(g)/255, blue: Float(b)/255, alpha: 1)
+        return UIColor(red: CGFloat(Float(r)/255), green: CGFloat(Float(g)/255), blue: CGFloat(Float(b)/255), alpha: 1)
     }
     
     

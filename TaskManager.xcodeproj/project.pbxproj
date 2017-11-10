@@ -22,6 +22,12 @@
 		21FAEAB21F3DE20000219128 /* TaskMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAAE1F3DE20000219128 /* TaskMO+CoreDataProperties.swift */; };
 		21FAEAB41F3DE93A00219128 /* CategoryMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAB31F3DE93A00219128 /* CategoryMO.swift */; };
 		21FAEAB91F3E51CC00219128 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAB81F3E51CC00219128 /* TaskCell.swift */; };
+		7F4DB491626FFE8FD9567769 /* Pods_TaskManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D48EFDB61A211CC1F79001 /* Pods_TaskManager.framework */; };
+		933935551FB5DDE90068E483 /* PresentAlertsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */; };
+		936C96241FB4ACC1001FC35D /* ColorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C96231FB4ACC1001FC35D /* ColorUtilities.swift */; };
+		936C96261FB4AEB6001FC35D /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C96251FB4AEB6001FC35D /* CustomDateFormatter.swift */; };
+		936C96291FB4B78E001FC35D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 936C96281FB4B78E001FC35D /* .swiftlint.yml */; };
+		936C962B1FB5A71D001FC35D /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C962A1FB5A71D001FC35D /* Identifiers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +48,14 @@
 		21FAEAAE1F3DE20000219128 /* TaskMO+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		21FAEAB31F3DE93A00219128 /* CategoryMO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryMO.swift; sourceTree = "<group>"; };
 		21FAEAB81F3E51CC00219128 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskCell.swift; path = TaskManager/Views/TaskCell.swift; sourceTree = "<group>"; };
+		933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAlertsProtocol.swift; sourceTree = "<group>"; };
+		936C96231FB4ACC1001FC35D /* ColorUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtilities.swift; sourceTree = "<group>"; };
+		936C96251FB4AEB6001FC35D /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
+		936C96281FB4B78E001FC35D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		936C962A1FB5A71D001FC35D /* Identifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
+		A6D48EFDB61A211CC1F79001 /* Pods_TaskManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA61957B4EFBF054F9B054BA /* Pods-TaskManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskManager/Pods-TaskManager.release.xcconfig"; sourceTree = "<group>"; };
+		EEB676745983B9ADEB247BFC /* Pods-TaskManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskManager/Pods-TaskManager.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F4DB491626FFE8FD9567769 /* Pods_TaskManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,8 +73,13 @@
 		21067D4D1F3C490C00DB93E6 = {
 			isa = PBXGroup;
 			children = (
+				933935531FB5DD870068E483 /* Protocols */,
+				936C96281FB4B78E001FC35D /* .swiftlint.yml */,
+				936C96221FB4AC96001FC35D /* Utilities */,
 				21067D581F3C490C00DB93E6 /* TaskManager */,
 				21067D571F3C490C00DB93E6 /* Products */,
+				FF2CA65BAB639A90AABA6B25 /* Pods */,
+				3B0735C1F7C835CD3B011005 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +163,41 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		3B0735C1F7C835CD3B011005 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A6D48EFDB61A211CC1F79001 /* Pods_TaskManager.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		933935531FB5DD870068E483 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		936C96221FB4AC96001FC35D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				936C96231FB4ACC1001FC35D /* ColorUtilities.swift */,
+				936C96251FB4AEB6001FC35D /* CustomDateFormatter.swift */,
+				936C962A1FB5A71D001FC35D /* Identifiers.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		FF2CA65BAB639A90AABA6B25 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EEB676745983B9ADEB247BFC /* Pods-TaskManager.debug.xcconfig */,
+				AA61957B4EFBF054F9B054BA /* Pods-TaskManager.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,9 +205,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 21067D6B1F3C490C00DB93E6 /* Build configuration list for PBXNativeTarget "TaskManager" */;
 			buildPhases = (
+				BCF465987B3685599C576C1F /* [CP] Check Pods Manifest.lock */,
 				21067D521F3C490C00DB93E6 /* Sources */,
 				21067D531F3C490C00DB93E6 /* Frameworks */,
 				21067D541F3C490C00DB93E6 /* Resources */,
+				C46FCF2F352E5069ADD7E41F /* [CP] Embed Pods Frameworks */,
+				9527949FF558CA11C6935F4A /* [CP] Copy Pods Resources */,
+				936C96271FB4B385001FC35D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -170,12 +229,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = zlatnanikolova;
 				TargetAttributes = {
 					21067D551F3C490C00DB93E6 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = F82P3K6VEW;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -203,6 +263,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				936C96291FB4B78E001FC35D /* .swiftlint.yml in Resources */,
 				21067D641F3C490C00DB93E6 /* Assets.xcassets in Resources */,
 				21067D5F1F3C490C00DB93E6 /* Main.storyboard in Resources */,
 			);
@@ -210,20 +271,88 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		936C96271FB4B385001FC35D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi";
+		};
+		9527949FF558CA11C6935F4A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaskManager/Pods-TaskManager-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BCF465987B3685599C576C1F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TaskManager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C46FCF2F352E5069ADD7E41F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaskManager/Pods-TaskManager-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		21067D521F3C490C00DB93E6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				936C962B1FB5A71D001FC35D /* Identifiers.swift in Sources */,
+				936C96241FB4ACC1001FC35D /* ColorUtilities.swift in Sources */,
 				210793561F3F7B2800DD5173 /* NotificationsHandler.swift in Sources */,
 				210793521F3F7B1D00DD5173 /* SettingsViewContoller.swift in Sources */,
 				21FAEAAF1F3DE20000219128 /* CategoryMO+CoreDataClass.swift in Sources */,
 				21FAEAA51F3DD84700219128 /* CoreDataHandler.swift in Sources */,
 				21FAEAB01F3DE20000219128 /* CategoryMO+CoreDataProperties.swift in Sources */,
+				936C96261FB4AEB6001FC35D /* CustomDateFormatter.swift in Sources */,
 				21FAEAB91F3E51CC00219128 /* TaskCell.swift in Sources */,
 				210793541F3F7B1D00DD5173 /* TaskViewController.swift in Sources */,
 				210793531F3F7B1D00DD5173 /* TasksListViewController.swift in Sources */,
 				21FAEAB11F3DE20000219128 /* TaskMO+CoreDataClass.swift in Sources */,
+				933935551FB5DDE90068E483 /* PresentAlertsProtocol.swift in Sources */,
 				21067D621F3C490C00DB93E6 /* TaskManager.xcdatamodeld in Sources */,
 				21FAEAB21F3DE20000219128 /* TaskMO+CoreDataProperties.swift in Sources */,
 				21067D5A1F3C490C00DB93E6 /* AppDelegate.swift in Sources */,
@@ -255,7 +384,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -263,7 +394,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -306,7 +441,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -314,7 +451,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -342,6 +483,7 @@
 		};
 		21067D6C1F3C490C00DB93E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEB676745983B9ADEB247BFC /* Pods-TaskManager.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -350,12 +492,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zlatnanikolova.TaskManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		21067D6D1F3C490C00DB93E6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA61957B4EFBF054F9B054BA /* Pods-TaskManager.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -364,7 +508,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zlatnanikolova.TaskManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
