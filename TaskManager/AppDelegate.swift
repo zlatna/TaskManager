@@ -14,15 +14,14 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         setupNavigationBarAppearance()
         CategoryMO.createAndStoreCategories()
-        debugPrint("😈\(persistentContainer.persistentStoreDescriptions.debugDescription)")
+        debugPrint("🗄\(persistentContainer.persistentStoreDescriptions.debugDescription)")
         NotificationsHandler.requestNotificationAuthorization()
-
+        let coreDataHandler = CoreDataHandler.sharedInstance
+        debugPrint("‼️Initialize - \(coreDataHandler)")        
         return true
     }
 

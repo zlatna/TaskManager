@@ -24,6 +24,7 @@
 		21FAEAB91F3E51CC00219128 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAB81F3E51CC00219128 /* TaskCell.swift */; };
 		7F4DB491626FFE8FD9567769 /* Pods_TaskManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D48EFDB61A211CC1F79001 /* Pods_TaskManager.framework */; };
 		933935551FB5DDE90068E483 /* PresentAlertsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */; };
+		933935581FB600540068E483 /* CategoriesAndColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935571FB600540068E483 /* CategoriesAndColors.swift */; };
 		936C96241FB4ACC1001FC35D /* ColorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C96231FB4ACC1001FC35D /* ColorUtilities.swift */; };
 		936C96261FB4AEB6001FC35D /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C96251FB4AEB6001FC35D /* CustomDateFormatter.swift */; };
 		936C96291FB4B78E001FC35D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 936C96281FB4B78E001FC35D /* .swiftlint.yml */; };
@@ -49,6 +50,7 @@
 		21FAEAB31F3DE93A00219128 /* CategoryMO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryMO.swift; sourceTree = "<group>"; };
 		21FAEAB81F3E51CC00219128 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskCell.swift; path = TaskManager/Views/TaskCell.swift; sourceTree = "<group>"; };
 		933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAlertsProtocol.swift; sourceTree = "<group>"; };
+		933935571FB600540068E483 /* CategoriesAndColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAndColors.swift; sourceTree = "<group>"; };
 		936C96231FB4ACC1001FC35D /* ColorUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtilities.swift; sourceTree = "<group>"; };
 		936C96251FB4AEB6001FC35D /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 		936C96281FB4B78E001FC35D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -73,9 +75,7 @@
 		21067D4D1F3C490C00DB93E6 = {
 			isa = PBXGroup;
 			children = (
-				933935531FB5DD870068E483 /* Protocols */,
 				936C96281FB4B78E001FC35D /* .swiftlint.yml */,
-				936C96221FB4AC96001FC35D /* Utilities */,
 				21067D581F3C490C00DB93E6 /* TaskManager */,
 				21067D571F3C490C00DB93E6 /* Products */,
 				FF2CA65BAB639A90AABA6B25 /* Pods */,
@@ -98,10 +98,13 @@
 				21067D5D1F3C490C00DB93E6 /* Main.storyboard */,
 				21067D601F3C490C00DB93E6 /* TaskManager.xcdatamodeld */,
 				2107934E1F3F777400DD5173 /* Notifications */,
+				933935531FB5DD870068E483 /* Protocols */,
+				936C96221FB4AC96001FC35D /* Utilities */,
 				21FAEA9B1F3DD71800219128 /* Core Data */,
 				21FAEAB51F3E299200219128 /* Views */,
 				21FAEA861F3DCA7800219128 /* View Controllers */,
 				21FAEA871F3DCA8D00219128 /* Supporting Files */,
+				933935561FB5FFF90068E483 /* Resources */,
 			);
 			path = TaskManager;
 			sourceTree = "<group>";
@@ -177,6 +180,14 @@
 				933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		933935561FB5FFF90068E483 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				933935571FB600540068E483 /* CategoriesAndColors.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		936C96221FB4AC96001FC35D /* Utilities */ = {
@@ -342,6 +353,7 @@
 			files = (
 				936C962B1FB5A71D001FC35D /* Identifiers.swift in Sources */,
 				936C96241FB4ACC1001FC35D /* ColorUtilities.swift in Sources */,
+				933935581FB600540068E483 /* CategoriesAndColors.swift in Sources */,
 				210793561F3F7B2800DD5173 /* NotificationsHandler.swift in Sources */,
 				210793521F3F7B1D00DD5173 /* SettingsViewContoller.swift in Sources */,
 				21FAEAAF1F3DE20000219128 /* CategoryMO+CoreDataClass.swift in Sources */,

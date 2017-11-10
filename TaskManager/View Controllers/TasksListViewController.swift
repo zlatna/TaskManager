@@ -44,7 +44,7 @@ class TasksListViewController: UIViewController {
     private func loadData() {
         //activityIndicator.startAnimating()
         DispatchQueue.global(qos: DispatchQoS.userInitiated.qosClass).async {
-            let tasksMO = CoreDataHandler.fetchAllTasks()
+            let tasksMO = CoreDataHandler.sharedInstance.fetchAllTasks()
             let sortedTasks = tasksMO.sorted(by: { (leftTask, righTask) -> Bool in
                 let descending = (leftTask.completionDate.compare(righTask.completionDate as Date) == .orderedDescending)
                 return descending
@@ -85,7 +85,7 @@ extension TableConfig: UITableViewDelegate {
         if editingStyle == .delete {
             let task = tasks[indexPath.row]
             tasks.remove(at: indexPath.row)
-            CoreDataHandler.deleteTask(task)
+            CoreDataHandler.sharedInstance.deleteTask(task)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }

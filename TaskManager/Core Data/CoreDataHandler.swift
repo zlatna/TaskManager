@@ -12,15 +12,17 @@ import UIKit
 
 class CoreDataHandler {
 
-    class var getManagedObjectContext: NSManagedObjectContext? {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        return appDelegate?.persistentContainer.viewContext
-    }
+    static let sharedInstance = CoreDataHandler()
+    private var managedContext: NSManagedObjectContext?
     
+    private init() {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        managedContext = appDelegate?.persistentContainer.viewContext
+    }
     // MARK: Task
-    class func deleteTask(_ task: TaskMO) {
+    func deleteTask(_ task: TaskMO) {
         
-        if let context = getManagedObjectContext {
+        if let context = managedContext {
             context.delete(task)
             
             do{
@@ -32,8 +34,8 @@ class CoreDataHandler {
     }
     
     //TODO: to not return
-    class func addNewTask(withTitle title: String, completionDate: Date, category: CategoryMO) -> TaskMO? {
-        if let context = getManagedObjectContext {
+    func addNewTask(withTitle title: String, completionDate: Date, category: CategoryMO) -> TaskMO? {
+        if let context = managedContext {
             
             let task = TaskMO(context: context)
             task.setValuesForKeys(["title" : title, "completionDate" : completionDate, "category" : category])
@@ -41,7 +43,7 @@ class CoreDataHandler {
             task.completionDate = completionDate as NSDate
             task.category = category
             
-            do{
+            do {
                 try context.save()
                 return task
             } catch let error as NSError {
@@ -51,8 +53,8 @@ class CoreDataHandler {
         return nil
     }
     
-    class func editTask(_ task: TaskMO, title: String?, completionDate: Date?, category: CategoryMO?) {
-        if let context = getManagedObjectContext {
+    func editTask(_ task: TaskMO, title: String?, completionDate: Date?, category: CategoryMO?) {
+        if let context = managedContext {
             if let taskTitle = title {
                 task.setValue(taskTitle, forKey: "title")
             }
@@ -73,9 +75,9 @@ class CoreDataHandler {
         }
     }
     
-    class func fetchAllTasks() -> [TaskMO] {
+    func fetchAllTasks() -> [TaskMO] {
         var tasksList: [TaskMO] = []
-         if let context = getManagedObjectContext {            
+         if let context = managedContext {
             let fetchRequest: NSFetchRequest<TaskMO> = TaskMO.fetchRequest()
             
             do {
@@ -89,8 +91,8 @@ class CoreDataHandler {
     
     
     // MARK: Category
-    class func addNewCategory(named name: String, color: String) {
-        if let context = getManagedObjectContext {
+    func addNewCategory(named name: String, color: String) {
+        if let context = managedContext {
             
             let category = CategoryMO(context: context)
             category.setValuesForKeys(["name" : name, "color" : color])
@@ -103,8 +105,8 @@ class CoreDataHandler {
         }
     }
     
-    class func addNewCategories(_ categories: [CategoryMO]) {
-        if let context = getManagedObjectContext {
+    func addNewCategories(_ categories: [CategoryMO]) {
+        if let context = managedContext {
             for category in categories {
                 context.insert(category)
             }
@@ -116,15 +118,14 @@ class CoreDataHandler {
         }
     }
     
-    class func fetchAllCategories() -> [CategoryMO] {
+    func fetchAllCategories() -> [CategoryMO] {
         var categoriesList: [CategoryMO] = []
-        if let context = getManagedObjectContext {
+        if let context = managedContext {
             let fetchRequest: NSFetchRequest<CategoryMO> = CategoryMO.fetchRequest()
-            
             do {
                 categoriesList = try context.fetch(fetchRequest)
             } catch let error as NSError {
-                print("Could not fetch. \(error)")
+                debugPrint("Could not fetch. \(error)")
             }
         }
         return categoriesList

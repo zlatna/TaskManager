@@ -43,15 +43,14 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(TaskViewController.onCloseButton))
         
-        categories = CoreDataHandler.fetchAllCategories()
+        categories = CoreDataHandler.sharedInstance.fetchAllCategories()
         
         if task != nil {
             titleTextView.text = task!.title
             datePicker.setDate(task!.completionDate as Date, animated: false)
             categoryPicker.selectRow(categories.index(of: task!.category) ?? 0, inComponent: 0, animated: false)
         }
-    }
-    
+    }    
     @objc func onSaveButton() {
         if let task = self.task {
             let title = titleTextView.text
@@ -65,7 +64,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
                 } else {
                     let category = categories[categoryPicker.selectedRow(inComponent: 0)]
                     if task.title != title || task.completionDate.compare(date) != .orderedSame || task.category.objectID == category.objectID {
-                        CoreDataHandler.editTask(task, title: title, completionDate: date, category: categories[categoryPicker.selectedRow(inComponent: 0)])
+                        CoreDataHandler.sharedInstance.editTask(task, title: title, completionDate: date, category: categories[categoryPicker.selectedRow(inComponent: 0)])
                         NotificationsHandler.removeNotification(forTask: task)
                         NotificationsHandler.addNotification(forTask: task)
                     }
@@ -74,12 +73,11 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
             }
         }
     }
-    
     func onCloseButton() {
         self.navigationController?.popViewController(animated: true)
         print("cancel task update")
     }
-    func onAddTaskButton() {
+    @objc func onAddTaskButton() {
         let title = titleTextView.text
         let date = datePicker.date
         if title == nil || title == "" {
@@ -89,17 +87,16 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
                 self.showInformationAlert(withTitle: "Enter correct date", message: "")
             } else {
                 let category = categories[categoryPicker.selectedRow(inComponent: 0)]
-                if let task = CoreDataHandler.addNewTask(withTitle: title!, completionDate: date, category: category) {                    
+                if let task = CoreDataHandler.sharedInstance.addNewTask(withTitle: title!, completionDate: date, category: category) {
                     NotificationsHandler.addNotification(forTask: task)
                 }
                 self.navigationController?.popViewController(animated: true)
             }
         }
     }
-    
     @IBAction func deleteTask(_ sender: UIButton) {
         if let task = self.task {
-            CoreDataHandler.deleteTask(task)
+            CoreDataHandler.sharedInstance.deleteTask(task)
         }
         self.navigationController?.popViewController(animated: true)
     }

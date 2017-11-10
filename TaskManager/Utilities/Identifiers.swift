@@ -18,3 +18,7 @@ enum SegueIdentifiers: String {
 enum ReusableCellIdentifiers: String {
     case taskCell
 }
+
+enum UserDefaultsIdentifiers: String {
+    case launchedBefore
+}
