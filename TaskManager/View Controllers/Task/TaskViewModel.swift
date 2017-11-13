@@ -31,19 +31,11 @@ class TaskViewModel {
     }
     
     var title: String {
-        if let task = self.task {
-            return task.title
-        } else {
-            return ""
-        }       
+        return self.task?.title ?? ""
     }
     
     var category: CategoryMO? {
-        if let task = self.task {
-            return task.category
-        } else {
-            return nil
-        }
+            return task?.category
     }
     
     func saveTask(with title: String, completionDate: Date, category: CategoryMO) {
