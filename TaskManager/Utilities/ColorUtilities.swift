@@ -19,14 +19,11 @@ extension UIColor {
         //convert the string color, which represents hex number, to UIColor, https://gist.github.com/yannickl/16f0ed38f0698d9a8ae7
         let hexStringTrimmed = hexString.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
         let scanner = Scanner(string: hexStringTrimmed)
-        
         if (hexStringTrimmed.hasPrefix("#")) {
             scanner.scanLocation = 1
         }
-        
         var color: UInt32 = 0
-        scanner.scanHexInt32(&color)
-        
+        scanner.scanHexInt32(&color)        
         let mask = 0x000000FF
         let r = Int(color >> 16) & mask
         let g = Int(color >> 8) & mask

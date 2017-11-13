@@ -23,6 +23,8 @@
 		21FAEAB41F3DE93A00219128 /* CategoryMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAB31F3DE93A00219128 /* CategoryMO.swift */; };
 		21FAEAB91F3E51CC00219128 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAB81F3E51CC00219128 /* TaskCell.swift */; };
 		7F4DB491626FFE8FD9567769 /* Pods_TaskManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D48EFDB61A211CC1F79001 /* Pods_TaskManager.framework */; };
+		931A84821FB9992900D173D1 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A84811FB9992900D173D1 /* TaskViewModel.swift */; };
+		931A84841FB99B7E00D173D1 /* TaskCategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A84831FB99B7E00D173D1 /* TaskCategoriesViewModel.swift */; };
 		933935551FB5DDE90068E483 /* PresentAlertsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */; };
 		933935581FB600540068E483 /* CategoriesAndColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935571FB600540068E483 /* CategoriesAndColors.swift */; };
 		936C96241FB4ACC1001FC35D /* ColorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C96231FB4ACC1001FC35D /* ColorUtilities.swift */; };
@@ -49,6 +51,8 @@
 		21FAEAAE1F3DE20000219128 /* TaskMO+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		21FAEAB31F3DE93A00219128 /* CategoryMO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryMO.swift; sourceTree = "<group>"; };
 		21FAEAB81F3E51CC00219128 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskCell.swift; path = TaskManager/Views/TaskCell.swift; sourceTree = "<group>"; };
+		931A84811FB9992900D173D1 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
+		931A84831FB99B7E00D173D1 /* TaskCategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategoriesViewModel.swift; sourceTree = "<group>"; };
 		933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAlertsProtocol.swift; sourceTree = "<group>"; };
 		933935571FB600540068E483 /* CategoriesAndColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAndColors.swift; sourceTree = "<group>"; };
 		936C96231FB4ACC1001FC35D /* ColorUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtilities.swift; sourceTree = "<group>"; };
@@ -122,7 +126,7 @@
 			children = (
 				2107934F1F3F7B1D00DD5173 /* SettingsViewContoller.swift */,
 				210793501F3F7B1D00DD5173 /* TasksListViewController.swift */,
-				210793511F3F7B1D00DD5173 /* TaskViewController.swift */,
+				931A84801FB998CF00D173D1 /* Task */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -172,6 +176,16 @@
 				A6D48EFDB61A211CC1F79001 /* Pods_TaskManager.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		931A84801FB998CF00D173D1 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				210793511F3F7B1D00DD5173 /* TaskViewController.swift */,
+				931A84811FB9992900D173D1 /* TaskViewModel.swift */,
+				931A84831FB99B7E00D173D1 /* TaskCategoriesViewModel.swift */,
+			);
+			path = Task;
 			sourceTree = "<group>";
 		};
 		933935531FB5DD870068E483 /* Protocols */ = {
@@ -360,8 +374,10 @@
 				21FAEAA51F3DD84700219128 /* CoreDataHandler.swift in Sources */,
 				21FAEAB01F3DE20000219128 /* CategoryMO+CoreDataProperties.swift in Sources */,
 				936C96261FB4AEB6001FC35D /* CustomDateFormatter.swift in Sources */,
+				931A84841FB99B7E00D173D1 /* TaskCategoriesViewModel.swift in Sources */,
 				21FAEAB91F3E51CC00219128 /* TaskCell.swift in Sources */,
 				210793541F3F7B1D00DD5173 /* TaskViewController.swift in Sources */,
+				931A84821FB9992900D173D1 /* TaskViewModel.swift in Sources */,
 				210793531F3F7B1D00DD5173 /* TasksListViewController.swift in Sources */,
 				21FAEAB11F3DE20000219128 /* TaskMO+CoreDataClass.swift in Sources */,
 				933935551FB5DDE90068E483 /* PresentAlertsProtocol.swift in Sources */,

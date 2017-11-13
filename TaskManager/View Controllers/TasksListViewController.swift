@@ -9,7 +9,6 @@
 import UIKit
 
 class TasksListViewController: UIViewController {
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     fileprivate var tasks: [TaskMO] = []
@@ -28,14 +27,13 @@ class TasksListViewController: UIViewController {
             switch segueIdentifier {
             case .addNewTask:
                 if let destinationViewController = segue.destination as? TaskViewController {
-                    destinationViewController.mode = .create
+                   destinationViewController.taskVM = TaskViewModel(task: nil, to: .create)
                 }
             case .openExistingTask:
                 if let destinationViewController = segue.destination as? TaskViewController {
-                    destinationViewController.mode = .update
                     if let selectedIndexPath = tableView.indexPathForSelectedRow {
                         let task = tasks[selectedIndexPath.row]
-                       destinationViewController.task = task
+                        destinationViewController.taskVM = TaskViewModel(task: task, to: .update)
                     }
                 }
             }
