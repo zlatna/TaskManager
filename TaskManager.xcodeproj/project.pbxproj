@@ -25,6 +25,7 @@
 		7F4DB491626FFE8FD9567769 /* Pods_TaskManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D48EFDB61A211CC1F79001 /* Pods_TaskManager.framework */; };
 		931A84821FB9992900D173D1 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A84811FB9992900D173D1 /* TaskViewModel.swift */; };
 		931A84841FB99B7E00D173D1 /* TaskCategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A84831FB99B7E00D173D1 /* TaskCategoriesViewModel.swift */; };
+		931A84891FB9F9A900D173D1 /* TasksListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A84881FB9F9A900D173D1 /* TasksListViewModel.swift */; };
 		933935551FB5DDE90068E483 /* PresentAlertsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */; };
 		933935581FB600540068E483 /* CategoriesAndColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935571FB600540068E483 /* CategoriesAndColors.swift */; };
 		936C96241FB4ACC1001FC35D /* ColorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C96231FB4ACC1001FC35D /* ColorUtilities.swift */; };
@@ -53,6 +54,7 @@
 		21FAEAB81F3E51CC00219128 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskCell.swift; path = TaskManager/Views/TaskCell.swift; sourceTree = "<group>"; };
 		931A84811FB9992900D173D1 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		931A84831FB99B7E00D173D1 /* TaskCategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategoriesViewModel.swift; sourceTree = "<group>"; };
+		931A84881FB9F9A900D173D1 /* TasksListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListViewModel.swift; sourceTree = "<group>"; };
 		933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAlertsProtocol.swift; sourceTree = "<group>"; };
 		933935571FB600540068E483 /* CategoriesAndColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAndColors.swift; sourceTree = "<group>"; };
 		936C96231FB4ACC1001FC35D /* ColorUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtilities.swift; sourceTree = "<group>"; };
@@ -124,8 +126,8 @@
 		21FAEA861F3DCA7800219128 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2107934F1F3F7B1D00DD5173 /* SettingsViewContoller.swift */,
-				210793501F3F7B1D00DD5173 /* TasksListViewController.swift */,
+				931A84871FB9F98600D173D1 /* Settings */,
+				931A84861FB9F97700D173D1 /* TasksList */,
 				931A84801FB998CF00D173D1 /* Task */,
 			);
 			path = "View Controllers";
@@ -186,6 +188,23 @@
 				931A84831FB99B7E00D173D1 /* TaskCategoriesViewModel.swift */,
 			);
 			path = Task;
+			sourceTree = "<group>";
+		};
+		931A84861FB9F97700D173D1 /* TasksList */ = {
+			isa = PBXGroup;
+			children = (
+				210793501F3F7B1D00DD5173 /* TasksListViewController.swift */,
+				931A84881FB9F9A900D173D1 /* TasksListViewModel.swift */,
+			);
+			path = TasksList;
+			sourceTree = "<group>";
+		};
+		931A84871FB9F98600D173D1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2107934F1F3F7B1D00DD5173 /* SettingsViewContoller.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		933935531FB5DD870068E483 /* Protocols */ = {
@@ -370,6 +389,7 @@
 				933935581FB600540068E483 /* CategoriesAndColors.swift in Sources */,
 				210793561F3F7B2800DD5173 /* NotificationsHandler.swift in Sources */,
 				210793521F3F7B1D00DD5173 /* SettingsViewContoller.swift in Sources */,
+				931A84891FB9F9A900D173D1 /* TasksListViewModel.swift in Sources */,
 				21FAEAAF1F3DE20000219128 /* CategoryMO+CoreDataClass.swift in Sources */,
 				21FAEAA51F3DD84700219128 /* CoreDataHandler.swift in Sources */,
 				21FAEAB01F3DE20000219128 /* CategoryMO+CoreDataProperties.swift in Sources */,

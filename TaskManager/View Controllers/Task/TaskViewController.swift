@@ -39,7 +39,9 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
     
     @objc func onSaveButton() {
         if taskVM.mode == TaskViewModel.Mode.update &&
-            (taskVM.title != titleTextView.text || taskVM.completionDate.compare(datePicker.date) != .orderedSame || taskVM.category?.objectID != categoriesVM[categoryPicker.selectedRow(inComponent: 0)].objectID) {
+            (taskVM.title != titleTextView.text ||
+                taskVM.completionDate.compare(datePicker.date) != .orderedSame ||
+                taskVM.category?.objectID != categoriesVM[categoryPicker.selectedRow(inComponent: 0)].objectID) {
             checkFieldsAndSaveTask()
             self.navigationController?.popViewController(animated: true)
         }

@@ -11,7 +11,8 @@ import UIKit
 class TasksListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    fileprivate var tasks: [TaskMO] = []
+    fileprivate var taskListVM: TasksListViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Tasks"
@@ -20,19 +21,24 @@ class TasksListViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadData()
+        if taskListVM != nil {
+            loadData()
+        } else {
+            taskListVM = TasksListViewModel()
+            self.activityIndicator.stopAnimating()
+        }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let segueIdentifier = SegueIdentifiers(rawValue: segue.identifier!) {
             switch segueIdentifier {
             case .addNewTask:
                 if let destinationViewController = segue.destination as? TaskViewController {
-                   destinationViewController.taskVM = TaskViewModel(task: nil, to: .create)
+                    destinationViewController.taskVM = TaskViewModel(task: nil, to: .create)
                 }
             case .openExistingTask:
                 if let destinationViewController = segue.destination as? TaskViewController {
                     if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                        let task = tasks[selectedIndexPath.row]
+                        let task = taskListVM[selectedIndexPath.row]
                         destinationViewController.taskVM = TaskViewModel(task: task, to: .update)
                     }
                 }
@@ -40,15 +46,9 @@ class TasksListViewController: UIViewController {
         }
     }
     private func loadData() {
-        //activityIndicator.startAnimating()
         DispatchQueue.global(qos: DispatchQoS.userInitiated.qosClass).async {
-            let tasksMO = CoreDataHandler.sharedInstance.fetchAllTasks()
-            let sortedTasks = tasksMO.sorted(by: { (leftTask, righTask) -> Bool in
-                let descending = (leftTask.completionDate.compare(righTask.completionDate as Date) == .orderedDescending)
-                return descending
-            })
+            self.taskListVM.loadData()
             DispatchQueue.main.async {
-                self.tasks = sortedTasks
                 self.tableView.reloadData()
                 self.activityIndicator.stopAnimating()
             }
@@ -59,7 +59,7 @@ class TasksListViewController: UIViewController {
 private typealias TableConfig = TasksListViewController
 extension TableConfig: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rowsNumber = tasks.count
+        let rowsNumber = taskListVM.count
         return rowsNumber
     }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,7 +67,7 @@ extension TableConfig: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ReusableCellIdentifiers.taskCell.rawValue ) as? TaskCell {
-            let task = tasks[indexPath.row]
+            let task = taskListVM[indexPath.row]
             cell.setup(task: task)
             return cell
         }
@@ -81,8 +81,8 @@ extension TableConfig: UITableViewDelegate {
     }    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let task = tasks[indexPath.row]
-            tasks.remove(at: indexPath.row)
+            let task = taskListVM[indexPath.row]
+            taskListVM.remove(at: indexPath.row)
             CoreDataHandler.sharedInstance.deleteTask(task)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }

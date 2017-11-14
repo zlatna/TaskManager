@@ -86,15 +86,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tvY-9p-3eY">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tvY-9p-3eY">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" red="0.77092009782791138" green="0.9131733775138855" blue="0.53115367889404297" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="wLU-Rt-u4o" secondAttribute="trailing" id="EUp-fO-act"/>
+                            <constraint firstItem="tvY-9p-3eY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Hpc-C8-ImS"/>
+                            <constraint firstItem="tvY-9p-3eY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Rsk-Pz-oUb"/>
                             <constraint firstItem="wLU-Rt-u4o" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="eju-5b-Y7e"/>
                             <constraint firstItem="wLU-Rt-u4o" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="m0k-yR-TOB"/>
                             <constraint firstItem="wLU-Rt-u4o" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="zLM-SW-Cbb"/>

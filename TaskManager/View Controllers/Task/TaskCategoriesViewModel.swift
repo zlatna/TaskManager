@@ -9,7 +9,7 @@
 import Foundation
 
 class TaskCategoriesViewModel {
-    private(set) var list: [CategoryMO]
+    private var list: [CategoryMO]
     var count: Int {
         return list.count
     }
@@ -25,8 +25,6 @@ class TaskCategoriesViewModel {
         return index!
     }
     subscript(index: Int) -> CategoryMO {
-        get {
             return list[index]
-        }
     }
 }
