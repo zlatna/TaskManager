@@ -25,19 +25,19 @@ class NotificationsHandler {
             UserDefaults.standard.set(newValue, forKey: userDefaultsKeyNotificationsEnabled)
         }
     }
-    
-    //MARK: TODO
+
+    // MARK: - TODO
     static var notificationsGlobalyEnabled: Bool {
         if let settings = UIApplication.shared.currentUserNotificationSettings?.types {
             return settings.rawValue != 0
         }
         return false
     }
-    
+
     class var notificationCenter: UNUserNotificationCenter {
         return UNUserNotificationCenter.current()
     }
-    
+
     class func createNotificationRequest(forTask task: TaskMO) -> UNNotificationRequest {
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = task.title
@@ -46,13 +46,13 @@ class NotificationsHandler {
         notificationContent.body = dateFormatter.string(from: task.completionDate as Date)
         notificationContent.badge = 1
         notificationContent.sound = UNNotificationSound.default()
-        
+
         let timeinterval = task.completionDate.timeIntervalSince(Date())
         let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: timeinterval, repeats: false)
         let notificationRequest = UNNotificationRequest(identifier: "\(task.objectID)", content: notificationContent, trigger: notificationTrigger)
         return notificationRequest
     }
-    
+
     class func addNotification(forTask task: TaskMO) {
         let notificatioRequest = createNotificationRequest(forTask: task)
         if notificationsLocalyEnabled {
@@ -61,7 +61,7 @@ class NotificationsHandler {
             addRequestInUserDefaults(request: notificatioRequest)
         }
     }
-    
+
     class func removeNotification(forTask task: TaskMO) {
         let taskID = "\(task.objectID)"
         if notificationsLocalyEnabled {
@@ -86,7 +86,7 @@ class NotificationsHandler {
     }
     class func resumeNotifications() {
         notificationsLocalyEnabled = true
-        
+
         if let requests = getRequestsFromUserDefaults() {
             for request in requests {
                 notificationCenter.add(request, withCompletionHandler: nil)
@@ -113,11 +113,10 @@ class NotificationsHandler {
         }
     }
     class func requestNotificationAuthorization() {
-        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
             if granted {
                 notificationsLocalyEnabled = true
             }
         }
     }
 }
-

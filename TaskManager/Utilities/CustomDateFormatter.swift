@@ -10,8 +10,8 @@ import Foundation
 
 class CustomDateFormatter {
     static var defaultDateFormat: String {
-        return "MMM dd,yyyy - hh:mm"
-    }    
+        return "MMM dd, yyyy - hh:mm"
+    }
     static func defaultFormatedDate(date: Date) -> String {
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = defaultDateFormat

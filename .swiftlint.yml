@@ -4,3 +4,5 @@ disabled_rules: # rule identifiers to exclude from running
 - control_statement
 - todo
 line_length: 200
+excluded:
+- Pods

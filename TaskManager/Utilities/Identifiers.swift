@@ -8,13 +8,13 @@
 
 import Foundation
 
-// MARK: -Segues
+// MARK: - Segues
 enum SegueIdentifiers: String {
     case addNewTask
     case openExistingTask
 }
 
-//MARK: -Cells
+// MARK: - Cells
 enum ReusableCellIdentifiers: String {
     case taskCell
 }

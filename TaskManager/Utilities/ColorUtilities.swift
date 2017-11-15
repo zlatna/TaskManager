@@ -23,7 +23,7 @@ extension UIColor {
             scanner.scanLocation = 1
         }
         var color: UInt32 = 0
-        scanner.scanHexInt32(&color)        
+        scanner.scanHexInt32(&color)
         let mask = 0x000000FF
         let r = Int(color >> 16) & mask
         let g = Int(color >> 8) & mask

@@ -13,7 +13,7 @@ class TaskViewModel {
         case update
         case create
     }
-    
+
     private var task: TaskMO?
     private(set) var mode: Mode
     init(task: TaskMO?, to mode: Mode) {
@@ -21,7 +21,7 @@ class TaskViewModel {
         self.task = task
         self.mode = mode
     }
-    
+
     var completionDate: Date {
         if let task = self.task {
             return task.completionDate as Date
@@ -29,15 +29,15 @@ class TaskViewModel {
             return Date()
         }
     }
-    
+
     var title: String {
         return self.task?.title ?? ""
     }
-    
+
     var category: CategoryMO? {
             return task?.category
     }
-    
+
     func saveTask(with title: String, completionDate: Date, category: CategoryMO) {
         if let taskToSave = task {
             CoreDataHandler.sharedInstance.editTask(taskToSave, title: title, completionDate: completionDate, category: category)
@@ -49,7 +49,7 @@ class TaskViewModel {
             NotificationsHandler.addNotification(forTask: newTask!)
         }
     }
-    
+
     func deleteTask() {
         assert(task != nil, "Task have not been deleted")
         CoreDataHandler.sharedInstance.deleteTask(task!)

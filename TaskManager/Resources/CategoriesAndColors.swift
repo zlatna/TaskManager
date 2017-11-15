@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct CategoriesAndColors{
+struct CategoriesAndColors {
     var dictionary: [String : String] {
         var dictionary: [String : String] =  [:]
         let colors = ["#C6DA02", "#79A700", "#F68B2C", "#E2B400", "#F5522D", "#FF6E83"]

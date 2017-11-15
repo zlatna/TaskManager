@@ -12,7 +12,7 @@ class TasksListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     fileprivate var taskListVM: TasksListViewModel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Tasks"
@@ -78,7 +78,7 @@ extension TableConfig: UITableViewDataSource {
 extension TableConfig: UITableViewDelegate {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
-    }    
+    }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let task = taskListVM[indexPath.row]
