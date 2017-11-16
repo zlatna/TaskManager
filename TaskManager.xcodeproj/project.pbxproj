@@ -204,8 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				931470511FBB493100477263 /* CategoryCell */,
-				93179F081FBC414900B404B2 /* TaskCategoryPicker.xib */,
 				93179F0A1FBC416600B404B2 /* TaskCategoryPicker.swift */,
+				93179F081FBC414900B404B2 /* TaskCategoryPicker.xib */,
 				93179F0E1FBC8F5300B404B2 /* CollectionViewPickerDelegate.swift */,
 			);
 			path = CategoryPickerView;

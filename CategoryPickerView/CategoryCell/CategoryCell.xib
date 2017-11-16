@@ -21,7 +21,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="gRd-vJ-JSx">
-                        <rect key="frame" x="6" y="69.5" width="87" height="23.5"/>
+                        <rect key="frame" x="6" y="76" width="87" height="17"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
@@ -38,7 +38,6 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="gRd-vJ-JSx" firstAttribute="top" secondItem="tOF-Xd-6QP" secondAttribute="bottom" constant="10" id="7sQ-93-whr"/>
                 <constraint firstItem="tOF-Xd-6QP" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="C08-ZT-6ly"/>
                 <constraint firstItem="tOF-Xd-6QP" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" constant="10" id="Hck-XD-B2H"/>
                 <constraint firstAttribute="trailing" secondItem="gRd-vJ-JSx" secondAttribute="trailing" constant="6" id="dEe-Wt-qPc"/>

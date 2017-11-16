@@ -97,7 +97,7 @@
                             <constraint firstItem="tvY-9p-3eY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Hpc-C8-ImS"/>
                             <constraint firstItem="tvY-9p-3eY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Rsk-Pz-oUb"/>
                             <constraint firstItem="wLU-Rt-u4o" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="eju-5b-Y7e"/>
-                            <constraint firstItem="wLU-Rt-u4o" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="m0k-yR-TOB"/>
+                            <constraint firstItem="wLU-Rt-u4o" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="m0k-yR-TOB"/>
                             <constraint firstItem="wLU-Rt-u4o" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="zLM-SW-Cbb"/>
                         </constraints>
                     </view>
@@ -238,7 +238,7 @@
                                                             <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                            <color key="value" cocoaTouchSystemColor="darkTextColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
@@ -247,6 +247,7 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="hut-dL-gGk" firstAttribute="centerY" secondItem="mXy-Xl-7a4" secondAttribute="centerY" id="Bly-I7-0rq"/>
                                                 <constraint firstItem="hut-dL-gGk" firstAttribute="leading" secondItem="mXy-Xl-7a4" secondAttribute="leading" constant="8" id="IEt-1B-uPE"/>
                                                 <constraint firstAttribute="bottom" secondItem="hut-dL-gGk" secondAttribute="bottom" constant="8" id="P2l-4K-vpb"/>
                                                 <constraint firstAttribute="trailing" secondItem="hut-dL-gGk" secondAttribute="trailing" constant="8" id="UyP-JR-V8a"/>
@@ -274,7 +275,7 @@
                                                             <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                            <color key="value" cocoaTouchSystemColor="darkTextColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
                                                             <real key="value" value="1"/>
@@ -314,7 +315,7 @@
                                                             <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                            <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                            <color key="value" cocoaTouchSystemColor="darkTextColor"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
@@ -322,37 +323,9 @@
                                             <constraints>
                                                 <constraint firstItem="shY-pQ-X2B" firstAttribute="top" secondItem="yln-hw-d2A" secondAttribute="top" constant="8" id="7aS-dQ-Oae"/>
                                                 <constraint firstAttribute="trailing" secondItem="shY-pQ-X2B" secondAttribute="trailing" constant="8" id="BBg-5A-9WB"/>
+                                                <constraint firstItem="shY-pQ-X2B" firstAttribute="centerY" secondItem="yln-hw-d2A" secondAttribute="centerY" id="E7w-fe-Jce"/>
                                                 <constraint firstAttribute="bottom" secondItem="shY-pQ-X2B" secondAttribute="bottom" constant="8" id="juj-E1-5Bx"/>
                                                 <constraint firstItem="shY-pQ-X2B" firstAttribute="leading" secondItem="yln-hw-d2A" secondAttribute="leading" constant="8" id="p8J-L0-3mV"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="V9h-vo-Mkf">
-                                        <rect key="frame" x="0.0" y="177" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V9h-vo-Mkf" id="urj-P9-157">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDL-cC-7LL">
-                                                    <rect key="frame" x="237" y="0.0" width="122" height="34"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="122" id="qUh-Zl-0c0"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <state key="normal" title="Delete">
-                                                        <color key="titleColor" red="0.87058823529999996" green="0.20784313730000001" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="deleteTask:" destination="7XV-ww-08A" eventType="touchUpInside" id="E8l-6W-Y5m"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="dDL-cC-7LL" secondAttribute="bottom" constant="10" id="9IC-a6-mgd"/>
-                                                <constraint firstItem="dDL-cC-7LL" firstAttribute="leading" relation="lessThanOrEqual" secondItem="urj-P9-157" secondAttribute="leading" constant="237" id="EB1-WO-idX"/>
-                                                <constraint firstItem="dDL-cC-7LL" firstAttribute="top" secondItem="urj-P9-157" secondAttribute="top" id="VEy-gq-pPG"/>
-                                                <constraint firstItem="dDL-cC-7LL" firstAttribute="trailing" secondItem="urj-P9-157" secondAttribute="trailingMargin" id="dwb-Kr-i0K"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -365,8 +338,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="categoryTextField" destination="shY-pQ-X2B" id="jQO-EC-gr9"/>
-                        <outlet property="deleteTaskButton" destination="dDL-cC-7LL" id="C4p-aI-36e"/>
+                        <outlet property="categoryTextField" destination="shY-pQ-X2B" id="BuP-1l-FuV"/>
                         <outlet property="taskDueDateTextField" destination="wWt-Fz-Zco" id="87q-3w-ZnI"/>
                         <outlet property="titleTextView" destination="hut-dL-gGk" id="LoL-bq-Ype"/>
                     </connections>
@@ -378,6 +350,7 @@
         <!--Navigation Controller-->
         <scene sceneID="zTq-Je-Lvb">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0SC-NH-GAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vZj-8x-OSL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" id="jWN-HA-PoY">
@@ -389,7 +362,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="6wF-Xd-DGI"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0SC-NH-GAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="-543.77811094452773"/>
         </scene>

@@ -6,6 +6,6 @@
 //  Copyright © 2017 zlatnanikolova. All rights reserved.
 //
 
-protocol CollectionViewPickerDelegate {
-
+protocol CategoryPickerDelegate: class {
+    func didSelectItem(_ item: CategoryMO)
 }
