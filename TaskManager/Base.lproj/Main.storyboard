@@ -329,6 +329,31 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="59" id="WND-ze-Ysw">
+                                        <rect key="frame" x="0.0" y="177" width="375" height="59"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WND-ze-Ysw" id="Lp9-4G-BvP">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBq-a9-Cwf">
+                                                    <rect key="frame" x="36" y="12.5" width="303" height="33"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <state key="normal" title="Delete">
+                                                        <color key="titleColor" red="1" green="0.34181704870000001" blue="0.31122620179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteTask:" destination="7XV-ww-08A" eventType="touchUpInside" id="ITc-lu-kD8"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lBq-a9-Cwf" firstAttribute="centerY" secondItem="Lp9-4G-BvP" secondAttribute="centerY" id="bzW-wm-9qA"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="lBq-a9-Cwf" secondAttribute="trailing" constant="20" id="iv1-H3-ofQ"/>
+                                                <constraint firstItem="lBq-a9-Cwf" firstAttribute="leading" secondItem="Lp9-4G-BvP" secondAttribute="leadingMargin" constant="20" id="t61-sy-08i"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -339,6 +364,7 @@
                     </tableView>
                     <connections>
                         <outlet property="categoryTextField" destination="shY-pQ-X2B" id="BuP-1l-FuV"/>
+                        <outlet property="deleteTaskButton" destination="lBq-a9-Cwf" id="7QI-rW-KrO"/>
                         <outlet property="taskDueDateTextField" destination="wWt-Fz-Zco" id="87q-3w-ZnI"/>
                         <outlet property="titleTextView" destination="hut-dL-gGk" id="LoL-bq-Ype"/>
                     </connections>
@@ -350,7 +376,6 @@
         <!--Navigation Controller-->
         <scene sceneID="zTq-Je-Lvb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0SC-NH-GAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vZj-8x-OSL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" id="jWN-HA-PoY">
@@ -362,6 +387,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="6wF-Xd-DGI"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0SC-NH-GAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="-543.77811094452773"/>
         </scene>

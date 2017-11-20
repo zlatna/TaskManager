@@ -12,7 +12,7 @@ import TextFieldEffects
 
 class TaskViewController: UITableViewController, PresentAlertsProtocol {
     @IBOutlet weak var titleTextView: UITextField!
-    //@IBOutlet weak var deleteTaskButton: UIButton!
+    @IBOutlet weak var deleteTaskButton: UIButton!
     @IBOutlet weak var taskDueDateTextField: UITextField!
     @IBOutlet weak var categoryTextField: HoshiTextField!
     var taskVM: TaskViewModel!
@@ -54,9 +54,9 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
         case .create:
             navigationItem.title = "Crate new task"
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(TaskViewController.onAddTaskButton))
-            //deleteTaskButton.isHidden = true
+            deleteTaskButton.isHidden = true
         }
-        //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(TaskViewController.onCloseButton))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(TaskViewController.onCloseButton))
     }
 
     // MARK: - Actions
