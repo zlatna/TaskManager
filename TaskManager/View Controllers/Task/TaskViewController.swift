@@ -31,7 +31,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
     fileprivate var taskCategory: CategoryMO? {
         didSet {
             categoryTextField.text = taskCategory?.name
-            categoryTextField.borderInactiveColor = taskCategory?.uiColor
+            //categoryTextField.borderInactiveColor = taskCategory?.uiColor
         }
     }
 
@@ -49,24 +49,28 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
             taskDueDate = taskVM.completionDate
             titleTextView.text = taskVM.title
             taskCategory = taskVM.category
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(TaskViewController.onSaveButton))
 
         case .create:
             navigationItem.title = "Crate new task"
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(TaskViewController.onAddTaskButton))
             deleteTaskButton.isHidden = true
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(TaskViewController.onCloseButton))
         }
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(TaskViewController.onCloseButton))
     }
 
     // MARK: - Actions
+    override func willMove(toParentViewController parent: UIViewController?) {
+        if parent == nil {
+            onSaveButton()
+        }
+    }
+
     @objc func onSaveButton() {
         if taskVM.mode == TaskViewModel.Mode.update &&
             (taskVM.title != titleTextView.text ||
                 taskVM.completionDate.compare(taskDueDate ?? Date()) != .orderedSame ||
                 taskVM.category?.objectID != taskCategory?.objectID) {
             checkFieldsAndSaveTask()
-            self.navigationController?.popViewController(animated: true)
         }
     }
 
