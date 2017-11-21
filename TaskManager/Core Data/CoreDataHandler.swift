@@ -42,6 +42,7 @@ class CoreDataHandler {
             task.title = title
             task.completionDate = completionDate as NSDate
             task.category = category
+            task.isCompleted = false
 
             do {
                 try context.save()
@@ -53,7 +54,7 @@ class CoreDataHandler {
         return nil
     }
 
-    func editTask(_ task: TaskMO, title: String?, completionDate: Date?, category: CategoryMO?) {
+    func editTask(_ task: TaskMO, title: String? = nil, completionDate: Date? = nil, category: CategoryMO? = nil, isCompleted: Bool? = nil) {
         if let context = managedContext {
             if let taskTitle = title {
                 task.setValue(taskTitle, forKey: "title")
@@ -65,6 +66,10 @@ class CoreDataHandler {
 
             if let taskcategory = category {
                 task.setValue(taskcategory, forKey: "category")
+            }
+
+            if let taskIsCompleted = isCompleted {
+                task.setValue(taskIsCompleted, forKey: "isCompleted")
             }
 
             do {

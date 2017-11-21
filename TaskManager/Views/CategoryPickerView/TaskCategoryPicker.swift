@@ -17,7 +17,7 @@ class TaskCategoryPicker: UIView {
     fileprivate let itemsPerRow = 3
     fileprivate let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
     weak var delegate: CategoryPickerDelegate?
-    
+
     fileprivate let taskCategories = TaskCategoriesViewModel()
     var selectedItem: CategoryMO?
 
@@ -42,20 +42,19 @@ extension CollectionViewConfig: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as? CategoryCell {
-            let category = taskCategories[indexPath.row]
-            cell.setup(color: category.uiColor, name: category.name)
-            // In order to show the current category as selected
-            if let category = selectedItem {
-                let categoryIndexPath = IndexPath(row: taskCategories.index(of: category), section: 0)
-                if categoryIndexPath.elementsEqual(indexPath) {
-                    collectionView.selectItem(at: categoryIndexPath, animated: false, scrollPosition: .top)
-                    cell.isSelected = true
-                }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as? CategoryCell
+        assert(cell != nil, "Category Cell Not Existing")
+        let category = taskCategories[indexPath.row]
+        cell!.setup(color: category.uiColor, name: category.name)
+        // In order to show the current category as selected
+        if let category = selectedItem {
+            let categoryIndexPath = IndexPath(row: taskCategories.index(of: category), section: 0)
+            if categoryIndexPath.elementsEqual(indexPath) {
+                collectionView.selectItem(at: categoryIndexPath, animated: false, scrollPosition: .top)
+                cell!.isSelected = true
             }
-            return cell
         }
-        return UICollectionViewCell()
+        return cell!
     }
 }
 

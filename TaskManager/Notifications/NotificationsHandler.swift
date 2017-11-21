@@ -12,11 +12,17 @@ import UIKit
 
 // TODO: - globally turn off / on all local notifications - Currently support local turn off/on
 //           in case off -  the notifications are not triggered. Instead they are stored in UserDefaults when  turn on localy they are added to the NotificationCenter
-// TODO: - support notifications on running app
+//       - support notifications on running app
 
+// MARK: - Notifications handler
 class NotificationsHandler {
     static let userDefaultsKeyForNotifications = "Task Manager Notifications"
     static let userDefaultsKeyNotificationsEnabled = "Notifications Enabled"
+}
+
+// MARK: - Notifications Setup
+typealias NotificationsSetup = NotificationsHandler
+extension NotificationsSetup {
     class var notificationsLocalyEnabled: Bool {
         get {
             return UserDefaults.standard.bool(forKey: userDefaultsKeyNotificationsEnabled)
@@ -26,33 +32,33 @@ class NotificationsHandler {
         }
     }
 
-    // MARK: - TODO
     static var notificationsGlobalyEnabled: Bool {
-        if let settings = UIApplication.shared.currentUserNotificationSettings?.types {
-            return settings.rawValue != 0
+        var areNotificationsEnabled: Bool = false
+        self.notificationCenter.getNotificationSettings { (settings) in
+            areNotificationsEnabled =
+                (settings.alertSetting == UNNotificationSetting.enabled ||
+                    settings.badgeSetting == UNNotificationSetting.enabled ||
+                    settings.soundSetting == UNNotificationSetting.enabled)
         }
-        return false
+        return areNotificationsEnabled
     }
 
     class var notificationCenter: UNUserNotificationCenter {
         return UNUserNotificationCenter.current()
     }
 
-    class func createNotificationRequest(forTask task: TaskMO) -> UNNotificationRequest {
-        let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = task.title
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd,yyyy - hh:mm"
-        notificationContent.body = dateFormatter.string(from: task.completionDate as Date)
-        notificationContent.badge = 1
-        notificationContent.sound = UNNotificationSound.default()
-
-        let timeinterval = task.completionDate.timeIntervalSince(Date())
-        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: timeinterval, repeats: false)
-        let notificationRequest = UNNotificationRequest(identifier: "\(task.objectID)", content: notificationContent, trigger: notificationTrigger)
-        return notificationRequest
+    class func requestNotificationAuthorization() {
+        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
+            if granted {
+                notificationsLocalyEnabled = true
+            }
+        }
     }
+}
 
+// MARK: - Notifications Management
+typealias NotificationsManager = NotificationsHandler
+extension NotificationsManager {
     class func addNotification(forTask task: TaskMO) {
         let notificatioRequest = createNotificationRequest(forTask: task)
         if notificationsLocalyEnabled {
@@ -94,6 +100,28 @@ class NotificationsHandler {
             UserDefaults.standard.removeObject(forKey: userDefaultsKeyForNotifications)
         }
     }
+}
+
+// MARK: - Notifications Helpers
+typealias NotificationsHelper = NotificationsHandler
+extension NotificationsHelper {
+    class func createNotificationRequest(forTask task: TaskMO) -> UNNotificationRequest {
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.title = task.title
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd,yyyy - hh:mm"
+        notificationContent.body = dateFormatter.string(from: task.completionDate as Date)
+        notificationContent.badge = 1
+        notificationContent.sound = UNNotificationSound.default()
+
+        let timeinterval = task.completionDate.timeIntervalSince(Date())
+        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: timeinterval, repeats: false)
+        let notificationRequest = UNNotificationRequest(identifier: "\(task.objectID)", content: notificationContent, trigger: notificationTrigger)
+        return notificationRequest
+    }
+}
+typealias NotificationSuspendingHelper = NotificationsHandler
+extension NotificationSuspendingHelper {
     private class func getRequestsFromUserDefaults() -> [UNNotificationRequest]? {
         if let archivedNotifications = UserDefaults.standard.data(forKey: userDefaultsKeyForNotifications),
             let notificationsArray = NSKeyedUnarchiver.unarchiveObject(with: archivedNotifications) as? [UNNotificationRequest] {
@@ -110,13 +138,6 @@ class NotificationsHandler {
         if requestsList != nil {
             requestsList!.append(request)
             storeRequestsInUserDefaults(requests: requestsList!)
-        }
-    }
-    class func requestNotificationAuthorization() {
-        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
-            if granted {
-                notificationsLocalyEnabled = true
-            }
         }
     }
 }

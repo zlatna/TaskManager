@@ -19,7 +19,6 @@
 		21FAEAAF1F3DE20000219128 /* CategoryMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAAB1F3DE20000219128 /* CategoryMO+CoreDataClass.swift */; };
 		21FAEAB01F3DE20000219128 /* CategoryMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAAC1F3DE20000219128 /* CategoryMO+CoreDataProperties.swift */; };
 		21FAEAB11F3DE20000219128 /* TaskMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAAD1F3DE20000219128 /* TaskMO+CoreDataClass.swift */; };
-		21FAEAB21F3DE20000219128 /* TaskMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAAE1F3DE20000219128 /* TaskMO+CoreDataProperties.swift */; };
 		21FAEAB41F3DE93A00219128 /* CategoryMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAB31F3DE93A00219128 /* CategoryMO.swift */; };
 		21FAEAB91F3E51CC00219128 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAB81F3E51CC00219128 /* TaskCell.swift */; };
 		8B663D5B89CA49EFBBDA5E54 /* Pods_TaskManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBA13587500ED369F80954D /* Pods_TaskManager.framework */; };
@@ -33,6 +32,9 @@
 		931A84891FB9F9A900D173D1 /* TasksListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A84881FB9F9A900D173D1 /* TasksListViewModel.swift */; };
 		933935551FB5DDE90068E483 /* PresentAlertsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */; };
 		933935581FB600540068E483 /* CategoriesAndColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935571FB600540068E483 /* CategoriesAndColors.swift */; };
+		933DA59A1FC30C6A007DDEC0 /* TaskStateManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DA5991FC30C6A007DDEC0 /* TaskStateManagedObject.swift */; };
+		933DA5A21FC43BA0007DDEC0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DA5A11FC43BA0007DDEC0 /* R.generated.swift */; };
+		933DA5A81FC4547B007DDEC0 /* TaskMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DA5A71FC4547B007DDEC0 /* TaskMO+CoreDataProperties.swift */; };
 		936C96241FB4ACC1001FC35D /* ColorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C96231FB4ACC1001FC35D /* ColorUtilities.swift */; };
 		936C96261FB4AEB6001FC35D /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C96251FB4AEB6001FC35D /* CustomDateFormatter.swift */; };
 		936C96291FB4B78E001FC35D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 936C96281FB4B78E001FC35D /* .swiftlint.yml */; };
@@ -55,7 +57,6 @@
 		21FAEAAB1F3DE20000219128 /* CategoryMO+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CategoryMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		21FAEAAC1F3DE20000219128 /* CategoryMO+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CategoryMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		21FAEAAD1F3DE20000219128 /* TaskMO+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskMO+CoreDataClass.swift"; sourceTree = "<group>"; };
-		21FAEAAE1F3DE20000219128 /* TaskMO+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TaskMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		21FAEAB31F3DE93A00219128 /* CategoryMO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryMO.swift; sourceTree = "<group>"; };
 		21FAEAB81F3E51CC00219128 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskCell.swift; path = TaskManager/Views/TaskCell.swift; sourceTree = "<group>"; };
 		4BC7BA87B1A55A32C7BF6AC2 /* Pods-TaskManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskManager/Pods-TaskManager.debug.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +70,10 @@
 		931A84881FB9F9A900D173D1 /* TasksListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListViewModel.swift; sourceTree = "<group>"; };
 		933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAlertsProtocol.swift; sourceTree = "<group>"; };
 		933935571FB600540068E483 /* CategoriesAndColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAndColors.swift; sourceTree = "<group>"; };
+		933DA5981FC30C46007DDEC0 /* TaskManager v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TaskManager v2.xcdatamodel"; sourceTree = "<group>"; };
+		933DA5991FC30C6A007DDEC0 /* TaskStateManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStateManagedObject.swift; sourceTree = "<group>"; };
+		933DA5A11FC43BA0007DDEC0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		933DA5A71FC4547B007DDEC0 /* TaskMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TaskMO+CoreDataProperties.swift"; path = "/Users/zlatnanikolova/Documents/MyProjects/TaskManager/Core Data/Managed Objects/TaskMO+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		936C96231FB4ACC1001FC35D /* ColorUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtilities.swift; sourceTree = "<group>"; };
 		936C96251FB4AEB6001FC35D /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 		936C96281FB4B78E001FC35D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -92,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				936C96281FB4B78E001FC35D /* .swiftlint.yml */,
+				933DA5A11FC43BA0007DDEC0 /* R.generated.swift */,
 				21067D581F3C490C00DB93E6 /* TaskManager */,
 				21067D571F3C490C00DB93E6 /* Products */,
 				298EED2DC2E0A9352EC2529F /* Pods */,
@@ -167,8 +173,9 @@
 				21FAEAAB1F3DE20000219128 /* CategoryMO+CoreDataClass.swift */,
 				21FAEAAC1F3DE20000219128 /* CategoryMO+CoreDataProperties.swift */,
 				21FAEAAD1F3DE20000219128 /* TaskMO+CoreDataClass.swift */,
-				21FAEAAE1F3DE20000219128 /* TaskMO+CoreDataProperties.swift */,
+				933DA5A71FC4547B007DDEC0 /* TaskMO+CoreDataProperties.swift */,
 				21FAEAB31F3DE93A00219128 /* CategoryMO.swift */,
+				933DA5991FC30C6A007DDEC0 /* TaskStateManagedObject.swift */,
 			);
 			path = "Managed Objects";
 			sourceTree = "<group>";
@@ -208,7 +215,8 @@
 				93179F081FBC414900B404B2 /* TaskCategoryPicker.xib */,
 				93179F0E1FBC8F5300B404B2 /* CollectionViewPickerDelegate.swift */,
 			);
-			path = CategoryPickerView;
+			name = CategoryPickerView;
+			path = TaskManager/Views/CategoryPickerView;
 			sourceTree = "<group>";
 		};
 		931470511FBB493100477263 /* CategoryCell */ = {
@@ -357,11 +365,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TaskManager/Pods-TaskManager-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,7 +390,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
 		};
 		98AE6CFB9147381E07FA0F51 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -432,6 +442,8 @@
 				21FAEAAF1F3DE20000219128 /* CategoryMO+CoreDataClass.swift in Sources */,
 				21FAEAA51F3DD84700219128 /* CoreDataHandler.swift in Sources */,
 				93179F0F1FBC8F5300B404B2 /* CollectionViewPickerDelegate.swift in Sources */,
+				933DA59A1FC30C6A007DDEC0 /* TaskStateManagedObject.swift in Sources */,
+				933DA5A81FC4547B007DDEC0 /* TaskMO+CoreDataProperties.swift in Sources */,
 				21FAEAB01F3DE20000219128 /* CategoryMO+CoreDataProperties.swift in Sources */,
 				936C96261FB4AEB6001FC35D /* CustomDateFormatter.swift in Sources */,
 				931A84841FB99B7E00D173D1 /* TaskCategoriesViewModel.swift in Sources */,
@@ -439,11 +451,11 @@
 				210793541F3F7B1D00DD5173 /* TaskViewController.swift in Sources */,
 				931A84821FB9992900D173D1 /* TaskViewModel.swift in Sources */,
 				210793531F3F7B1D00DD5173 /* TasksListViewController.swift in Sources */,
+				933DA5A21FC43BA0007DDEC0 /* R.generated.swift in Sources */,
 				21FAEAB11F3DE20000219128 /* TaskMO+CoreDataClass.swift in Sources */,
 				933935551FB5DDE90068E483 /* PresentAlertsProtocol.swift in Sources */,
 				21067D621F3C490C00DB93E6 /* TaskManager.xcdatamodeld in Sources */,
 				93179F0B1FBC416600B404B2 /* TaskCategoryPicker.swift in Sources */,
-				21FAEAB21F3DE20000219128 /* TaskMO+CoreDataProperties.swift in Sources */,
 				21067D5A1F3C490C00DB93E6 /* AppDelegate.swift in Sources */,
 				21FAEAB41F3DE93A00219128 /* CategoryMO.swift in Sources */,
 			);
@@ -629,9 +641,10 @@
 		21067D601F3C490C00DB93E6 /* TaskManager.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				933DA5981FC30C46007DDEC0 /* TaskManager v2.xcdatamodel */,
 				21067D611F3C490C00DB93E6 /* TaskManager.xcdatamodel */,
 			);
-			currentVersion = 21067D611F3C490C00DB93E6 /* TaskManager.xcdatamodel */;
+			currentVersion = 933DA5981FC30C46007DDEC0 /* TaskManager v2.xcdatamodel */;
 			path = TaskManager.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

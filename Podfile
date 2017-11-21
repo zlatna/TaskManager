@@ -13,5 +13,5 @@ target 'TaskManager' do
   
   pod 'IQKeyboardManagerSwift'
   pod 'SwiftLint'
-  #pod 'Mandoline'
+  pod 'R.swift'
 end

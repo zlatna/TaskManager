@@ -1,9 +1,9 @@
 //
 //  TaskMO+CoreDataProperties.swift
-//  TaskManager
+//  
 //
-//  Created by Zlatna on 8/11/17.
-//  Copyright © 2017 zlatnanikolova. All rights reserved.
+//  Created by Zlatna Nikolova on 21/11/2017.
+//
 //
 
 import Foundation
@@ -17,6 +17,7 @@ extension TaskMO {
 
     @NSManaged public var completionDate: NSDate
     @NSManaged public var title: String
+    @NSManaged public var isCompleted: Bool
     @NSManaged public var category: CategoryMO
 
 }

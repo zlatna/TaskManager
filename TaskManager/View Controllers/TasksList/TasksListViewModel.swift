@@ -9,25 +9,86 @@
 import Foundation
 
 class TasksListViewModel {
-    private var tasks: [TaskMO] = []
+//    represents which tasks are shown in which section - completed or pending
+    enum TasksStatusSection: Int {
+        case pending = 0
+        case completed = 1
+    }
+
+    private var tasks: [[TaskMO]] = []
+
     init() {
         self.loadData()
     }
-    subscript (index: Int) -> TaskMO {
-            return tasks[index]
+
+    subscript (section: Int, index: Int) -> TaskMO {
+        return tasks[section][index]
     }
+
+    func countFor(section: Int) -> Int {
+        return tasks[section].count
+    }
+
     var count: Int {
         return tasks.count
     }
-    func remove(at index: Int) {
-        tasks.remove(at: index)
+
+    func remove(section: Int, index: Int) {
+        tasks[section].remove(at: index)
     }
+
+    func addTask(taskToAdd: TaskMO,to section: Int) {
+        if tasks[section].isEmpty {
+            tasks[section].append(taskToAdd)
+        } else {
+            for (index, task) in tasks[section].enumerated() {
+                if (task.completionDate.compare(taskToAdd.completionDate as Date) == .orderedAscending) {
+                    tasks[section].insert(taskToAdd, at: index)
+                    break
+                } else {
+                    if index == tasks[section].count - 1 {
+                        tasks[section].append(taskToAdd)
+                    }
+                }
+            }
+        }
+    }
+
+    func completeTask(at indexPath: IndexPath) {
+        if indexPath.section == TasksStatusSection.pending.rawValue {
+            let taskToComplete = self[indexPath.section, indexPath.row]
+            CoreDataHandler.sharedInstance.editTask(taskToComplete, isCompleted: true)
+            remove(section: indexPath.section, index: indexPath.row)
+            addTask(taskToAdd: taskToComplete,to: TasksStatusSection.completed.rawValue)
+        }
+    }
+
+    func deleteTask(at indexPath: IndexPath) {
+        let taskToDelete = self[indexPath.section, indexPath.row]
+        CoreDataHandler.sharedInstance.deleteTask(taskToDelete)
+        remove(section: indexPath.section, index: indexPath.row)
+    }
+
     func loadData() {
         let tasksMO = CoreDataHandler.sharedInstance.fetchAllTasks()
         let sortedTasks = tasksMO.sorted(by: { (leftTask, righTask) -> Bool in
             let descending = (leftTask.completionDate.compare(righTask.completionDate as Date) == .orderedDescending)
             return descending
         })
-        self.tasks = sortedTasks
+        var completedTasks: [TaskMO] = []
+        var pendingTasks: [TaskMO] = []
+        for task in sortedTasks {
+            if task.isCompleted {
+                completedTasks.append(task)
+            } else {
+                pendingTasks.append(task)
+            }
+        }
+        // Pending tasks appear before the completed
+        if TasksStatusSection.pending.rawValue == 0 {
+            self.tasks = [pendingTasks, completedTasks]
+        } else {
+            self.tasks = [completedTasks, pendingTasks]
+        }
     }
 }

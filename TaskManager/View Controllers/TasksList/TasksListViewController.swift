@@ -19,6 +19,7 @@ class TasksListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if taskListVM != nil {
@@ -28,6 +29,7 @@ class TasksListViewController: UIViewController {
             self.activityIndicator.stopAnimating()
         }
     }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let segueIdentifier = SegueIdentifiers(rawValue: segue.identifier!) {
             switch segueIdentifier {
@@ -38,13 +40,14 @@ class TasksListViewController: UIViewController {
             case .openExistingTask:
                 if let destinationViewController = segue.destination as? TaskViewController {
                     if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                        let task = taskListVM[selectedIndexPath.row]
+                        let task = taskListVM[selectedIndexPath.section, selectedIndexPath.row]
                         destinationViewController.taskVM = TaskViewModel(task: task, to: .update)
                     }
                 }
             }
         }
     }
+
     private func loadData() {
         DispatchQueue.global(qos: DispatchQoS.userInitiated.qosClass).async {
             self.taskListVM.loadData()
@@ -56,35 +59,74 @@ class TasksListViewController: UIViewController {
     }
 }
 
+// MARK: - Table View Data Source
 private typealias TableConfig = TasksListViewController
 extension TableConfig: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rowsNumber = taskListVM.count
+        let rowsNumber = taskListVM.countFor(section: section)
         return rowsNumber
     }
+
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return taskListVM.count
     }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ReusableCellIdentifiers.taskCell.rawValue ) as? TaskCell {
-            let task = taskListVM[indexPath.row]
+            let task = taskListVM[indexPath.section, indexPath.row]
             cell.setup(task: task)
             return cell
         }
         return UITableViewCell()
     }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if TasksListViewModel.TasksStatusSection.completed.rawValue == section {
+            return "Completed Tasks"
+        }
+        if TasksListViewModel.TasksStatusSection.pending.rawValue == section {
+            return "Pending Tasks"
+        }
+        return "Unknown"
+    }
 }
 
+// MARK: - Table View Delegate
 extension TableConfig: UITableViewDelegate {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let task = taskListVM[indexPath.row]
-            taskListVM.remove(at: indexPath.row)
+            let task = taskListVM[indexPath.section, indexPath.row]
+            taskListVM.remove(section: indexPath.section, index: indexPath.row)//(at: indexPath.row)
             CoreDataHandler.sharedInstance.deleteTask(task)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
+    }
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if TasksListViewModel.TasksStatusSection.completed.rawValue == indexPath.section {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+            self.taskListVM.deleteTask(at: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+            return [delete]
+        }
+
+        if TasksListViewModel.TasksStatusSection.pending.rawValue == indexPath.section {
+            let done = UITableViewRowAction(style: .normal, title: "Done") { (_, indexPath ) in
+                DispatchQueue.global(qos: DispatchQoS.userInitiated.qosClass).async {
+                    self.taskListVM.completeTask(at: indexPath)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+            done.backgroundColor = UIColor(displayP3Red: 169/255, green: 197/255, blue: 242/255, alpha: 1)
+            return [done]
+        }
+        return []
     }
 }

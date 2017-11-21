@@ -28,7 +28,7 @@ class CategoryCell: UICollectionViewCell {
 
     override var isSelected: Bool {
         didSet {
-            self.layer.borderWidth = 2
+            self.layer.borderWidth = isSelected ? 2 : 0
             self.layer.borderColor = isSelected ? colorView.backgroundColor?.cgColor : UIColor.clear.cgColor
         }
     }
