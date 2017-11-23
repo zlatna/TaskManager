@@ -1,6 +1,6 @@
 //
 //  TaskMO+CoreDataProperties.swift
-//  
+//
 //
 //  Created by Zlatna Nikolova on 21/11/2017.
 //

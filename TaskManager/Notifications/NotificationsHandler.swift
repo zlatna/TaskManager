@@ -31,7 +31,7 @@ extension NotificationsSetup {
             UserDefaults.standard.set(newValue, forKey: userDefaultsKeyNotificationsEnabled)
         }
     }
-    
+
     static var notificationsGlobalyEnabled: Bool {
         var areNotificationsEnabled: Bool = false
         self.notificationCenter.getNotificationSettings { (settings) in
@@ -42,11 +42,11 @@ extension NotificationsSetup {
         }
         return areNotificationsEnabled
     }
-    
+
     class var notificationCenter: UNUserNotificationCenter {
         return UNUserNotificationCenter.current()
     }
-    
+
     class func requestNotificationAuthorization() {
         notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
             if granted {
@@ -67,7 +67,7 @@ extension NotificationsManager {
             addRequestInUserDefaults(request: notificatioRequest)
         }
     }
-    
+
     class func removeNotification(forTask task: TaskMO) {
         let taskID = "\(task.objectID)"
         if notificationsLocalyEnabled {
@@ -92,7 +92,7 @@ extension NotificationsManager {
     }
     class func resumeNotifications() {
         notificationsLocalyEnabled = true
-        
+
         if let requests = getRequestsFromUserDefaults() {
             for request in requests {
                 notificationCenter.add(request, withCompletionHandler: nil)
@@ -113,7 +113,7 @@ extension NotificationsHelper {
         notificationContent.body = dateFormatter.string(from: task.completionDate as Date)
         notificationContent.badge = 1
         notificationContent.sound = UNNotificationSound.default()
-        
+
         let timeinterval = task.completionDate.timeIntervalSince(Date())
         let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: timeinterval, repeats: false)
         let notificationRequest = UNNotificationRequest(identifier: "\(task.objectID)", content: notificationContent, trigger: notificationTrigger)
