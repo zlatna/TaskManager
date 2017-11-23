@@ -54,7 +54,6 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
             navigationItem.title = "Crate new task"
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(TaskViewController.onAddTaskButton))
             deleteTaskButton.isHidden = true
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(TaskViewController.onCloseButton))
         }
     }
 

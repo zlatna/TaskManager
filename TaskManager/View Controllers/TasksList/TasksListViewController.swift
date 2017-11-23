@@ -87,7 +87,7 @@ extension TableConfig: UITableViewDataSource {
         if TasksListViewModel.TasksStatusSection.pending.rawValue == section {
             return "Pending Tasks"
         }
-        return "Unknown"
+        return nil
     }
 }
 
@@ -106,6 +106,36 @@ extension TableConfig: UITableViewDelegate {
         }
     }
 
+    @available(iOS 11.0, *)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        //if TasksListViewModel.TasksStatusSection.completed.rawValue == indexPath.section {
+            let delete = UIContextualAction(style: .destructive, title: "Delete", handler: { (_, _, _) in
+                self.taskListVM.deleteTask(at: indexPath)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+            return UISwipeActionsConfiguration(actions:[delete])
+        //}
+        //return UISwipeActionsConfiguration(actions:[]) //If the return value is nil the cell is deletable
+    }
+
+    @available(iOS 11.0, *)
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if TasksListViewModel.TasksStatusSection.pending.rawValue == indexPath.section {
+            let done = UIContextualAction(style: .normal, title: "Done", handler: { (_, _, _) in
+                DispatchQueue.global(qos: DispatchQoS.userInitiated.qosClass).async {
+                    self.taskListVM.completeTask(at: indexPath)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            })
+            done.backgroundColor = UIColor(displayP3Red: 169/255, green: 197/255, blue: 242/255, alpha: 1)
+            return UISwipeActionsConfiguration(actions:[done])
+        }
+        return nil
+    }
+
+    @available(iOS 10.0, *)
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if TasksListViewModel.TasksStatusSection.completed.rawValue == indexPath.section {
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in

@@ -32,7 +32,6 @@
 		931A84891FB9F9A900D173D1 /* TasksListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A84881FB9F9A900D173D1 /* TasksListViewModel.swift */; };
 		933935551FB5DDE90068E483 /* PresentAlertsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */; };
 		933935581FB600540068E483 /* CategoriesAndColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935571FB600540068E483 /* CategoriesAndColors.swift */; };
-		933DA59A1FC30C6A007DDEC0 /* TaskStateManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DA5991FC30C6A007DDEC0 /* TaskStateManagedObject.swift */; };
 		933DA5A21FC43BA0007DDEC0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DA5A11FC43BA0007DDEC0 /* R.generated.swift */; };
 		933DA5A81FC4547B007DDEC0 /* TaskMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DA5A71FC4547B007DDEC0 /* TaskMO+CoreDataProperties.swift */; };
 		936C96241FB4ACC1001FC35D /* ColorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C96231FB4ACC1001FC35D /* ColorUtilities.swift */; };
@@ -71,7 +70,6 @@
 		933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAlertsProtocol.swift; sourceTree = "<group>"; };
 		933935571FB600540068E483 /* CategoriesAndColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAndColors.swift; sourceTree = "<group>"; };
 		933DA5981FC30C46007DDEC0 /* TaskManager v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TaskManager v2.xcdatamodel"; sourceTree = "<group>"; };
-		933DA5991FC30C6A007DDEC0 /* TaskStateManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStateManagedObject.swift; sourceTree = "<group>"; };
 		933DA5A11FC43BA0007DDEC0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		933DA5A71FC4547B007DDEC0 /* TaskMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TaskMO+CoreDataProperties.swift"; path = "/Users/zlatnanikolova/Documents/MyProjects/TaskManager/Core Data/Managed Objects/TaskMO+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		936C96231FB4ACC1001FC35D /* ColorUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtilities.swift; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 				21FAEAAD1F3DE20000219128 /* TaskMO+CoreDataClass.swift */,
 				933DA5A71FC4547B007DDEC0 /* TaskMO+CoreDataProperties.swift */,
 				21FAEAB31F3DE93A00219128 /* CategoryMO.swift */,
-				933DA5991FC30C6A007DDEC0 /* TaskStateManagedObject.swift */,
 			);
 			path = "Managed Objects";
 			sourceTree = "<group>";
@@ -442,7 +439,6 @@
 				21FAEAAF1F3DE20000219128 /* CategoryMO+CoreDataClass.swift in Sources */,
 				21FAEAA51F3DD84700219128 /* CoreDataHandler.swift in Sources */,
 				93179F0F1FBC8F5300B404B2 /* CollectionViewPickerDelegate.swift in Sources */,
-				933DA59A1FC30C6A007DDEC0 /* TaskStateManagedObject.swift in Sources */,
 				933DA5A81FC4547B007DDEC0 /* TaskMO+CoreDataProperties.swift in Sources */,
 				21FAEAB01F3DE20000219128 /* CategoryMO+CoreDataProperties.swift in Sources */,
 				936C96261FB4AEB6001FC35D /* CustomDateFormatter.swift in Sources */,
