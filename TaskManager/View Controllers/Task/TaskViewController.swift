@@ -52,7 +52,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
 
         case .create:
             navigationItem.title = "Crate new task"
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(TaskViewController.onAddTaskButton))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(TaskViewController.onAddTask))
             deleteTaskButton.isHidden = true
         }
     }
@@ -60,11 +60,16 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
     // MARK: - Actions
     override func willMove(toParentViewController parent: UIViewController?) {
         if parent == nil {
-            onSaveButton()
+            switch taskVM.mode {
+            case .update:
+                onSave()
+            case .create:
+                break
+            }
         }
     }
 
-    @objc func onSaveButton() {
+    @objc func onSave() {
         if taskVM.mode == TaskViewModel.Mode.update &&
             (taskVM.title != titleTextView.text ||
                 taskVM.completionDate.compare(taskDueDate ?? Date()) != .orderedSame ||
@@ -77,7 +82,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
         self.navigationController?.popViewController(animated: true)
     }
 
-    @objc func onAddTaskButton() {
+    @objc func onAddTask() {
         checkFieldsAndSaveTask()
         self.navigationController?.popViewController(animated: true)
     }

@@ -97,25 +97,13 @@ extension TableConfig: UITableViewDelegate {
         return true
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let task = taskListVM[indexPath.section, indexPath.row]
-            taskListVM.remove(section: indexPath.section, index: indexPath.row)//(at: indexPath.row)
-            CoreDataHandler.sharedInstance.deleteTask(task)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-    }
-
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        //if TasksListViewModel.TasksStatusSection.completed.rawValue == indexPath.section {
             let delete = UIContextualAction(style: .destructive, title: "Delete", handler: { (_, _, _) in
                 self.taskListVM.deleteTask(at: indexPath)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.tableView.reloadData()
             })
             return UISwipeActionsConfiguration(actions:[delete])
-        //}
-        //return UISwipeActionsConfiguration(actions:[]) //If the return value is nil the cell is deletable
     }
 
     @available(iOS 11.0, *)
