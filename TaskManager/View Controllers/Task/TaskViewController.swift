@@ -17,7 +17,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
     @IBOutlet weak var categoryTextField: HoshiTextField!
     var taskVM: TaskViewModel!
 
-    fileprivate var dueDatePicker: UIDatePicker?
+    fileprivate var dueDatePickerView: UIDatePicker?
     fileprivate var taskDueDate: Date? {
         didSet {
             if let dueDate = taskDueDate {
@@ -39,8 +39,12 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
         super.viewDidLoad()
         categoryPickerView = createPickerView()
         categoryTextField.inputView = categoryPickerView
-        dueDatePicker = createDatePickerView()
-        taskDueDateTextField.inputView = dueDatePicker
+        categoryTextField.delegate = self
+
+        dueDatePickerView = createDatePickerView()
+        taskDueDateTextField.inputView = dueDatePickerView
+        taskDueDateTextField.delegate = self
+
         titleTextView.autocorrectionType = .no
 
         switch taskVM.mode {
@@ -69,7 +73,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
         }
     }
 
-    @objc func onSave() {
+    func onSave() {
         if taskVM.mode == TaskViewModel.Mode.update &&
             (taskVM.title != titleTextView.text ||
                 taskVM.completionDate.compare(taskDueDate ?? Date()) != .orderedSame ||
@@ -78,7 +82,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
         }
     }
 
-    @objc func onCloseButton() {
+    func onCloseButton() {
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -153,5 +157,16 @@ extension TaskDueDatePickerConfig {
 
     @objc func pickerDueDateValueDidChanged(sender: UIDatePicker) {
         taskDueDate = sender.date
+    }
+}
+
+// MARK: - TextFieldDelegate
+typealias TextFieldDisabledForUserEdition = TaskViewController
+extension TextFieldDisabledForUserEdition: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == self.categoryTextField {
+            return false
+        }
+        return true
     }
 }

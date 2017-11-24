@@ -29,3 +29,9 @@ class TaskCell: UITableViewCell {
         categoryColorView.layer.cornerRadius = categoryColorView.bounds.width / 2
     }
 }
+
+extension TaskCell: Reusable {
+    static var nib: UINib {
+        return UINib(nibName: String(describing: TaskCell.self), bundle: nil)
+    }
+}
