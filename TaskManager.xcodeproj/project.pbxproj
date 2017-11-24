@@ -31,6 +31,9 @@
 		931A84841FB99B7E00D173D1 /* TaskCategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A84831FB99B7E00D173D1 /* TaskCategoriesViewModel.swift */; };
 		931A84891FB9F9A900D173D1 /* TasksListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A84881FB9F9A900D173D1 /* TasksListViewModel.swift */; };
 		931AF3E11FC6FD63009DB82A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931AF3E01FC6FD63009DB82A /* CoreDataManager.swift */; };
+		9328EFBF1FC8255000D3C209 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328EFBE1FC8255000D3C209 /* Reusable.swift */; };
+		9328EFC21FC82A7600D3C209 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328EFC11FC82A7600D3C209 /* UITableView.swift */; };
+		9328EFC41FC8317400D3C209 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328EFC31FC8317400D3C209 /* UICollectionView.swift */; };
 		933935551FB5DDE90068E483 /* PresentAlertsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */; };
 		933935581FB600540068E483 /* CategoriesAndColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935571FB600540068E483 /* CategoriesAndColors.swift */; };
 		933DA5A21FC43BA0007DDEC0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DA5A11FC43BA0007DDEC0 /* R.generated.swift */; };
@@ -69,6 +72,9 @@
 		931A84831FB99B7E00D173D1 /* TaskCategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategoriesViewModel.swift; sourceTree = "<group>"; };
 		931A84881FB9F9A900D173D1 /* TasksListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListViewModel.swift; sourceTree = "<group>"; };
 		931AF3E01FC6FD63009DB82A /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		9328EFBE1FC8255000D3C209 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		9328EFC11FC82A7600D3C209 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		9328EFC31FC8317400D3C209 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAlertsProtocol.swift; sourceTree = "<group>"; };
 		933935571FB600540068E483 /* CategoriesAndColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAndColors.swift; sourceTree = "<group>"; };
 		933DA5981FC30C46007DDEC0 /* TaskManager v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TaskManager v2.xcdatamodel"; sourceTree = "<group>"; };
@@ -120,6 +126,7 @@
 				21067D5D1F3C490C00DB93E6 /* Main.storyboard */,
 				21067D601F3C490C00DB93E6 /* TaskManager.xcdatamodeld */,
 				2107934E1F3F777400DD5173 /* Notifications */,
+				9328EFC01FC82A3F00D3C209 /* Extensions */,
 				933935531FB5DD870068E483 /* Protocols */,
 				936C96221FB4AC96001FC35D /* Utilities */,
 				21FAEA9B1F3DD71800219128 /* Core Data */,
@@ -255,10 +262,20 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		9328EFC01FC82A3F00D3C209 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9328EFC11FC82A7600D3C209 /* UITableView.swift */,
+				9328EFC31FC8317400D3C209 /* UICollectionView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		933935531FB5DD870068E483 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */,
+				9328EFBE1FC8255000D3C209 /* Reusable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -444,6 +461,9 @@
 				93179F0F1FBC8F5300B404B2 /* CollectionViewPickerDelegate.swift in Sources */,
 				933DA5A81FC4547B007DDEC0 /* TaskMO+CoreDataProperties.swift in Sources */,
 				21FAEAB01F3DE20000219128 /* CategoryMO+CoreDataProperties.swift in Sources */,
+				9328EFBF1FC8255000D3C209 /* Reusable.swift in Sources */,
+				9328EFC21FC82A7600D3C209 /* UITableView.swift in Sources */,
+				9328EFC41FC8317400D3C209 /* UICollectionView.swift in Sources */,
 				936C96261FB4AEB6001FC35D /* CustomDateFormatter.swift in Sources */,
 				931A84841FB99B7E00D173D1 /* TaskCategoriesViewModel.swift in Sources */,
 				21FAEAB91F3E51CC00219128 /* TaskCell.swift in Sources */,

@@ -25,7 +25,7 @@ extension CoreDataTaskHandler {
         do {
             try context.save()
         } catch let error as NSError {
-            debugPrint("Could not save. \(error), \(error.userInfo)")
+            assertionFailure("Could not delete Task. \(error), \(error.userInfo)")
         }
     }
 
@@ -42,7 +42,7 @@ extension CoreDataTaskHandler {
             try context.save()
             return task
         } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            assertionFailure("Could not add Task. \(error), \(error.userInfo)")
         }
         return nil
     }
@@ -68,7 +68,7 @@ extension CoreDataTaskHandler {
         do {
             try context.save()
         } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            assertionFailure("Could not edit Task. \(error), \(error.userInfo)")
         }
     }
 
@@ -81,7 +81,7 @@ extension CoreDataTaskHandler {
         do {
             tasksList = try context.fetch(fetchRequest)
         } catch let error as NSError {
-            print("Could not fetch. \(error)")
+            assertionFailure("Could not fetch Tasks. \(error)")
         }
         return tasksList
     }
@@ -100,7 +100,7 @@ extension CoreDataCategoryHandler {
         do {
             try context.save()
         } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            assertionFailure("Could not add Category. \(error), \(error.userInfo)")
         }
     }
 
@@ -112,7 +112,7 @@ extension CoreDataCategoryHandler {
         do {
             try context.save()
         } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            assertionFailure("Could not add Categories. \(error), \(error.userInfo)")
         }
     }
 
@@ -124,7 +124,7 @@ extension CoreDataCategoryHandler {
         do {
             categoriesList = try context.fetch(fetchRequest)
         } catch let error as NSError {
-            debugPrint("Could not fetch. \(error)")
+            assertionFailure("Could not fetch Categories. \(error)")
         }
         return categoriesList
     }

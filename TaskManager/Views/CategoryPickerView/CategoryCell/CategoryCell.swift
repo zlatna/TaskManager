@@ -12,12 +12,6 @@ class CategoryCell: UICollectionViewCell {
 
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
-    class var nibName: String {
-        return "CategoryCell"
-    }
-    class var reuseIdentifier: String {
-        return "CategoryCell"
-    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,5 +30,11 @@ class CategoryCell: UICollectionViewCell {
     func setup(color: UIColor, name: String) {
         colorView.backgroundColor = color
         nameLabel.text = name
+    }
+}
+
+extension CategoryCell: Reusable {
+    static var nib: UINib? {
+        return UINib(nibName: String(describing: CategoryCell.self), bundle: nil)
     }
 }

@@ -72,12 +72,10 @@ extension TableConfig: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: ReusableCellIdentifiers.taskCell.rawValue ) as? TaskCell {
-            let task = taskListVM[indexPath.section, indexPath.row]
-            cell.setup(task: task)
-            return cell
-        }
-        return UITableViewCell()
+        let cell = tableView.dequeReusableCell(indexPath: indexPath) as TaskCell
+        let task = taskListVM[indexPath.section, indexPath.row]
+        cell.setup(task: task)
+        return cell
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
