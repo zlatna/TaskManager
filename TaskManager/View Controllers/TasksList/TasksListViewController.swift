@@ -35,13 +35,21 @@ class TasksListViewController: UIViewController {
             switch segueIdentifier {
             case .addNewTask:
                 if let destinationViewController = segue.destination as? TaskViewController {
-                    destinationViewController.taskVM = TaskViewModel(task: nil, to: .create)
+                    do {
+                        destinationViewController.taskVM = try TaskViewModel(task: nil, to: .create)
+                    } catch let error {
+                        assertionFailure(error.localizedDescription)
+                    }
                 }
             case .openExistingTask:
                 if let destinationViewController = segue.destination as? TaskViewController {
                     if let selectedIndexPath = tableView.indexPathForSelectedRow {
                         let task = taskListVM[selectedIndexPath.section, selectedIndexPath.row]
-                        destinationViewController.taskVM = TaskViewModel(task: task, to: .update)
+                        do {
+                        destinationViewController.taskVM = try TaskViewModel(task: task, to: .update)
+                        } catch let error {
+                            assertionFailure(error.localizedDescription)
+                        }
                     }
                 }
             }

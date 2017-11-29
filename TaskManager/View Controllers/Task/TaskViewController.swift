@@ -17,6 +17,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
     @IBOutlet weak var categoryTextField: HoshiTextField!
     var taskVM: TaskViewModel!
 
+    fileprivate var isDeleting = false
     fileprivate var dueDatePickerView: UIDatePicker?
     fileprivate var taskDueDate: Date? {
         didSet {
@@ -37,28 +38,10 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        categoryPickerView = createPickerView()
-        categoryTextField.inputView = categoryPickerView
-        categoryTextField.delegate = self
-
-        dueDatePickerView = createDatePickerView()
-        taskDueDateTextField.inputView = dueDatePickerView
-        taskDueDateTextField.delegate = self
-
+        setupDueDate()
+        setupCategory()
         titleTextView.autocorrectionType = .no
-
-        switch taskVM.mode {
-        case .update:
-            navigationItem.title = "Update task"
-            taskDueDate = taskVM.completionDate
-            titleTextView.text = taskVM.title
-            taskCategory = taskVM.category
-
-        case .create:
-            navigationItem.title = "Crate new task"
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(TaskViewController.onAddTask))
-            deleteTaskButton.isHidden = true
-        }
+        setupModePreview()
     }
 
     // MARK: - Actions
@@ -74,7 +57,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
     }
 
     func onSave() {
-        if taskVM.mode == TaskViewModel.Mode.update &&
+        if !isDeleting && taskVM.mode == TaskViewModel.Mode.update &&
             (taskVM.title != titleTextView.text ||
                 taskVM.completionDate.compare(taskDueDate ?? Date()) != .orderedSame ||
                 taskVM.category?.objectID != taskCategory?.objectID) {
@@ -96,7 +79,8 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
     }
 
     @IBAction func deleteTask(_ sender: UIButton) {
-        taskVM.deleteTask()
+        taskVM.deleteTask() //?????
+        self.isDeleting = true
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -120,6 +104,36 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
 
     @IBAction func taskDueDateTouchUpInside(_ sender: UITextField) {
         sender.inputView = UIDatePicker()
+    }
+}
+
+// MARK: - Initial Fiels Setup
+extension TaskViewController {
+    func setupCategory() {
+        categoryPickerView = createPickerView()
+        categoryTextField.inputView = categoryPickerView
+        categoryTextField.delegate = self
+    }
+
+    func setupDueDate() {
+        dueDatePickerView = createDatePickerView()
+        taskDueDateTextField.inputView = dueDatePickerView
+        taskDueDateTextField.delegate = self
+    }
+
+    func setupModePreview() {
+        switch taskVM.mode {
+        case .update:
+            navigationItem.title = "Update task"
+            taskDueDate = taskVM.completionDate
+            titleTextView.text = taskVM.title
+            taskCategory = taskVM.category
+
+        case .create:
+            navigationItem.title = "Crate new task"
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(TaskViewController.onAddTask))
+            deleteTaskButton.isHidden = true
+        }
     }
 }
 
@@ -164,7 +178,7 @@ extension TaskDueDatePickerConfig {
 typealias TextFieldDisabledForUserEdition = TaskViewController
 extension TextFieldDisabledForUserEdition: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == self.categoryTextField {
+        if textField == self.categoryTextField  || textField == self.taskDueDateTextField {
             return false
         }
         return true

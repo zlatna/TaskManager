@@ -16,8 +16,10 @@ class TaskViewModel {
 
     private var task: TaskMO?
     private(set) var mode: Mode
-    init(task: TaskMO?, to mode: Mode) {
-        assert((task != nil && mode == .update) || (task == nil && mode == .create), "incorrect task data")
+    init?(task: TaskMO?, to mode: Mode) throws {
+        guard (task != nil && mode == .update) || (task == nil && mode == .create) else {
+            throw InitializationErrors.wrongParameters(message: "task: \(String(describing: task)), mode: \(mode)")
+        }
         self.task = task
         self.mode = mode
     }
@@ -35,23 +37,35 @@ class TaskViewModel {
     }
 
     var category: CategoryMO? {
-            return task?.category
+        return task?.category
     }
 
     func saveTask(with title: String, completionDate: Date, category: CategoryMO) {
         if let taskToSave = task {
-            CoreDataHandler.sharedInstance.editTask(taskToSave, title: title, completionDate: completionDate, category: category)
-            NotificationsHandler.removeNotification(forTask: taskToSave)
-            NotificationsHandler.addNotification(forTask: taskToSave)
+            do {
+                try CoreDataHandler.editTask(taskToSave, title: title, completionDate: completionDate, category: category)
+                NotificationsHandler.removeNotification(forTask: taskToSave)
+                NotificationsHandler.addNotification(forTask: taskToSave)
+            } catch let error {
+                assertionFailure(error.localizedDescription)
+            }
         } else {
-            let newTask = CoreDataHandler.sharedInstance.addNewTask(withTitle: title, completionDate: completionDate, category: category)
-            assert(newTask != nil, "Task have not been created")
-            NotificationsHandler.addNotification(forTask: newTask!)
+            do {
+                let newTask = try CoreDataHandler.addNewTask(withTitle: title, completionDate: completionDate, category: category)
+                NotificationsHandler.addNotification(forTask: newTask)
+            } catch let error {
+                assertionFailure(error.localizedDescription)
+            }
         }
     }
 
     func deleteTask() {
-        assert(task != nil, "Task have not been deleted")
-        CoreDataHandler.sharedInstance.deleteTask(task!)
+        do {
+            if let currentTask = task {
+                try CoreDataHandler.deleteTask(currentTask)
+            }
+        } catch let error {
+            assertionFailure(error.localizedDescription)
+        }
     }
 }

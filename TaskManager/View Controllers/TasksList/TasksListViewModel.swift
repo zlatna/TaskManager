@@ -9,7 +9,7 @@
 import Foundation
 
 class TasksListViewModel {
-//    represents which tasks are shown in which section - completed or pending
+    //    represents which tasks are shown in which section - completed or pending
     enum TasksStatusSection: Int {
         case pending = 0
         case completed = 1
@@ -57,38 +57,51 @@ class TasksListViewModel {
     func completeTask(at indexPath: IndexPath) {
         if indexPath.section == TasksStatusSection.pending.rawValue {
             let taskToComplete = self[indexPath.section, indexPath.row]
-            CoreDataHandler.sharedInstance.editTask(taskToComplete, isCompleted: true)
-            remove(section: indexPath.section, index: indexPath.row)
-            addTask(taskToAdd: taskToComplete,to: TasksStatusSection.completed.rawValue)
+            do {
+                try CoreDataHandler.editTask(taskToComplete, isCompleted: true)
+                remove(section: indexPath.section, index: indexPath.row)
+                addTask(taskToAdd: taskToComplete,to: TasksStatusSection.completed.rawValue)
+            } catch {
+                assertionFailure(error.localizedDescription)
+            }
         }
     }
 
     func deleteTask(at indexPath: IndexPath) {
         let taskToDelete = self[indexPath.section, indexPath.row]
-        CoreDataHandler.sharedInstance.deleteTask(taskToDelete)
+        do {
+            try CoreDataHandler.deleteTask(taskToDelete)
+        } catch {
+            assertionFailure(error.localizedDescription)
+        }
         remove(section: indexPath.section, index: indexPath.row)
     }
 
     func loadData() {
-        let tasksMO = CoreDataHandler.sharedInstance.fetchAllTasks()
-        let sortedTasks = tasksMO.sorted(by: { (leftTask, righTask) -> Bool in
-            let descending = (leftTask.completionDate.compare(righTask.completionDate as Date) == .orderedDescending)
-            return descending
-        })
-        var completedTasks: [TaskMO] = []
-        var pendingTasks: [TaskMO] = []
-        for task in sortedTasks {
-            if task.isCompleted {
-                completedTasks.append(task)
-            } else {
-                pendingTasks.append(task)
+        do {
+            let tasksMO = try CoreDataHandler.fetchAllTasks()
+            let sortedTasks = tasksMO.sorted(by: { (leftTask, righTask) -> Bool in
+                let descending = (leftTask.completionDate.compare(righTask.completionDate as Date) == .orderedDescending)
+                return descending
+            })
+            var completedTasks: [TaskMO] = []
+            var pendingTasks: [TaskMO] = []
+            for task in sortedTasks {
+                if task.isCompleted {
+                    completedTasks.append(task)
+                } else {
+                    pendingTasks.append(task)
+                }
             }
+            // Pending tasks appear before the completed
+            if TasksStatusSection.pending.rawValue == 0 {
+                self.tasks = [pendingTasks, completedTasks]
+            } else {
+                self.tasks = [completedTasks, pendingTasks]
+            }
+        } catch {
+            assertionFailure(error.localizedDescription)
         }
-        // Pending tasks appear before the completed
-        if TasksStatusSection.pending.rawValue == 0 {
-            self.tasks = [pendingTasks, completedTasks]
-        } else {
-            self.tasks = [completedTasks, pendingTasks]
-        }
+
     }
 }

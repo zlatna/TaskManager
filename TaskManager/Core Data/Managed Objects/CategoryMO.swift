@@ -18,7 +18,11 @@ extension CategoryMO {
         if (!waslaunchedBefore) {
             let categories = CategoriesAndColors().dictionary
             for (categoryName, categoryColor) in categories {
-                CoreDataHandler.sharedInstance.addNewCategory(named: categoryName, color: categoryColor)
+                do {
+                    try CoreDataHandler.addNewCategory(named: categoryName, color: categoryColor)
+                } catch {
+                    assertionFailure(error.localizedDescription)
+                }
             }
             UserDefaults.standard.set(true, forKey: UserDefaultsIdentifiers.launchedBefore.rawValue)
         }

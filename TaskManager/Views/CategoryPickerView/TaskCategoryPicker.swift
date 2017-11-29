@@ -37,16 +37,18 @@ extension CollectionViewConfig: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return taskCategories.count
+        return taskCategories?.count ??  0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        assert(taskCategories != nil)
         let cell = collectionView.dequeReusableCell(indexPath: indexPath) as CategoryCell
-        let category = taskCategories[indexPath.row]
+        let category = taskCategories![indexPath.row]
         cell.setup(color: category.uiColor, name: category.name)
         // In order to show the current category as selected
-        if let category = selectedItem {
-            let categoryIndexPath = IndexPath(row: taskCategories.index(of: category), section: 0)
+        if let category = selectedItem,
+            let categoryIndex = taskCategories!.index(of: category) {
+            let categoryIndexPath = IndexPath(row: categoryIndex, section: 0)
             if categoryIndexPath.elementsEqual(indexPath) {
                 collectionView.selectItem(at: categoryIndexPath, animated: false, scrollPosition: .top)
                 cell.isSelected = true
@@ -75,7 +77,8 @@ extension CollectionViewConfig: UICollectionViewDelegateFlowLayout {
 
 extension CollectionViewConfig: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedItem = taskCategories[indexPath.row]
+        assert(taskCategories != nil)
+        selectedItem = taskCategories![indexPath.row]
         collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .top)
         delegate?.didSelectItem(selectedItem!)
     }
