@@ -123,7 +123,7 @@ extension TableConfig: UITableViewDelegate {
                     }
                 }
             })
-            done.backgroundColor = UIColor(displayP3Red: 169/255, green: 197/255, blue: 242/255, alpha: 1)
+            done.backgroundColor = ColorUtilities.taskDoneColor
             return UISwipeActionsConfiguration(actions:[done])
         }
         return nil
@@ -148,7 +148,7 @@ extension TableConfig: UITableViewDelegate {
                     }
                 }
             }
-            done.backgroundColor = UIColor(displayP3Red: 169/255, green: 197/255, blue: 242/255, alpha: 1)
+            done.backgroundColor = ColorUtilities.taskDoneColor
             return [done]
         }
         return []
