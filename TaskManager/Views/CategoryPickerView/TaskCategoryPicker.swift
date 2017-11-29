@@ -11,7 +11,7 @@ import UIKit
 
 class TaskCategoryPicker: UIView {
     class var nibName: String {
-        return "TaskCategoryPicker"
+        return String(describing: TaskCategoryPicker.self)
     }
     @IBOutlet weak var collectionView: UICollectionView!
     fileprivate let itemsPerRow = 3

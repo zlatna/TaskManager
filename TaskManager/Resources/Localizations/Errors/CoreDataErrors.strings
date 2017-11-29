@@ -1,0 +1,8 @@
+/* 
+  CoreDataErrors.strings
+  TaskManager
+
+  Created by Zlatna Nikolova on 29/11/2017.
+  Copyright © 2017 zlatnanikolova. All rights reserved.
+*/
+"unable to load persistent store" = "Unable to load persistent store: %@.";

@@ -22,6 +22,9 @@
 		21FAEAB41F3DE93A00219128 /* CategoryMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAB31F3DE93A00219128 /* CategoryMO.swift */; };
 		21FAEAB91F3E51CC00219128 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FAEAB81F3E51CC00219128 /* TaskCell.swift */; };
 		8B663D5B89CA49EFBBDA5E54 /* Pods_TaskManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BBA13587500ED369F80954D /* Pods_TaskManager.framework */; };
+		931057861FCEDD9600E8F7F6 /* TaskView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 931057881FCEDD9600E8F7F6 /* TaskView.strings */; };
+		9310578C1FCEE0D100E8F7F6 /* TasksList.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9310578B1FCEE0D100E8F7F6 /* TasksList.strings */; };
+		9310578E1FCEE5A900E8F7F6 /* Settings.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9310578D1FCEE5A900E8F7F6 /* Settings.strings */; };
 		931470541FBB495700477263 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931470521FBB495700477263 /* CategoryCell.swift */; };
 		931470551FBB495700477263 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931470531FBB495700477263 /* CategoryCell.xib */; };
 		93179F091FBC414900B404B2 /* TaskCategoryPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93179F081FBC414900B404B2 /* TaskCategoryPicker.xib */; };
@@ -34,6 +37,8 @@
 		9328EFBF1FC8255000D3C209 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328EFBE1FC8255000D3C209 /* Reusable.swift */; };
 		9328EFC21FC82A7600D3C209 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328EFC11FC82A7600D3C209 /* UITableView.swift */; };
 		9328EFC41FC8317400D3C209 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328EFC31FC8317400D3C209 /* UICollectionView.swift */; };
+		932A2C2B1FCEEE09005A6CA4 /* Alert.strings in Resources */ = {isa = PBXBuildFile; fileRef = 932A2C2A1FCEEE09005A6CA4 /* Alert.strings */; };
+		932A2C2E1FCEEEA6005A6CA4 /* CoreDataErrors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 932A2C2D1FCEEEA6005A6CA4 /* CoreDataErrors.strings */; };
 		933935551FB5DDE90068E483 /* PresentAlertsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */; };
 		933935581FB600540068E483 /* CategoriesAndColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935571FB600540068E483 /* CategoriesAndColors.swift */; };
 		933DA5A21FC43BA0007DDEC0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DA5A11FC43BA0007DDEC0 /* R.generated.swift */; };
@@ -65,6 +70,9 @@
 		21FAEAB31F3DE93A00219128 /* CategoryMO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryMO.swift; sourceTree = "<group>"; };
 		21FAEAB81F3E51CC00219128 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskCell.swift; path = TaskManager/Views/TaskCell.swift; sourceTree = "<group>"; };
 		4BC7BA87B1A55A32C7BF6AC2 /* Pods-TaskManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskManager/Pods-TaskManager.debug.xcconfig"; sourceTree = "<group>"; };
+		931057891FCEDDA400E8F7F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/TaskView.strings; sourceTree = "<group>"; };
+		9310578B1FCEE0D100E8F7F6 /* TasksList.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = TasksList.strings; sourceTree = "<group>"; };
+		9310578D1FCEE5A900E8F7F6 /* Settings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Settings.strings; sourceTree = "<group>"; };
 		931470521FBB495700477263 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		931470531FBB495700477263 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
 		93179F081FBC414900B404B2 /* TaskCategoryPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCategoryPicker.xib; sourceTree = "<group>"; };
@@ -77,6 +85,8 @@
 		9328EFBE1FC8255000D3C209 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		9328EFC11FC82A7600D3C209 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		9328EFC31FC8317400D3C209 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		932A2C2A1FCEEE09005A6CA4 /* Alert.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Alert.strings; sourceTree = "<group>"; };
+		932A2C2D1FCEEEA6005A6CA4 /* CoreDataErrors.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = CoreDataErrors.strings; sourceTree = "<group>"; };
 		933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAlertsProtocol.swift; sourceTree = "<group>"; };
 		933935571FB600540068E483 /* CategoriesAndColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAndColors.swift; sourceTree = "<group>"; };
 		933DA5981FC30C46007DDEC0 /* TaskManager v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TaskManager v2.xcdatamodel"; sourceTree = "<group>"; };
@@ -219,6 +229,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		931057811FCEAE3800E8F7F6 /* Localizations */ = {
+			isa = PBXGroup;
+			children = (
+				932A2C2C1FCEEE87005A6CA4 /* Errors */,
+				931057881FCEDD9600E8F7F6 /* TaskView.strings */,
+				9310578B1FCEE0D100E8F7F6 /* TasksList.strings */,
+				9310578D1FCEE5A900E8F7F6 /* Settings.strings */,
+				932A2C2A1FCEEE09005A6CA4 /* Alert.strings */,
+			);
+			path = Localizations;
+			sourceTree = "<group>";
+		};
 		9314704C1FBB461300477263 /* CategoryPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +298,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		932A2C2C1FCEEE87005A6CA4 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				932A2C2D1FCEEEA6005A6CA4 /* CoreDataErrors.strings */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		933935531FB5DD870068E483 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +318,7 @@
 		933935561FB5FFF90068E483 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				931057811FCEAE3800E8F7F6 /* Localizations */,
 				933935571FB600540068E483 /* CategoriesAndColors.swift */,
 			);
 			path = Resources;
@@ -320,10 +351,10 @@
 			buildConfigurationList = 21067D6B1F3C490C00DB93E6 /* Build configuration list for PBXNativeTarget "TaskManager" */;
 			buildPhases = (
 				98AE6CFB9147381E07FA0F51 /* [CP] Check Pods Manifest.lock */,
+				936C96271FB4B385001FC35D /* ShellScript */,
 				21067D521F3C490C00DB93E6 /* Sources */,
 				21067D531F3C490C00DB93E6 /* Frameworks */,
 				21067D541F3C490C00DB93E6 /* Resources */,
-				936C96271FB4B385001FC35D /* ShellScript */,
 				39EC22483D00BC6985CAEA3D /* [CP] Embed Pods Frameworks */,
 				D9F8413E23283ADA9D04201C /* [CP] Copy Pods Resources */,
 			);
@@ -377,8 +408,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				932A2C2E1FCEEEA6005A6CA4 /* CoreDataErrors.strings in Resources */,
+				932A2C2B1FCEEE09005A6CA4 /* Alert.strings in Resources */,
 				936C96291FB4B78E001FC35D /* .swiftlint.yml in Resources */,
+				9310578E1FCEE5A900E8F7F6 /* Settings.strings in Resources */,
 				93179F091FBC414900B404B2 /* TaskCategoryPicker.xib in Resources */,
+				9310578C1FCEE0D100E8F7F6 /* TasksList.strings in Resources */,
+				931057861FCEDD9600E8F7F6 /* TaskView.strings in Resources */,
 				21067D641F3C490C00DB93E6 /* Assets.xcassets in Resources */,
 				21067D5F1F3C490C00DB93E6 /* Main.storyboard in Resources */,
 				931470551FBB495700477263 /* CategoryCell.xib in Resources */,
@@ -506,6 +542,14 @@
 				21067D5E1F3C490C00DB93E6 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		931057881FCEDD9600E8F7F6 /* TaskView.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				931057891FCEDDA400E8F7F6 /* Base */,
+			);
+			name = TaskView.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

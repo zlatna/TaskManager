@@ -1,0 +1,16 @@
+/* 
+  TasksList.strings
+  TaskManager
+
+  Created by Zlatna Nikolova on 29/11/2017.
+  Copyright © 2017 zlatnanikolova. All rights reserved.
+*/
+"title" = "Tasks";
+
+// MARK: - Sections
+"section pending tasks" = "Pending tasks";
+"section completed tasks" = "Completed Tasks";
+
+// MARK: - Actions
+"action done" = "Done";
+"action delete" = "Delete";

@@ -1,0 +1,16 @@
+/* 
+  TaskView.strings
+  TaskManager
+
+  Created by Zlatna Nikolova on 29/11/2017.
+  Copyright © 2017 zlatnanikolova. All rights reserved.
+*/
+"update task title" = "Update task";
+"create task title" = "Crate new task";
+"add button" = "Add";
+"delete button" = "Delete";
+
+// MARK: - Alerts
+"msg enter title" = "Enter task title.";
+"msg enter correct date" = "Enter correct date";
+"msg select category" = "Select category";

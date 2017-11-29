@@ -14,8 +14,8 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var notificationSwitchLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Settings"
-        if NotificationsHandler.notificationsGlobalyEnabled == true {
+        navigationItem.title = R.string.settings.title()
+        if NotificationsHandler.notificationsGlobalyEnabled {
             notificationSwitch.isOn = NotificationsHandler.notificationsLocalyEnabled
         } else {
             notificationSwitch.isEnabled = false
@@ -25,11 +25,11 @@ class SettingsViewController: UITableViewController {
     }
     @IBAction func onNotificationSwitch(_ sender: UISwitch) {
         if sender.isOn {
-            notificationSwitchLabel.text = "Turn off notifications"
+            notificationSwitchLabel.text = R.string.settings.turnOffNotifications()
             NotificationsHandler.resumeNotifications()
             NotificationsHandler.notificationsLocalyEnabled = true
         } else {
-            notificationSwitchLabel.text = "Turn on notifications"
+            notificationSwitchLabel.text = R.string.settings.turnOnNotifications()
             NotificationsHandler.suspendNotifications()
             NotificationsHandler.notificationsLocalyEnabled = false
         }

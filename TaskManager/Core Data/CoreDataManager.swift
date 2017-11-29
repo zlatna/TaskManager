@@ -20,7 +20,7 @@ class CoreDataManager {
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "TaskManager")
         container.loadPersistentStores(completionHandler: { (_, error) in
-            if let error = error as NSError? {
+            if let error = error as NSError? {                
                 fatalError("Unable to load persistent stores \(error), \(error.userInfo)")
             }
         })

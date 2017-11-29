@@ -15,7 +15,7 @@ class TasksListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Tasks"
+        navigationItem.title = R.string.tasksList.title()
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -88,10 +88,10 @@ extension TableConfig: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if TasksListViewModel.TasksStatusSection.completed.rawValue == section {
-            return "Completed Tasks"
+            return R.string.tasksList.sectionCompletedTasks()
         }
         if TasksListViewModel.TasksStatusSection.pending.rawValue == section {
-            return "Pending Tasks"
+            return R.string.tasksList.sectionPendingTasks()
         }
         return nil
     }
@@ -105,7 +105,7 @@ extension TableConfig: UITableViewDelegate {
 
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-            let delete = UIContextualAction(style: .destructive, title: "Delete", handler: { (_, _, _) in
+            let delete = UIContextualAction(style: .destructive, title: R.string.tasksList.actionDelete(), handler: { (_, _, _) in
                 self.taskListVM.deleteTask(at: indexPath)
                 self.tableView.reloadData()
             })
@@ -115,7 +115,7 @@ extension TableConfig: UITableViewDelegate {
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if TasksListViewModel.TasksStatusSection.pending.rawValue == indexPath.section {
-            let done = UIContextualAction(style: .normal, title: "Done", handler: { (_, _, _) in
+            let done = UIContextualAction(style: .normal, title: R.string.tasksList.actionDone(), handler: { (_, _, _) in
                 DispatchQueue.global(qos: DispatchQoS.userInitiated.qosClass).async {
                     self.taskListVM.completeTask(at: indexPath)
                     DispatchQueue.main.async {
@@ -132,7 +132,7 @@ extension TableConfig: UITableViewDelegate {
     @available(iOS 10.0, *)
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if TasksListViewModel.TasksStatusSection.completed.rawValue == indexPath.section {
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+        let delete = UITableViewRowAction(style: .destructive, title: R.string.tasksList.actionDelete()) { (_, indexPath) in
             self.taskListVM.deleteTask(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -140,7 +140,7 @@ extension TableConfig: UITableViewDelegate {
         }
 
         if TasksListViewModel.TasksStatusSection.pending.rawValue == indexPath.section {
-            let done = UITableViewRowAction(style: .normal, title: "Done") { (_, indexPath ) in
+            let done = UITableViewRowAction(style: .normal, title: R.string.tasksList.actionDone()) { (_, indexPath ) in
                 DispatchQueue.global(qos: DispatchQoS.userInitiated.qosClass).async {
                     self.taskListVM.completeTask(at: indexPath)
                     DispatchQueue.main.async {

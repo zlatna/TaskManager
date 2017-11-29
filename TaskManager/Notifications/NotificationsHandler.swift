@@ -35,10 +35,11 @@ extension NotificationsSetup {
     static var notificationsGlobalyEnabled: Bool {
         var areNotificationsEnabled: Bool = false
         self.notificationCenter.getNotificationSettings { (settings) in
-            areNotificationsEnabled =
-                (settings.alertSetting == UNNotificationSetting.enabled ||
-                    settings.badgeSetting == UNNotificationSetting.enabled ||
-                    settings.soundSetting == UNNotificationSetting.enabled)
+            areNotificationsEnabled = settings.notificationCenterSetting == UNNotificationSetting.enabled
+            print(areNotificationsEnabled)
+//                (settings.alertSetting == UNNotificationSetting.enabled ||
+//                    settings.badgeSetting == UNNotificationSetting.enabled ||
+//                    settings.soundSetting == UNNotificationSetting.enabled)
         }
         return areNotificationsEnabled
     }

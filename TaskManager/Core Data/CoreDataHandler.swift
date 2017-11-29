@@ -31,7 +31,8 @@ extension CoreDataTaskHandler {
     class func addNewTask(withTitle title: String, completionDate: Date, category: CategoryMO) throws -> TaskMO {
         let context = CoreDataManager.sharedInstance.viewContext
         let task = TaskMO(context: context)
-        task.setValuesForKeys(["title" : title, "completionDate" : completionDate, "category" : category])
+
+        task.setValuesForKeys([ #keyPath(TaskMO.title): title, #keyPath(TaskMO.completionDate) : completionDate, #keyPath(TaskMO.category) : category])
         task.title = title
         task.completionDate = completionDate as NSDate
         task.category = category
@@ -47,19 +48,19 @@ extension CoreDataTaskHandler {
     class func editTask(_ task: TaskMO, title: String? = nil, completionDate: Date? = nil, category: CategoryMO? = nil, isCompleted: Bool? = nil) throws {
         let context = CoreDataManager.sharedInstance.viewContext
         if let taskTitle = title {
-            task.setValue(taskTitle, forKey: "title")
+            task.setValue(taskTitle, forKey: #keyPath(TaskMO.title))
         }
 
         if let taskcompletionDate = completionDate as NSDate? {
-            task.setValue(taskcompletionDate, forKey: "completionDate")
+            task.setValue(taskcompletionDate, forKey: #keyPath(TaskMO.completionDate))
         }
 
         if let taskcategory = category {
-            task.setValue(taskcategory, forKey: "category")
+            task.setValue(taskcategory, forKey: #keyPath(TaskMO.category))
         }
 
         if let taskIsCompleted = isCompleted {
-            task.setValue(taskIsCompleted, forKey: "isCompleted")
+            task.setValue(taskIsCompleted, forKey: #keyPath(TaskMO.isCompleted))
         }
 
         do {
@@ -92,7 +93,7 @@ extension CoreDataCategoryHandler {
         let context = CoreDataManager.sharedInstance.viewContext
 
         let category = CategoryMO(context: context)
-        category.setValuesForKeys(["name" : name, "color" : color])
+        category.setValuesForKeys([#keyPath(CategoryMO.name) : name, #keyPath(CategoryMO.color) : color])
         do {
             try context.save()
         } catch let error {

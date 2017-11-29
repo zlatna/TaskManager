@@ -12,7 +12,7 @@ protocol PresentAlertsProtocol {
 }
 
 extension PresentAlertsProtocol where Self: UIViewController {
-    func showInformationAlert(withTitle title: String, message: String, okButtonTitle: String = "OK") {
+    func showInformationAlert(withTitle title: String, message: String, okButtonTitle: String = R.string.alert.ok()) {
         self.present({ () in
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: okButtonTitle, style: .cancel, handler: { (_) in

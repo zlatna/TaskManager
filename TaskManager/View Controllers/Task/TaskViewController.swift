@@ -32,7 +32,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
     fileprivate var taskCategory: CategoryMO? {
         didSet {
             categoryTextField.text = taskCategory?.name
-            //categoryTextField.borderInactiveColor = taskCategory?.uiColor
+//            categoryTextField.borderInactiveColor = taskCategory?.uiColor
         }
     }
 
@@ -87,16 +87,16 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
     func checkFieldsAndSaveTask() {
         guard let title = titleTextView.text,
             title != "" else {
-                self.showInformationAlert(withTitle: "Enter task title.", message: "")
+                self.showInformationAlert(withTitle: R.string.taskView.msgEnterTitle(), message: "")
                 return
         }
         guard let dueDate = taskDueDate,
             Date().compare(dueDate) == .orderedAscending else {
-                self.showInformationAlert(withTitle: "Enter correct date", message: "")
+                self.showInformationAlert(withTitle: R.string.taskView.msgEnterCorrectDate(), message: "")
                 return
         }
         guard let category = taskCategory else {
-            self.showInformationAlert(withTitle: "Select category", message: "")
+            self.showInformationAlert(withTitle: R.string.taskView.msgSelectCategory(), message: "")
             return
         }
         taskVM.saveTask(with: title, completionDate: dueDate, category: category)
@@ -124,14 +124,14 @@ extension TaskViewController {
     func setupModePreview() {
         switch taskVM.mode {
         case .update:
-            navigationItem.title = "Update task"
+            navigationItem.title = R.string.taskView.updateTaskTitle()
             taskDueDate = taskVM.completionDate
             titleTextView.text = taskVM.title
             taskCategory = taskVM.category
 
         case .create:
-            navigationItem.title = "Crate new task"
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(TaskViewController.onAddTask))
+            navigationItem.title = R.string.taskView.createTaskTitle()
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.taskView.addButton(), style: .done, target: self, action: #selector(TaskViewController.onAddTask))
             deleteTaskButton.isHidden = true
         }
     }

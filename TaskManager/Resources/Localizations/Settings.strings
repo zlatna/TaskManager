@@ -1,0 +1,10 @@
+/* 
+  Settings.strings
+  TaskManager
+
+  Created by Zlatna Nikolova on 29/11/2017.
+  Copyright © 2017 zlatnanikolova. All rights reserved.
+*/
+"title" = "Title";
+"turn off notifications" = "Turn off notifications";
+"turn on notifications" = "Turn on notifications"; 
