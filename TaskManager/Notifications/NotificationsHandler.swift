@@ -21,7 +21,7 @@ class NotificationsHandler {
 }
 
 // MARK: - Notifications Setup
-typealias NotificationsSetup = NotificationsHandler
+private typealias NotificationsSetup = NotificationsHandler
 extension NotificationsSetup {
     class var notificationsLocalyEnabled: Bool {
         get {
@@ -32,16 +32,19 @@ extension NotificationsSetup {
         }
     }
 
-    static var notificationsGlobalyEnabled: Bool {
-        var areNotificationsEnabled: Bool = false
+    /// Executes closures depending on the current notification setings. The closures are executed asynchronous.
+    ///
+    /// - Parameters:
+    ///   - enabled: Closure to execute if the notification settings are enabled
+    ///   - disabled: Closure to execute if the notification settings are disabled
+    class func executeForNotification(enabled: @escaping () -> Void, disabled: @escaping () -> Void) {
         self.notificationCenter.getNotificationSettings { (settings) in
-            areNotificationsEnabled = settings.notificationCenterSetting == UNNotificationSetting.enabled
-            print(areNotificationsEnabled)
-//                (settings.alertSetting == UNNotificationSetting.enabled ||
-//                    settings.badgeSetting == UNNotificationSetting.enabled ||
-//                    settings.soundSetting == UNNotificationSetting.enabled)
+            if settings.notificationCenterSetting == UNNotificationSetting.enabled {
+                enabled()
+            } else {
+                disabled()
+            }
         }
-        return areNotificationsEnabled
     }
 
     class var notificationCenter: UNUserNotificationCenter {
@@ -58,7 +61,7 @@ extension NotificationsSetup {
 }
 
 // MARK: - Notifications Management
-typealias NotificationsManager = NotificationsHandler
+private typealias NotificationsManager = NotificationsHandler
 extension NotificationsManager {
     class func addNotification(forTask task: TaskMO) {
         let notificatioRequest = createNotificationRequest(forTask: task)
@@ -104,14 +107,12 @@ extension NotificationsManager {
 }
 
 // MARK: - Notifications Helpers
-typealias NotificationsHelper = NotificationsHandler
+private typealias NotificationsHelper = NotificationsHandler
 extension NotificationsHelper {
     class func createNotificationRequest(forTask task: TaskMO) -> UNNotificationRequest {
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = task.title
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd,yyyy - hh:mm"
-        notificationContent.body = dateFormatter.string(from: task.completionDate as Date)
+        notificationContent.body = CustomDateFormatter.defaultFormatedDate(date: task.completionDate as Date)
         notificationContent.badge = 1
         notificationContent.sound = UNNotificationSound.default()
 
@@ -121,7 +122,8 @@ extension NotificationsHelper {
         return notificationRequest
     }
 }
-typealias NotificationSuspendingHelper = NotificationsHandler
+
+private typealias NotificationSuspendingHelper = NotificationsHandler
 extension NotificationSuspendingHelper {
     private class func getRequestsFromUserDefaults() -> [UNNotificationRequest]? {
         if let archivedNotifications = UserDefaults.standard.data(forKey: userDefaultsKeyForNotifications),
@@ -130,10 +132,12 @@ extension NotificationSuspendingHelper {
         }
         return nil
     }
+
     private class func storeRequestsInUserDefaults(requests: [UNNotificationRequest]) {
         let archivedNotifications = NSKeyedArchiver.archivedData(withRootObject: requests)
         UserDefaults.standard.set(archivedNotifications, forKey: userDefaultsKeyForNotifications)
     }
+
     private class func addRequestInUserDefaults(request: UNNotificationRequest) {
         var requestsList = getRequestsFromUserDefaults()
         if requestsList != nil {

@@ -48,7 +48,7 @@
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSZ-CS-Hai">
                                                     <rect key="frame" x="265" y="16" width="40" height="40"/>
-                                                    <color key="backgroundColor" red="0.99328859059999997" green="0.66442953019999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.66274509800000003" green="0.7725490196" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="aSZ-CS-Hai" secondAttribute="height" multiplier="1:1" id="6Ko-0c-Wms"/>
                                                         <constraint firstAttribute="width" constant="40" id="KqQ-dI-2Us"/>

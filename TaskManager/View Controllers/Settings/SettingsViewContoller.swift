@@ -15,14 +15,22 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = R.string.settings.title()
-        if NotificationsHandler.notificationsGlobalyEnabled {
-            notificationSwitch.isOn = NotificationsHandler.notificationsLocalyEnabled
-        } else {
-            notificationSwitch.isEnabled = false
-            NotificationsHandler.suspendNotifications()
-            notificationSwitch.isOn = false
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationsHandler.executeForNotification(enabled: {
+            DispatchQueue.main.sync {
+                self.notificationSwitch.isOn = NotificationsHandler.notificationsLocalyEnabled
+            }
+        }) {
+            DispatchQueue.main.sync {
+                self.notificationSwitch.isEnabled = false
+                NotificationsHandler.suspendNotifications()
+                self.notificationSwitch.isOn = false
+            }
         }
     }
+
     @IBAction func onNotificationSwitch(_ sender: UISwitch) {
         if sender.isOn {
             notificationSwitchLabel.text = R.string.settings.turnOffNotifications()

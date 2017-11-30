@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-typealias ColorUtilities = UIColor
+private typealias ColorUtilities = UIColor
 extension ColorUtilities {
-    static let expiredTaskBackgroundColor = UIColor.groupTableViewBackground
-    static let availableTaskBackgroundColor = UIColor.white
-    static let taskDoneColor = UIColor(displayP3Red: 169/255, green: 197/255, blue: 242/255, alpha: 1)
+    static let expiredTaskBackground = UIColor.groupTableViewBackground
+    static let availableTaskBackground = UIColor.white
+    static let taskDone = UIColor(displayP3Red: 169/255, green: 197/255, blue: 242/255, alpha: 1)
 }
 
 extension UIColor {
