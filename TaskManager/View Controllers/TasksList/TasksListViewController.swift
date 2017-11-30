@@ -15,7 +15,8 @@ class TasksListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = R.string.tasksList.title()
+        taskListVM.delegate = self
+        navigationItem.title = R.string.tasksList.labelTasksListTitle()
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -88,10 +89,10 @@ extension TableConfig: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if TasksListViewModel.TasksStatusSection.completed.rawValue == section {
-            return R.string.tasksList.sectionCompletedTasks()
+            return R.string.tasksList.sectionTitleCompletedTasks()
         }
         if TasksListViewModel.TasksStatusSection.pending.rawValue == section {
-            return R.string.tasksList.sectionPendingTasks()
+            return R.string.tasksList.sectionTitlePendingTasks()
         }
         return nil
     }
@@ -152,5 +153,12 @@ extension TableConfig: UITableViewDelegate {
             return [done]
         }
         return []
+    }
+}
+
+private typealias TasksListViewModelDelegate = TasksListViewController
+extension TasksListViewModelDelegate: TasksListVMDelegate, PresentAlertsProtocol {
+    func informUser(title: String?, message: String?) {
+        self.showInformationAlert(withTitle: title ?? "", message: message ?? "", okButtonTitle: R.string.alert.buttonOk())
     }
 }

@@ -118,7 +118,7 @@ extension CoreDataCategoryHandler {
         let fetchRequest: NSFetchRequest<CategoryMO> = CategoryMO.fetchRequest()
         do {
             guard let categoriesList = try CoreDataManager.sharedInstance.fetchData(with: fetchRequest) else {
-                throw CoreDataErrors.fetchCategories(message: "Cannot Fetch categories")
+                throw CoreDataErrors.fetchCategories(message: R.string.coreDataErrors.msgUnableToFetchData("Categories"))
             }
             return categoriesList
         } catch let error {

@@ -3,6 +3,7 @@ disabled_rules: # rule identifiers to exclude from running
 - comma
 - control_statement
 - todo
+- class_delegate_protocol
 line_length: 200
 excluded:
 - Pods

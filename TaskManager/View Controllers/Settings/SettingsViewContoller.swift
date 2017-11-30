@@ -14,7 +14,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var notificationSwitchLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = R.string.settings.title()
+        navigationItem.title = R.string.settings.labelSettingsTitle()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -33,11 +33,11 @@ class SettingsViewController: UITableViewController {
 
     @IBAction func onNotificationSwitch(_ sender: UISwitch) {
         if sender.isOn {
-            notificationSwitchLabel.text = R.string.settings.turnOffNotifications()
+            notificationSwitchLabel.text = R.string.settings.labelTurnOffNotifications()
             NotificationsHandler.resumeNotifications()
             NotificationsHandler.notificationsLocalyEnabled = true
         } else {
-            notificationSwitchLabel.text = R.string.settings.turnOnNotifications()
+            notificationSwitchLabel.text = R.string.settings.labelTurnOnNotifications()
             NotificationsHandler.suspendNotifications()
             NotificationsHandler.notificationsLocalyEnabled = false
         }

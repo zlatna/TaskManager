@@ -14,7 +14,6 @@ enum GeneralError {
     case silent(message: String)
 }
 
-//typealias CoreDataErrors = TaskManagerErrors
 enum CoreDataErrors: Error {
     case saveContex(message: String)
 

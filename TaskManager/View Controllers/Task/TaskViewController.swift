@@ -87,16 +87,16 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
     func checkFieldsAndSaveTask() {
         guard let title = titleTextView.text,
             title != "" else {
-                self.showInformationAlert(withTitle: R.string.taskView.msgEnterTitle(), message: "")
+                self.showInformationAlert(withTitle: R.string.taskView.msgEnterTaskTitle(), message: "")
                 return
         }
         guard let dueDate = taskDueDate,
             Date().compare(dueDate) == .orderedAscending else {
-                self.showInformationAlert(withTitle: R.string.taskView.msgEnterCorrectDate(), message: "")
+                self.showInformationAlert(withTitle: R.string.taskView.msgEnterCorrectDateForTask(), message: "")
                 return
         }
         guard let category = taskCategory else {
-            self.showInformationAlert(withTitle: R.string.taskView.msgSelectCategory(), message: "")
+            self.showInformationAlert(withTitle: R.string.taskView.msgSelectCategoryForTask(), message: "")
             return
         }
         taskVM.saveTask(with: title, completionDate: dueDate, category: category)
@@ -124,21 +124,21 @@ extension TaskViewController {
     func setupModePreview() {
         switch taskVM.mode {
         case .update:
-            navigationItem.title = R.string.taskView.updateTaskTitle()
+            navigationItem.title = R.string.taskView.labelUpdateTaskTitle()
             taskDueDate = taskVM.completionDate
             titleTextView.text = taskVM.title
             taskCategory = taskVM.category
 
         case .create:
-            navigationItem.title = R.string.taskView.createTaskTitle()
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.taskView.addButton(), style: .done, target: self, action: #selector(TaskViewController.onAddTask))
+            navigationItem.title = R.string.taskView.labelCreateTaskTitle()
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.taskView.buttonAddTask(), style: .done, target: self, action: #selector(TaskViewController.onAddTask))
             deleteTaskButton.isHidden = true
         }
     }
 }
 
 // MARK: - Category Picker
-typealias CategoryPickerConfig = TaskViewController
+private typealias CategoryPickerConfig = TaskViewController
 extension CategoryPickerConfig: CategoryPickerDelegate {
     fileprivate func createPickerView() -> TaskCategoryPicker? {
         if let pickerView = Bundle.main.loadNibNamed(TaskCategoryPicker.nibName, owner: TaskCategoryPicker.self, options: nil)?.first as? TaskCategoryPicker {
@@ -175,12 +175,19 @@ extension TaskDueDatePickerConfig {
 }
 
 // MARK: - TextFieldDelegate
-typealias TextFieldDisabledForUserEdition = TaskViewController
+private typealias TextFieldDisabledForUserEdition = TaskViewController
 extension TextFieldDisabledForUserEdition: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == self.categoryTextField  || textField == self.taskDueDateTextField {
             return false
         }
         return true
+    }
+}
+
+private typealias TaskViewModelDelegate = TaskViewController
+extension TaskViewModelDelegate: TaskVMDelegate {
+    func informUser(title: String?, message: String?) {
+        self.showInformationAlert(withTitle: title ?? "", message: message ?? "", okButtonTitle: R.string.alert.buttonOk())
     }
 }

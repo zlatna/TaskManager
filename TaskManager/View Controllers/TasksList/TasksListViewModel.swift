@@ -7,6 +7,7 @@
 //
 
 import Foundation
+protocol TasksListVMDelegate: class, UserInformer {}
 
 class TasksListViewModel {
     //    represents which tasks are shown in which section - completed or pending
@@ -16,6 +17,7 @@ class TasksListViewModel {
     }
 
     private var tasks: [[TaskMO]] = []
+    weak var delegate: TasksListVMDelegate?
 
     init() {
         self.loadData()
@@ -33,11 +35,11 @@ class TasksListViewModel {
         return tasks.count
     }
 
-    func remove(section: Int, index: Int) {
+    private func remove(section: Int, index: Int) {
         tasks[section].remove(at: index)
     }
 
-    func addTask(taskToAdd: TaskMO,to section: Int) {
+    private func addTask(taskToAdd: TaskMO,to section: Int) {
         if tasks[section].isEmpty {
             tasks[section].append(taskToAdd)
         } else {
@@ -62,6 +64,7 @@ class TasksListViewModel {
                 remove(section: indexPath.section, index: indexPath.row)
                 addTask(taskToAdd: taskToComplete,to: TasksStatusSection.completed.rawValue)
             } catch {
+                delegate?.informUser(title: R.string.coreDataErrors.msgUnableToCompleteTask(taskToComplete.title), message: nil)
                 assertionFailure(error.localizedDescription)
             }
         }
@@ -71,10 +74,11 @@ class TasksListViewModel {
         let taskToDelete = self[indexPath.section, indexPath.row]
         do {
             try CoreDataHandler.deleteTask(taskToDelete)
+            remove(section: indexPath.section, index: indexPath.row)
         } catch {
+            delegate?.informUser(title: R.string.coreDataErrors.msgUnableToDeleteTask(taskToDelete.title), message: nil)
             assertionFailure(error.localizedDescription)
         }
-        remove(section: indexPath.section, index: indexPath.row)
     }
 
     func loadData() {
@@ -100,8 +104,8 @@ class TasksListViewModel {
                 self.tasks = [completedTasks, pendingTasks]
             }
         } catch {
+             delegate?.informUser(title: R.string.coreDataErrors.msgUnableToFetchData("Tasks"), message: nil)
             assertionFailure(error.localizedDescription)
         }
-
     }
 }

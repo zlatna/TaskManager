@@ -5,12 +5,12 @@
   Created by Zlatna Nikolova on 29/11/2017.
   Copyright © 2017 zlatnanikolova. All rights reserved.
 */
-"update task title" = "Update task";
-"create task title" = "Crate new task";
-"add button" = "Add";
-"delete button" = "Delete";
+"label update task title" = "Update task";
+"label create task title" = "Crate new task";
+"button add task" = "Add";
+"button delete task" = "Delete";
 
 // MARK: - Alerts
-"msg enter title" = "Enter task title.";
-"msg enter correct date" = "Enter correct date";
-"msg select category" = "Select category";
+"msg enter task title" = "Enter task title.";
+"msg enter correct date for task" = "Enter correct date";
+"msg select category for task" = "Select category";

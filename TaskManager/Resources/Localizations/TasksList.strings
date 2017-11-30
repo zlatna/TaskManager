@@ -5,11 +5,11 @@
   Created by Zlatna Nikolova on 29/11/2017.
   Copyright © 2017 zlatnanikolova. All rights reserved.
 */
-"title" = "Tasks";
+"label tasks list title" = "Tasks";
 
 // MARK: - Sections
-"section pending tasks" = "Pending tasks";
-"section completed tasks" = "Completed Tasks";
+"section title pending tasks" = "Pending tasks";
+"section title completed tasks" = "Completed Tasks";
 
 // MARK: - Actions
 "action done" = "Done";

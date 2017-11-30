@@ -7,6 +7,7 @@
 //
 
 import Foundation
+protocol TaskVMDelegate: class, UserInformer {}
 
 class TaskViewModel {
     enum Mode {
@@ -14,6 +15,7 @@ class TaskViewModel {
         case create
     }
 
+    weak var delegate: TaskVMDelegate?
     private var task: TaskMO?
     private(set) var mode: Mode
     init?(task: TaskMO?, to mode: Mode) throws {

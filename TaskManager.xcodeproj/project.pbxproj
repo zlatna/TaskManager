@@ -47,6 +47,8 @@
 		936C96261FB4AEB6001FC35D /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C96251FB4AEB6001FC35D /* CustomDateFormatter.swift */; };
 		936C96291FB4B78E001FC35D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 936C96281FB4B78E001FC35D /* .swiftlint.yml */; };
 		936C962B1FB5A71D001FC35D /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C962A1FB5A71D001FC35D /* Identifiers.swift */; };
+		93FAFE9B1FD02E95005AD370 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FAFE9A1FD02E95005AD370 /* UIAlertController.swift */; };
+		93FAFE9F1FD05E8D005AD370 /* UserInformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FAFE9E1FD05E8D005AD370 /* UserInformer.swift */; };
 		93FB266C1FCD90BE0043CB38 /* InitializationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB266B1FCD90BE0043CB38 /* InitializationErrors.swift */; };
 		93FCCE111FCC0A7F00FB7B4E /* CoreDataErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FCCE101FCC0A7F00FB7B4E /* CoreDataErrors.swift */; };
 /* End PBXBuildFile section */
@@ -96,6 +98,8 @@
 		936C96251FB4AEB6001FC35D /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 		936C96281FB4B78E001FC35D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		936C962A1FB5A71D001FC35D /* Identifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
+		93FAFE9A1FD02E95005AD370 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
+		93FAFE9E1FD05E8D005AD370 /* UserInformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformer.swift; sourceTree = "<group>"; };
 		93FB266B1FCD90BE0043CB38 /* InitializationErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationErrors.swift; sourceTree = "<group>"; };
 		93FCCE101FCC0A7F00FB7B4E /* CoreDataErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataErrors.swift; sourceTree = "<group>"; };
 		C920F567078E7116EA2DA1A8 /* Pods-TaskManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskManager/Pods-TaskManager.release.xcconfig"; sourceTree = "<group>"; };
@@ -294,6 +298,7 @@
 			children = (
 				9328EFC11FC82A7600D3C209 /* UITableView.swift */,
 				9328EFC31FC8317400D3C209 /* UICollectionView.swift */,
+				93FAFE9A1FD02E95005AD370 /* UIAlertController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 			children = (
 				933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */,
 				9328EFBE1FC8255000D3C209 /* Reusable.swift */,
+				93FAFE9E1FD05E8D005AD370 /* UserInformer.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -511,6 +517,7 @@
 				93179F0F1FBC8F5300B404B2 /* CollectionViewPickerDelegate.swift in Sources */,
 				933DA5A81FC4547B007DDEC0 /* TaskMO+CoreDataProperties.swift in Sources */,
 				21FAEAB01F3DE20000219128 /* CategoryMO+CoreDataProperties.swift in Sources */,
+				93FAFE9B1FD02E95005AD370 /* UIAlertController.swift in Sources */,
 				9328EFBF1FC8255000D3C209 /* Reusable.swift in Sources */,
 				9328EFC21FC82A7600D3C209 /* UITableView.swift in Sources */,
 				9328EFC41FC8317400D3C209 /* UICollectionView.swift in Sources */,
@@ -520,6 +527,7 @@
 				210793541F3F7B1D00DD5173 /* TaskViewController.swift in Sources */,
 				931A84821FB9992900D173D1 /* TaskViewModel.swift in Sources */,
 				210793531F3F7B1D00DD5173 /* TasksListViewController.swift in Sources */,
+				93FAFE9F1FD05E8D005AD370 /* UserInformer.swift in Sources */,
 				933DA5A21FC43BA0007DDEC0 /* R.generated.swift in Sources */,
 				21FAEAB11F3DE20000219128 /* TaskMO+CoreDataClass.swift in Sources */,
 				931AF3E11FC6FD63009DB82A /* CoreDataManager.swift in Sources */,
