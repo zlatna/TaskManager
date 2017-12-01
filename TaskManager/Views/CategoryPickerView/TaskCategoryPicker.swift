@@ -14,7 +14,7 @@ class TaskCategoryPicker: UIView {
         return String(describing: TaskCategoryPicker.self)
     }
     @IBOutlet weak var collectionView: UICollectionView!
-    fileprivate let itemsPerRow = 3
+    fileprivate let maxCellWidth = 90
     fileprivate let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
     weak var delegate: CategoryPickerDelegate?
 
@@ -60,6 +60,7 @@ extension CollectionViewConfig: UICollectionViewDataSource {
 
 extension CollectionViewConfig: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemsPerRow = Int(collectionView.bounds.width / CGFloat(maxCellWidth))
         let padding = sectionInsets.left * CGFloat(itemsPerRow) + sectionInsets.right * CGFloat(itemsPerRow)
         let availableWidth = collectionView.bounds.width - padding
         let itemWidth = availableWidth / CGFloat(itemsPerRow)

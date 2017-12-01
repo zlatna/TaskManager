@@ -15,7 +15,6 @@ class TasksListViewController: UIViewController, PresentAlertsProtocol, TasksLis
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        taskListVM.delegate = self
         navigationItem.title = R.string.tasksList.labelTasksListTitle()
         tableView.dataSource = self
         tableView.delegate = self
@@ -25,6 +24,7 @@ class TasksListViewController: UIViewController, PresentAlertsProtocol, TasksLis
         super.viewWillAppear(animated)
         if taskListVM != nil {
             loadData()
+            taskListVM.delegate = self
         } else {
             taskListVM = TasksListViewModel()
             self.activityIndicator.stopAnimating()
