@@ -15,18 +15,9 @@ class CategoryCell: UICollectionViewCell {
 
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        setNeedsLayout()
         layoutIfNeeded()
         colorView.layer.cornerRadius = colorView.bounds.width / 2
         self.layer.cornerRadius = self.bounds.width / 4
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-//        colorView.clipsToBounds = true
-//        colorView.layer.cornerRadius = colorView.bounds.width / 2
-//        self.layer.cornerRadius = self.bounds.width / 4
     }
 
     override var isSelected: Bool {
