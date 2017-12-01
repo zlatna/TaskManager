@@ -7,7 +7,6 @@
 //
 import UIKit
 
-// swiftlint:disable force_cast
 extension UITableView {
     func registerReusable<T: UITableViewCell>(_: T.Type) where T: Reusable {
         if let nib = T.nib {
@@ -18,7 +17,9 @@ extension UITableView {
     }
 
     func dequeReusableCell<T: UITableViewCell>(indexPath: IndexPath) -> T where T: Reusable {
-        return self.dequeueReusableCell(withIdentifier: T.reuseIdentifier, for: indexPath) as! T
+        let dequedCell = self.dequeueReusableCell(withIdentifier: T.reuseIdentifier, for: indexPath) as? T
+        assert(dequedCell != nil, R.string.viewErrors.msgUnableToDequeView(String(describing: T.self)))
+        return dequedCell!
     }
 
     func registerReusableHeaderFooterView<T: UITableViewHeaderFooterView>(_: T.Type) where T: Reusable {
@@ -30,7 +31,8 @@ extension UITableView {
     }
 
     func dequeReusableHeaderFooterView<T: UITableViewHeaderFooterView>() -> T where T: Reusable {
-        return self.dequeueReusableHeaderFooterView(withIdentifier: T.reuseIdentifier) as! T
+        let dequedView = self.dequeueReusableHeaderFooterView(withIdentifier: T.reuseIdentifier) as? T
+        assert(dequedView != nil, R.string.viewErrors.msgUnableToDequeView(String(describing: T.self)))
+        return dequedView!
     }
 }
-// swiftlint:enable force_cast

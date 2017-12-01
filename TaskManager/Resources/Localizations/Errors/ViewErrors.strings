@@ -1,0 +1,8 @@
+/* 
+  ViewErrors.strings
+  TaskManager
+
+  Created by Zlatna Nikolova on 01/12/2017.
+  Copyright © 2017 zlatnanikolova. All rights reserved.
+*/
+"msg unable to deque view" = "View of type %@ cannot be dequeued.";

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TasksListViewController: UIViewController {
+class TasksListViewController: UIViewController, PresentAlertsProtocol, TasksListVMDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     fileprivate var taskListVM: TasksListViewModel!
@@ -153,12 +153,5 @@ extension TableConfig: UITableViewDelegate {
             return [done]
         }
         return []
-    }
-}
-
-private typealias TasksListViewModelDelegate = TasksListViewController
-extension TasksListViewModelDelegate: TasksListVMDelegate, PresentAlertsProtocol {
-    func informUser(title: String?, message: String?) {
-        self.showInformationAlert(withTitle: title ?? "", message: message ?? "", okButtonTitle: R.string.alert.buttonOk())
     }
 }

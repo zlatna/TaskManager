@@ -8,7 +8,6 @@
 
 import UIKit
 
-// swiftlint:disable force_cast
 extension UICollectionView {
     func registerReusable<T: UICollectionViewCell>(_: T.Type) where T: Reusable {
         if let nib = T.nib {
@@ -24,7 +23,9 @@ extension UICollectionView {
     /// This method uses the index path to perform additional configuration based on the cell’s position in the collection view.
     /// - Returns: Returns a reusable cell object conforming to Reusable
     func dequeReusableCell<T: UICollectionViewCell>(indexPath: IndexPath) -> T where T: Reusable {
-        return self.dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: indexPath) as! T
+        let dequedCell = self.dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: indexPath) as? T
+        assert(dequedCell != nil, String(describing: T.self))
+        return dequedCell!
     }
 
     func registerReusableSuplementaryView<T: Reusable>(elementKind: String, _: T.Type) {
@@ -35,8 +36,9 @@ extension UICollectionView {
         }
     }
 
-    func dequeueReusableSupplementaryView<T: UICollectionReusableView>(elementKind: String, indexPath: IndexPath) -> T where T: Reusable {
-        return self.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: T.reuseIdentifier, for: indexPath) as! T
+    func dequeueReusableSupplementaryView<T: UICollectionReusableView>(elementKind: String, indexPath: IndexPath) throws -> T where T: Reusable {
+        let dequedView = self.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: T.reuseIdentifier, for: indexPath) as? T
+        assert(dequedView != nil, R.string.viewErrors.msgUnableToDequeView(String(describing: T.self)))
+        return dequedView!
     }
 }
-// swiftlint:enable force_cast

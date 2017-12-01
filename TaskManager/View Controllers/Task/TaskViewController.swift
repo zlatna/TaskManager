@@ -10,7 +10,7 @@ import UIKit
 import UserNotifications
 import TextFieldEffects
 
-class TaskViewController: UITableViewController, PresentAlertsProtocol {
+class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDelegate {
     @IBOutlet weak var titleTextView: UITextField!
     @IBOutlet weak var deleteTaskButton: UIButton!
     @IBOutlet weak var taskDueDateTextField: UITextField!
@@ -32,7 +32,6 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol {
     fileprivate var taskCategory: CategoryMO? {
         didSet {
             categoryTextField.text = taskCategory?.name
-//            categoryTextField.borderInactiveColor = taskCategory?.uiColor
         }
     }
 
@@ -182,12 +181,5 @@ extension TextFieldDisabledForUserEdition: UITextFieldDelegate {
             return false
         }
         return true
-    }
-}
-
-private typealias TaskViewModelDelegate = TaskViewController
-extension TaskViewModelDelegate: TaskVMDelegate {
-    func informUser(title: String?, message: String?) {
-        self.showInformationAlert(withTitle: title ?? "", message: message ?? "", okButtonTitle: R.string.alert.buttonOk())
     }
 }
