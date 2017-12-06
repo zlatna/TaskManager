@@ -12,7 +12,13 @@ class ManageCategoriesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        guard let colorPicker = Bundle.main.loadNibNamed(ColorPickerView.nibName, owner: ColorPickerView.self, options: nil)?.first as? ColorPickerView else {
+            return
+        }
+        var frame = self.view.bounds
+        frame.origin.y += 300
+        colorPicker.frame = self.view.bounds
+        view.addSubview(colorPicker)
         // Do any additional setup after loading the view.
     }
 
@@ -20,7 +26,6 @@ class ManageCategoriesViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

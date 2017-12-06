@@ -33,6 +33,10 @@
 		931A84821FB9992900D173D1 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A84811FB9992900D173D1 /* TaskViewModel.swift */; };
 		931A84841FB99B7E00D173D1 /* TaskCategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A84831FB99B7E00D173D1 /* TaskCategoriesViewModel.swift */; };
 		931A84891FB9F9A900D173D1 /* TasksListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931A84881FB9F9A900D173D1 /* TasksListViewModel.swift */; };
+		931AB9D21FD811DB004DEC73 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 931AB9D11FD811DB004DEC73 /* Settings.storyboard */; };
+		931AB9D81FD822B3004DEC73 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931AB9D71FD822B3004DEC73 /* ColorPickerView.swift */; };
+		931AB9DA1FD822D0004DEC73 /* ColorPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931AB9D91FD822D0004DEC73 /* ColorPickerView.xib */; };
+		931AB9E01FD8312F004DEC73 /* ManageCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931AB9DF1FD8312F004DEC73 /* ManageCategoriesViewController.swift */; };
 		931AF3E11FC6FD63009DB82A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931AF3E01FC6FD63009DB82A /* CoreDataManager.swift */; };
 		9328EFBF1FC8255000D3C209 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328EFBE1FC8255000D3C209 /* Reusable.swift */; };
 		9328EFC21FC82A7600D3C209 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328EFC11FC82A7600D3C209 /* UITableView.swift */; };
@@ -86,6 +90,10 @@
 		931A84811FB9992900D173D1 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		931A84831FB99B7E00D173D1 /* TaskCategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategoriesViewModel.swift; sourceTree = "<group>"; };
 		931A84881FB9F9A900D173D1 /* TasksListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListViewModel.swift; sourceTree = "<group>"; };
+		931AB9D11FD811DB004DEC73 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		931AB9D71FD822B3004DEC73 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		931AB9D91FD822D0004DEC73 /* ColorPickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPickerView.xib; sourceTree = "<group>"; };
+		931AB9DF1FD8312F004DEC73 /* ManageCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCategoriesViewController.swift; sourceTree = "<group>"; };
 		931AF3E01FC6FD63009DB82A /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		9328EFBE1FC8255000D3C209 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		9328EFC11FC82A7600D3C209 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
@@ -149,6 +157,7 @@
 			children = (
 				21067D591F3C490C00DB93E6 /* AppDelegate.swift */,
 				21067D5D1F3C490C00DB93E6 /* Main.storyboard */,
+				931AB9D11FD811DB004DEC73 /* Settings.storyboard */,
 				21067D601F3C490C00DB93E6 /* TaskManager.xcdatamodeld */,
 				2107934E1F3F777400DD5173 /* Notifications */,
 				9328EFC01FC82A3F00D3C209 /* Extensions */,
@@ -175,6 +184,7 @@
 		21FAEA861F3DCA7800219128 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				931AB9D31FD81350004DEC73 /* Categories */,
 				931A84871FB9F98600D173D1 /* Settings */,
 				931A84861FB9F97700D173D1 /* TasksList */,
 				931A84801FB998CF00D173D1 /* Task */,
@@ -218,6 +228,7 @@
 			children = (
 				9314704C1FBB461300477263 /* CategoryPickerView */,
 				21FAEAB81F3E51CC00219128 /* TaskCell.swift */,
+				931AB9DC1FD82E9F004DEC73 /* ColorPicker */,
 			);
 			name = Views;
 			path = ..;
@@ -298,6 +309,23 @@
 				2107934F1F3F7B1D00DD5173 /* SettingsViewContoller.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		931AB9D31FD81350004DEC73 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				931AB9DF1FD8312F004DEC73 /* ManageCategoriesViewController.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		931AB9DC1FD82E9F004DEC73 /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				931AB9D71FD822B3004DEC73 /* ColorPickerView.swift */,
+				931AB9D91FD822D0004DEC73 /* ColorPickerView.xib */,
+			);
+			path = ColorPicker;
 			sourceTree = "<group>";
 		};
 		9328EFC01FC82A3F00D3C209 /* Extensions */ = {
@@ -434,6 +462,8 @@
 				21067D641F3C490C00DB93E6 /* Assets.xcassets in Resources */,
 				21067D5F1F3C490C00DB93E6 /* Main.storyboard in Resources */,
 				932E9A9D1FD151A500FE902A /* README.md in Resources */,
+				931AB9D21FD811DB004DEC73 /* Settings.storyboard in Resources */,
+				931AB9DA1FD822D0004DEC73 /* ColorPickerView.xib in Resources */,
 				931470551FBB495700477263 /* CategoryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -540,10 +570,12 @@
 				931A84821FB9992900D173D1 /* TaskViewModel.swift in Sources */,
 				210793531F3F7B1D00DD5173 /* TasksListViewController.swift in Sources */,
 				93FAFE9F1FD05E8D005AD370 /* UserInformer.swift in Sources */,
+				931AB9D81FD822B3004DEC73 /* ColorPickerView.swift in Sources */,
 				933DA5A21FC43BA0007DDEC0 /* R.generated.swift in Sources */,
 				21FAEAB11F3DE20000219128 /* TaskMO+CoreDataClass.swift in Sources */,
 				931AF3E11FC6FD63009DB82A /* CoreDataManager.swift in Sources */,
 				933935551FB5DDE90068E483 /* PresentAlertsProtocol.swift in Sources */,
+				931AB9E01FD8312F004DEC73 /* ManageCategoriesViewController.swift in Sources */,
 				21067D621F3C490C00DB93E6 /* TaskManager.xcdatamodeld in Sources */,
 				93FB266C1FCD90BE0043CB38 /* InitializationErrors.swift in Sources */,
 				93179F0B1FBC416600B404B2 /* TaskCategoryPicker.swift in Sources */,

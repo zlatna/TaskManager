@@ -126,14 +126,14 @@
         <scene sceneID="H0s-eU-KK6">
             <objects>
                 <tableViewController id="Fkr-3W-9RN" customClass="SettingsViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Zbb-9J-tUB">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Zbb-9J-tUB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection headerTitle="Notifications" id="InX-HK-PYH">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="uZd-6T-bBn">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="uZd-6T-bBn">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uZd-6T-bBn" id="udE-Le-aRr">
@@ -176,7 +176,6 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add task categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEQ-lB-CEW">
                                                     <rect key="frame" x="30" y="11" width="303" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -186,6 +185,9 @@
                                                 <constraint firstItem="ZEQ-lB-CEW" firstAttribute="leading" secondItem="l0c-er-adh" secondAttribute="leadingMargin" constant="14" id="lzC-HI-o3w"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="2eo-EV-sge" kind="show" id="Q24-nw-CQP"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -203,6 +205,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Itm-3m-a0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1928.8" y="-906.29685157421295"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="b46-RJ-ane">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SettingsStoryboard" storyboardName="Settings" id="2eo-EV-sge" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zM5-YZ-nAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2802" y="-1111"/>
         </scene>
         <!--Task View Controller-->
         <scene sceneID="Bpi-Id-vSg">
