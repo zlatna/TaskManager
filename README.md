@@ -6,6 +6,7 @@
 - To install R.Swift refer to the documentation [R.Swift](https://github.com/mac-cain13/R.swift)
 
 ## ToDo
-- When open a date picker - the field shows the initial selected date
-- Add option to create new categories
+- [x] When open a date picker - the text field shows the initial selected date (Create task)
+- [ ] Add option to create new categories
+- [ ] store in iCloud
 - Cleanup the project

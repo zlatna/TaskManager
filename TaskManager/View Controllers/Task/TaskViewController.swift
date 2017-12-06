@@ -11,6 +11,11 @@ import UserNotifications
 import TextFieldEffects
 
 class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDelegate {
+    fileprivate struct TaskConfig {
+        static var minimumDateToSet: Date {
+            return Date().addingTimeInterval(60)
+        }
+    }
     @IBOutlet weak var titleTextView: UITextField!
     @IBOutlet weak var deleteTaskButton: UIButton!
     @IBOutlet weak var taskDueDateTextField: UITextField!
@@ -100,10 +105,6 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDe
         }
         taskVM.saveTask(with: title, completionDate: dueDate, category: category)
     }
-
-    @IBAction func taskDueDateTouchUpInside(_ sender: UITextField) {
-        sender.inputView = UIDatePicker()
-    }
 }
 
 // MARK: - Initial Fiels Setup
@@ -162,12 +163,11 @@ private typealias TaskDueDatePickerConfig = TaskViewController
 extension TaskDueDatePickerConfig {
     fileprivate func createDatePickerView() -> UIDatePicker {
         let datePicker = UIDatePicker()
-        datePicker.minimumDate = Date().addingTimeInterval(60)
+        datePicker.minimumDate = TaskConfig.minimumDateToSet
         datePicker.date = taskVM.completionDate
         datePicker.addTarget(self, action: #selector(pickerDueDateValueDidChanged) , for: .valueChanged)
         return datePicker
     }
-
     @objc func pickerDueDateValueDidChanged(sender: UIDatePicker) {
         taskDueDate = sender.date
     }
@@ -181,5 +181,16 @@ extension TextFieldDisabledForUserEdition: UITextFieldDelegate {
             return false
         }
         return true
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == self.taskDueDateTextField {
+            switch taskVM.mode {
+            case .create:
+                taskDueDate = TaskConfig.minimumDateToSet
+            default:
+                break
+            }
+        }
     }
 }

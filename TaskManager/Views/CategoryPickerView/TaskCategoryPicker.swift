@@ -14,8 +14,10 @@ class TaskCategoryPicker: UIView {
         return String(describing: TaskCategoryPicker.self)
     }
     @IBOutlet weak var collectionView: UICollectionView!
-    fileprivate let maxCellWidth = 90
-    fileprivate let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+    struct CollectionConfig {
+        static let maxCellWidth = 90
+        static let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+    }
     weak var delegate: CategoryPickerDelegate?
 
     fileprivate let taskCategories = TaskCategoriesViewModel()
@@ -60,19 +62,19 @@ extension CollectionViewConfig: UICollectionViewDataSource {
 
 extension CollectionViewConfig: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemsPerRow = Int(collectionView.bounds.width / CGFloat(maxCellWidth))
-        let padding = sectionInsets.left * CGFloat(itemsPerRow) + sectionInsets.right * CGFloat(itemsPerRow)
+        let itemsPerRow = Int(collectionView.bounds.width / CGFloat(CollectionConfig.maxCellWidth))
+        let padding = CollectionConfig.sectionInsets.left * CGFloat(itemsPerRow) + CollectionConfig.sectionInsets.right * CGFloat(itemsPerRow)
         let availableWidth = collectionView.bounds.width - padding
         let itemWidth = availableWidth / CGFloat(itemsPerRow)
         return CGSize(width: itemWidth, height: itemWidth)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.left
+        return CollectionConfig.sectionInsets.left
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
+        return CollectionConfig.sectionInsets
     }
 }
 

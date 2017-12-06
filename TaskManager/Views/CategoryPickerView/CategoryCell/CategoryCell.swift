@@ -13,11 +13,12 @@ class CategoryCell: UICollectionViewCell {
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
 
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        layoutIfNeeded()
-        colorView.layer.cornerRadius = colorView.bounds.width / 2
-        self.layer.cornerRadius = self.bounds.width / 4
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        DispatchQueue.main.async { [weak self] in
+            self?.colorView.layer.cornerRadius = (self?.colorView.bounds.width ?? 0) / 2
+            self?.layer.cornerRadius = (self?.bounds.width ?? 0) / 4
+        }
     }
 
     override var isSelected: Bool {

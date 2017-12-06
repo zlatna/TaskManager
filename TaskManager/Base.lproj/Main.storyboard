@@ -281,6 +281,9 @@
                                                             <real key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="dueDateTouchUpInside:" destination="7XV-ww-08A" eventType="touchUpInside" id="0aR-aK-KzA"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
