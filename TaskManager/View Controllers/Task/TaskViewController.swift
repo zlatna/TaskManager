@@ -20,6 +20,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDe
     @IBOutlet weak var deleteTaskButton: UIButton!
     @IBOutlet weak var taskDueDateTextField: UITextField!
     @IBOutlet weak var categoryTextField: HoshiTextField!
+    @IBOutlet weak var addTaskButton: UIButton!
     var taskVM: TaskViewModel!
 
     fileprivate var isDeleting = false
@@ -69,22 +70,22 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDe
         }
     }
 
-    func onCloseButton() {
-        self.navigationController?.popViewController(animated: true)
-    }
-
-    @objc func onAddTask() {
-        checkFieldsAndSaveTask()
-        self.navigationController?.popViewController(animated: true)
-    }
+//    func onCloseButton() {
+//        self.navigationController?.popViewController(animated: true)
+//    }
 
     @IBAction func didEndTitleEdit(_ sender: UITextField) {
         self.resignFirstResponder()
     }
 
     @IBAction func deleteTask(_ sender: UIButton) {
-        taskVM.deleteTask() //?????
+        taskVM.deleteTask()
         self.isDeleting = true
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    @IBAction func addTask(_ sender: UIButton) {
+        checkFieldsAndSaveTask()
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -128,10 +129,11 @@ extension TaskViewController {
             taskDueDate = taskVM.completionDate
             titleTextView.text = taskVM.title
             taskCategory = taskVM.category
+            addTaskButton.isHidden = true
 
         case .create:
             navigationItem.title = R.string.taskView.labelCreateTaskTitle()
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.taskView.buttonAddTask(), style: .done, target: self, action: #selector(TaskViewController.onAddTask))
+//            navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.taskView.buttonAddTask(), style: .done, target: self, action: #selector(TaskViewController.onAddTask))
             deleteTaskButton.isHidden = true
         }
     }

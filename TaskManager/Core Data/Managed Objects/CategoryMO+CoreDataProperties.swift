@@ -1,13 +1,14 @@
 //
 //  CategoryMO+CoreDataProperties.swift
-//  TaskManager
+//  
 //
-//  Created by Zlatna on 8/11/17.
-//  Copyright © 2017 zlatnanikolova. All rights reserved.
+//  Created by Zlatna Nikolova on 07/12/2017.
+//
 //
 
 import Foundation
 import CoreData
+
 
 extension CategoryMO {
 
@@ -17,6 +18,7 @@ extension CategoryMO {
 
     @NSManaged public var color: String
     @NSManaged public var name: String
+    @NSManaged public var custom: Bool
     @NSManaged public var task: NSSet?
 
 }

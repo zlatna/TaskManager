@@ -32,7 +32,7 @@ class TaskCategoryPicker: UIView {
 }
 
 // MARK: - CollectionView Setup
-typealias CollectionViewConfig = TaskCategoryPicker
+fileprivate typealias CollectionViewConfig = TaskCategoryPicker
 extension CollectionViewConfig: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

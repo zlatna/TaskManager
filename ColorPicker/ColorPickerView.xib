@@ -23,39 +23,36 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKe-ol-Ifx">
                             <rect key="frame" x="106" y="0.0" width="122" height="122"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="YKe-ol-Ifx" secondAttribute="height" multiplier="1:1" id="aDp-p3-1vq"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="DjC-50-c3c" appends="YES" id="7qW-Pm-Q3n"/>
+                            </connections>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IFV-P7-q8S">
                             <rect key="frame" x="0.0" y="142" width="334" height="224"/>
                             <subviews>
                                 <slider opaque="NO" contentMode="scaleAspectFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="fNB-4m-Iru">
-                                    <rect key="frame" x="-2" y="0.0" width="338" height="49.5"/>
+                                    <rect key="frame" x="-2" y="0.0" width="338" height="69"/>
                                     <color key="thumbTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <action selector="redSliderValueChanged:" destination="iN0-l3-epB" eventType="valueChanged" id="XxE-fZ-ats"/>
                                     </connections>
                                 </slider>
                                 <slider opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="oNZ-dg-wNY">
-                                    <rect key="frame" x="-2" y="58.5" width="338" height="49.5"/>
+                                    <rect key="frame" x="-2" y="78" width="338" height="69"/>
                                     <color key="thumbTintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <action selector="greenSliderValueChanged:" destination="iN0-l3-epB" eventType="valueChanged" id="JTb-PV-bJe"/>
                                     </connections>
                                 </slider>
                                 <slider opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lXF-qk-xhC">
-                                    <rect key="frame" x="-2" y="117" width="338" height="49.5"/>
+                                    <rect key="frame" x="-2" y="156" width="338" height="69"/>
                                     <color key="thumbTintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <action selector="blueSliderValueChanged:" destination="iN0-l3-epB" eventType="valueChanged" id="Efq-0z-Uvb"/>
-                                    </connections>
-                                </slider>
-                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="nPA-ri-q3I">
-                                    <rect key="frame" x="-2" y="175.5" width="338" height="49.5"/>
-                                    <color key="minimumTrackTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <connections>
-                                        <action selector="alphaSliderValueChanged:" destination="iN0-l3-epB" eventType="valueChanged" id="jTX-eJ-6Eh"/>
                                     </connections>
                                 </slider>
                             </subviews>
@@ -63,10 +60,8 @@
                                 <constraint firstAttribute="trailing" secondItem="oNZ-dg-wNY" secondAttribute="trailing" id="3RO-hz-ZMZ"/>
                                 <constraint firstItem="oNZ-dg-wNY" firstAttribute="leading" secondItem="IFV-P7-q8S" secondAttribute="leading" id="6PJ-di-Qwr"/>
                                 <constraint firstItem="lXF-qk-xhC" firstAttribute="leading" secondItem="IFV-P7-q8S" secondAttribute="leading" id="9fX-Gp-pBl"/>
-                                <constraint firstAttribute="trailing" secondItem="nPA-ri-q3I" secondAttribute="trailing" id="QCW-VM-CdX"/>
                                 <constraint firstAttribute="trailing" secondItem="lXF-qk-xhC" secondAttribute="trailing" id="QFb-vB-l5Z"/>
                                 <constraint firstAttribute="trailing" secondItem="fNB-4m-Iru" secondAttribute="trailing" id="UD3-xi-WiN"/>
-                                <constraint firstItem="nPA-ri-q3I" firstAttribute="leading" secondItem="IFV-P7-q8S" secondAttribute="leading" id="YCM-gZ-n5U"/>
                                 <constraint firstItem="fNB-4m-Iru" firstAttribute="leading" secondItem="IFV-P7-q8S" secondAttribute="leading" id="wRu-1l-XoU"/>
                             </constraints>
                         </stackView>
@@ -89,7 +84,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="alphaSlider" destination="nPA-ri-q3I" id="v04-Jx-N5D"/>
                 <outlet property="blueSlider" destination="lXF-qk-xhC" id="bsR-UD-lN2"/>
                 <outlet property="colorView" destination="YKe-ol-Ifx" id="M2y-bQ-siJ"/>
                 <outlet property="greenSlider" destination="oNZ-dg-wNY" id="mVv-x1-Xww"/>
@@ -99,5 +93,10 @@
             </connections>
             <point key="canvasLocation" x="60" y="17"/>
         </view>
+        <tapGestureRecognizer id="DjC-50-c3c">
+            <connections>
+                <action selector="didSelectColor:" destination="iN0-l3-epB" id="Gop-o0-3EY"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

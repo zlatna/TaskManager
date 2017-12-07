@@ -19,7 +19,7 @@ extension CategoryMO {
             let categories = CategoriesAndColors().dictionary
             for (categoryName, categoryColor) in categories {
                 do {
-                    try CoreDataHandler.addNewCategory(named: categoryName, color: categoryColor)
+                    try CoreDataHandler.addNewCategory(named: categoryName, color: categoryColor, custom: false)
                 } catch {
                     assertionFailure(error.localizedDescription)
                 }

@@ -359,10 +359,21 @@
                                                         <action selector="deleteTask:" destination="7XV-ww-08A" eventType="touchUpInside" id="ITc-lu-kD8"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhf-6e-iGS" userLabel="Add Task Button">
+                                                    <rect key="frame" x="20" y="13" width="335" height="33"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <state key="normal" title="Add"/>
+                                                    <connections>
+                                                        <action selector="addTask:" destination="7XV-ww-08A" eventType="touchUpInside" id="36I-Pm-ucB"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="jhf-6e-iGS" firstAttribute="centerY" secondItem="Lp9-4G-BvP" secondAttribute="centerY" id="4a2-by-GpD"/>
+                                                <constraint firstAttribute="trailing" secondItem="jhf-6e-iGS" secondAttribute="trailing" constant="20" id="XnC-S4-dXg"/>
                                                 <constraint firstItem="lBq-a9-Cwf" firstAttribute="centerY" secondItem="Lp9-4G-BvP" secondAttribute="centerY" id="bzW-wm-9qA"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="lBq-a9-Cwf" secondAttribute="trailing" constant="20" id="iv1-H3-ofQ"/>
+                                                <constraint firstItem="jhf-6e-iGS" firstAttribute="leading" secondItem="Lp9-4G-BvP" secondAttribute="leading" constant="20" id="l7S-ev-UxG"/>
                                                 <constraint firstItem="lBq-a9-Cwf" firstAttribute="leading" secondItem="Lp9-4G-BvP" secondAttribute="leadingMargin" constant="20" id="t61-sy-08i"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -376,6 +387,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="addTaskButton" destination="jhf-6e-iGS" id="xtv-bd-3gX"/>
                         <outlet property="categoryTextField" destination="shY-pQ-X2B" id="BuP-1l-FuV"/>
                         <outlet property="deleteTaskButton" destination="lBq-a9-Cwf" id="7QI-rW-KrO"/>
                         <outlet property="taskDueDateTextField" destination="wWt-Fz-Zco" id="87q-3w-ZnI"/>

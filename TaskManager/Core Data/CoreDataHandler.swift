@@ -89,7 +89,7 @@ extension CoreDataTaskHandler {
 typealias CoreDataCategoryHandler = CoreDataHandler
 extension CoreDataCategoryHandler {
     // MARK: - altering
-    class func addNewCategory(named name: String, color: String) throws {
+    class func addNewCategory(named name: String, color: String, custom: Bool = true) throws {
         let context = CoreDataManager.sharedInstance.viewContext
 
         let category = CategoryMO(context: context)

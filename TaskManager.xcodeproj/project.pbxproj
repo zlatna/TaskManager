@@ -37,6 +37,8 @@
 		931AB9D81FD822B3004DEC73 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931AB9D71FD822B3004DEC73 /* ColorPickerView.swift */; };
 		931AB9DA1FD822D0004DEC73 /* ColorPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931AB9D91FD822D0004DEC73 /* ColorPickerView.xib */; };
 		931AB9E01FD8312F004DEC73 /* ManageCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931AB9DF1FD8312F004DEC73 /* ManageCategoriesViewController.swift */; };
+		931AB9E31FD8535B004DEC73 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931AB9E21FD8535B004DEC73 /* CategoryViewController.swift */; };
+		931AB9E51FD859B9004DEC73 /* ColorPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931AB9E41FD859B9004DEC73 /* ColorPickerDelegate.swift */; };
 		931AF3E11FC6FD63009DB82A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931AF3E01FC6FD63009DB82A /* CoreDataManager.swift */; };
 		9328EFBF1FC8255000D3C209 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328EFBE1FC8255000D3C209 /* Reusable.swift */; };
 		9328EFC21FC82A7600D3C209 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328EFC11FC82A7600D3C209 /* UITableView.swift */; };
@@ -94,6 +96,8 @@
 		931AB9D71FD822B3004DEC73 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		931AB9D91FD822D0004DEC73 /* ColorPickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPickerView.xib; sourceTree = "<group>"; };
 		931AB9DF1FD8312F004DEC73 /* ManageCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCategoriesViewController.swift; sourceTree = "<group>"; };
+		931AB9E21FD8535B004DEC73 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		931AB9E41FD859B9004DEC73 /* ColorPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerDelegate.swift; sourceTree = "<group>"; };
 		931AF3E01FC6FD63009DB82A /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		9328EFBE1FC8255000D3C209 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		9328EFC11FC82A7600D3C209 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
@@ -184,7 +188,8 @@
 		21FAEA861F3DCA7800219128 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				931AB9D31FD81350004DEC73 /* Categories */,
+				931AB9E11FD852FB004DEC73 /* Category */,
+				931AB9D31FD81350004DEC73 /* ManageCategories */,
 				931A84871FB9F98600D173D1 /* Settings */,
 				931A84861FB9F97700D173D1 /* TasksList */,
 				931A84801FB998CF00D173D1 /* Task */,
@@ -311,12 +316,12 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		931AB9D31FD81350004DEC73 /* Categories */ = {
+		931AB9D31FD81350004DEC73 /* ManageCategories */ = {
 			isa = PBXGroup;
 			children = (
 				931AB9DF1FD8312F004DEC73 /* ManageCategoriesViewController.swift */,
 			);
-			path = Categories;
+			path = ManageCategories;
 			sourceTree = "<group>";
 		};
 		931AB9DC1FD82E9F004DEC73 /* ColorPicker */ = {
@@ -324,8 +329,17 @@
 			children = (
 				931AB9D71FD822B3004DEC73 /* ColorPickerView.swift */,
 				931AB9D91FD822D0004DEC73 /* ColorPickerView.xib */,
+				931AB9E41FD859B9004DEC73 /* ColorPickerDelegate.swift */,
 			);
 			path = ColorPicker;
+			sourceTree = "<group>";
+		};
+		931AB9E11FD852FB004DEC73 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				931AB9E21FD8535B004DEC73 /* CategoryViewController.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		9328EFC01FC82A3F00D3C209 /* Extensions */ = {
@@ -564,6 +578,7 @@
 				9328EFC21FC82A7600D3C209 /* UITableView.swift in Sources */,
 				9328EFC41FC8317400D3C209 /* UICollectionView.swift in Sources */,
 				936C96261FB4AEB6001FC35D /* CustomDateFormatter.swift in Sources */,
+				931AB9E51FD859B9004DEC73 /* ColorPickerDelegate.swift in Sources */,
 				931A84841FB99B7E00D173D1 /* TaskCategoriesViewModel.swift in Sources */,
 				21FAEAB91F3E51CC00219128 /* TaskCell.swift in Sources */,
 				210793541F3F7B1D00DD5173 /* TaskViewController.swift in Sources */,
@@ -579,6 +594,7 @@
 				21067D621F3C490C00DB93E6 /* TaskManager.xcdatamodeld in Sources */,
 				93FB266C1FCD90BE0043CB38 /* InitializationErrors.swift in Sources */,
 				93179F0B1FBC416600B404B2 /* TaskCategoryPicker.swift in Sources */,
+				931AB9E31FD8535B004DEC73 /* CategoryViewController.swift in Sources */,
 				93FCCE111FCC0A7F00FB7B4E /* CoreDataErrors.swift in Sources */,
 				21067D5A1F3C490C00DB93E6 /* AppDelegate.swift in Sources */,
 				21FAEAB41F3DE93A00219128 /* CategoryMO.swift in Sources */,
