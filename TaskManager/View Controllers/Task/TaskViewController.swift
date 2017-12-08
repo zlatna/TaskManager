@@ -62,7 +62,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDe
     }
 
     func onSave() {
-        if !isDeleting && taskVM.mode == TaskViewModel.Mode.update &&
+        if !isDeleting && taskVM.mode == EditMode.update &&
             (taskVM.title != titleTextView.text ||
                 taskVM.completionDate.compare(taskDueDate ?? Date()) != .orderedSame ||
                 taskVM.category?.objectID != taskCategory?.objectID) {
@@ -111,7 +111,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDe
 // MARK: - Initial Fiels Setup
 extension TaskViewController {
     func setupCategory() {
-        categoryPickerView = createPickerView()
+        categoryPickerView = createCaegoryPickerView()
         categoryTextField.inputView = categoryPickerView
         categoryTextField.delegate = self
     }
@@ -142,7 +142,7 @@ extension TaskViewController {
 // MARK: - Category Picker
 private typealias CategoryPickerConfig = TaskViewController
 extension CategoryPickerConfig: CategoryPickerDelegate {
-    fileprivate func createPickerView() -> TaskCategoryPicker? {
+    fileprivate func createCaegoryPickerView() -> TaskCategoryPicker? {
         if let pickerView = Bundle.main.loadNibNamed(TaskCategoryPicker.nibName, owner: TaskCategoryPicker.self, options: nil)?.first as? TaskCategoryPicker {
             let width = self.view.bounds.width
             let height = self.view.bounds.height * 0.3

@@ -31,6 +31,26 @@ class ManageCategoriesViewController: UIViewController {
         categoriesCollectionView.dataSource = self
         categoriesCollectionView.register(CategoryCell.nib, forCellWithReuseIdentifier: CategoryCell.reuseIdentifier)
     }
+
+    //    TODO: -
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case R.segue.manageCategoriesViewController.editCategory.identifier?:
+            if let destinationViewController = segue.destination as? CategoryViewController,
+                let selectionIndex = categoriesCollectionView.indexPathsForSelectedItems?.first?.row,
+                let categories = categoriesViewModel {
+                let categoryVM = CategoryViewModel(category: categories[selectionIndex], mode: .update)
+                destinationViewController.categoryViewModel = categoryVM
+            }
+        case R.segue.manageCategoriesViewController.createCategory.identifier?:
+            if let destinationViewController = segue.destination as? CategoryViewController {
+                let categoryVM = CategoryViewModel(category: nil, mode: .create)
+                destinationViewController.categoryViewModel = categoryVM
+            }
+        default:
+            break
+        }
+    }
 }
 
 // MARK: - CollectionView Setup
@@ -65,5 +85,17 @@ extension CollectionViewConfig: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return CollectionConfig.sectionInsets
+    }
+    // TODO: - todo todo
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        assert(categoriesViewModel != nil)
+        return indexPath.row % 2 == 0 //categoriesViewModel![indexPath.row].custom
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        assert(categoriesViewModel != nil)
+        if !categoriesViewModel![indexPath.row].custom {
+            performSegue(withIdentifier: R.segue.manageCategoriesViewController.editCategory, sender: self)
+        }
     }
 }

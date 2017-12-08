@@ -6,3 +6,5 @@
   Copyright © 2017 zlatnanikolova. All rights reserved.
 */
 "button ok" = "Ok";
+"button cancel" = "Cancel";
+"msg choose category color" = "Choose color";

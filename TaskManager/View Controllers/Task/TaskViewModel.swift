@@ -10,15 +10,10 @@ import Foundation
 protocol TaskVMDelegate: class, UserInformer {}
 
 class TaskViewModel {
-    enum Mode {
-        case update
-        case create
-    }
-
     weak var delegate: TaskVMDelegate?
     private var task: TaskMO?
-    private(set) var mode: Mode
-    init?(task: TaskMO?, to mode: Mode) throws {
+    private(set) var mode: EditMode
+    init?(task: TaskMO?, to mode: EditMode) throws {
         guard (task != nil && mode == .update) || (task == nil && mode == .create) else {
             throw InitializationErrors.wrongParameters(message: "task: \(String(describing: task)), mode: \(mode)")
         }

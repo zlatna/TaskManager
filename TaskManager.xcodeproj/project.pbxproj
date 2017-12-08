@@ -48,10 +48,12 @@
 		932E9A9D1FD151A500FE902A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 932E9A9C1FD151A500FE902A /* README.md */; };
 		932E9A9F1FD1641200FE902A /* ViewErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E9A9E1FD1641200FE902A /* ViewErrors.swift */; };
 		932E9AA11FD164A400FE902A /* ViewErrors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 932E9AA01FD164A400FE902A /* ViewErrors.strings */; };
+		933206041FDA95D900618BEA /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933206031FDA95D900618BEA /* Enums.swift */; };
 		933935551FB5DDE90068E483 /* PresentAlertsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */; };
 		933935581FB600540068E483 /* CategoriesAndColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935571FB600540068E483 /* CategoriesAndColors.swift */; };
 		933DA5A21FC43BA0007DDEC0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DA5A11FC43BA0007DDEC0 /* R.generated.swift */; };
 		933DA5A81FC4547B007DDEC0 /* TaskMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DA5A71FC4547B007DDEC0 /* TaskMO+CoreDataProperties.swift */; };
+		9343AA331FD9A31D000EAAF0 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9343AA321FD9A31D000EAAF0 /* CategoryViewModel.swift */; };
 		936C96241FB4ACC1001FC35D /* ColorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C96231FB4ACC1001FC35D /* ColorUtilities.swift */; };
 		936C96261FB4AEB6001FC35D /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C96251FB4AEB6001FC35D /* CustomDateFormatter.swift */; };
 		936C96291FB4B78E001FC35D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 936C96281FB4B78E001FC35D /* .swiftlint.yml */; };
@@ -107,11 +109,13 @@
 		932E9A9C1FD151A500FE902A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		932E9A9E1FD1641200FE902A /* ViewErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewErrors.swift; sourceTree = "<group>"; };
 		932E9AA01FD164A400FE902A /* ViewErrors.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = ViewErrors.strings; sourceTree = "<group>"; };
+		933206031FDA95D900618BEA /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		933935541FB5DDE90068E483 /* PresentAlertsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAlertsProtocol.swift; sourceTree = "<group>"; };
 		933935571FB600540068E483 /* CategoriesAndColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAndColors.swift; sourceTree = "<group>"; };
 		933DA5981FC30C46007DDEC0 /* TaskManager v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TaskManager v2.xcdatamodel"; sourceTree = "<group>"; };
 		933DA5A11FC43BA0007DDEC0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		933DA5A71FC4547B007DDEC0 /* TaskMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TaskMO+CoreDataProperties.swift"; path = "/Users/zlatnanikolova/Documents/MyProjects/TaskManager/Core Data/Managed Objects/TaskMO+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		9343AA321FD9A31D000EAAF0 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		936C96231FB4ACC1001FC35D /* ColorUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtilities.swift; sourceTree = "<group>"; };
 		936C96251FB4AEB6001FC35D /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 		936C96281FB4B78E001FC35D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -338,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				931AB9E21FD8535B004DEC73 /* CategoryViewController.swift */,
+				9343AA321FD9A31D000EAAF0 /* CategoryViewModel.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -386,6 +391,7 @@
 				936C96231FB4ACC1001FC35D /* ColorUtilities.swift */,
 				936C96251FB4AEB6001FC35D /* CustomDateFormatter.swift */,
 				936C962A1FB5A71D001FC35D /* Identifiers.swift */,
+				933206031FDA95D900618BEA /* Enums.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -408,7 +414,8 @@
 			buildConfigurationList = 21067D6B1F3C490C00DB93E6 /* Build configuration list for PBXNativeTarget "TaskManager" */;
 			buildPhases = (
 				98AE6CFB9147381E07FA0F51 /* [CP] Check Pods Manifest.lock */,
-				936C96271FB4B385001FC35D /* ShellScript */,
+				933206051FDAD21000618BEA /* Run Script */,
+				936C96271FB4B385001FC35D /* Run Script */,
 				21067D521F3C490C00DB93E6 /* Sources */,
 				21067D531F3C490C00DB93E6 /* Frameworks */,
 				21067D541F3C490C00DB93E6 /* Resources */,
@@ -507,18 +514,33 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaskManager/Pods-TaskManager-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		936C96271FB4B385001FC35D /* ShellScript */ = {
+		933206051FDAD21000618BEA /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+		};
+		936C96271FB4B385001FC35D /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi";
 		};
 		98AE6CFB9147381E07FA0F51 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -582,6 +604,8 @@
 				931A84841FB99B7E00D173D1 /* TaskCategoriesViewModel.swift in Sources */,
 				21FAEAB91F3E51CC00219128 /* TaskCell.swift in Sources */,
 				210793541F3F7B1D00DD5173 /* TaskViewController.swift in Sources */,
+				933206041FDA95D900618BEA /* Enums.swift in Sources */,
+				9343AA331FD9A31D000EAAF0 /* CategoryViewModel.swift in Sources */,
 				931A84821FB9992900D173D1 /* TaskViewModel.swift in Sources */,
 				210793531F3F7B1D00DD5173 /* TasksListViewController.swift in Sources */,
 				93FAFE9F1FD05E8D005AD370 /* UserInformer.swift in Sources */,

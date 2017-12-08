@@ -24,13 +24,20 @@ class ColorPickerView: UIView {
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
-//    @IBOutlet weak var alphaSlider: UISlider!
     @IBOutlet weak var colorView: UIView!
-    @IBOutlet weak var slidersStack: UIStackView!
-    @IBOutlet weak var mainStack: UIStackView!
     weak var delegate: ColorPickerDelegate?
+    var initialColour: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1) {
+        didSet {
+            colorView.backgroundColor = initialColour
+            var (red, green, blue, alpha): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
+            initialColour.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+            redSlider.value = Float(red)
+            greenSlider.value = Float(green)
+            blueSlider.value = Float(blue)
+        }
+    }
 
-    fileprivate var curentColor: UIColor {
+    var curentColor: UIColor {
         let red = CGFloat(redSlider.value)
         let green = CGFloat(greenSlider.value)
         let blue = CGFloat(blueSlider.value)
@@ -39,8 +46,6 @@ class ColorPickerView: UIView {
     }
 
     override func awakeFromNib() {
-        slidersStack.isUserInteractionEnabled = true
-        mainStack.isUserInteractionEnabled = true
         colorView.backgroundColor = self.curentColor
         redSlider.minimumTrackTintColor = UIColor(red: CGFloat(redSlider.value), green: 0, blue: 0, alpha: 1)
         greenSlider.minimumTrackTintColor =  UIColor(red: 0, green: CGFloat(greenSlider.value), blue: 0, alpha: 1)
@@ -71,7 +76,5 @@ class ColorPickerView: UIView {
 
     @IBAction func didSelectColor(_ sender: Any) {
         delegate?.didSelectColor(curentColor)
-        let color = UIColor(fromHex: curentColor.toHexString)
-        self.backgroundColor = color
     }
 }
