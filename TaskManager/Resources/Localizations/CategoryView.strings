@@ -1,0 +1,11 @@
+/* 
+  CategoryView.strings
+  TaskManager
+
+  Created by Zlatna Nikolova on 11/12/2017.
+  Copyright © 2017 zlatnanikolova. All rights reserved.
+*/
+
+// MARK: - Alerts
+"msg enter category name" = "Enter category name";
+"msg select category color" = "Select category color";

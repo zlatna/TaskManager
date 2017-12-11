@@ -29,6 +29,10 @@ class SettingsViewController: UITableViewController {
                 self.notificationSwitch.isOn = false
             }
         }
+
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: true)
+        }
     }
 
     @IBAction func onNotificationSwitch(_ sender: UISwitch) {

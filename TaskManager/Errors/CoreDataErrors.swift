@@ -26,6 +26,8 @@ enum CoreDataErrors: Error {
     case fetchCategories(message: String)
     case addCategory(message: String, categoryName: String)
     case addCategories(message: String)
+    case deleteCategory(message: String)
+    case editCategory(message: String)
 
 //    func passError(with message: String) -> CoreDataErrors {
 //        switch self {

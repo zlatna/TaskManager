@@ -4,7 +4,7 @@ disabled_rules: # rule identifiers to exclude from running
 - control_statement
 - todo
 - class_delegate_protocol
-line_length: 200
+line_length: 210
 excluded:
 - Pods
 - R.generated.swift

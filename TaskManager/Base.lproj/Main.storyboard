@@ -206,10 +206,10 @@
             </objects>
             <point key="canvasLocation" x="1928.8" y="-906.29685157421295"/>
         </scene>
-        <!--Settings-->
+        <!--ManageCategories-->
         <scene sceneID="b46-RJ-ane">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SettingsStoryboard" storyboardName="Settings" id="2eo-EV-sge" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="SettingsStoryboard" storyboardName="Settings" referencedIdentifier="ManageCategories" id="2eo-EV-sge" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zM5-YZ-nAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2802" y="-1111"/>

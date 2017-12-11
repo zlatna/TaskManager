@@ -10,3 +10,5 @@
 "msg unable to delete task" = "Task %@ cannot be deleted";
 "msg unable to edit task" = "Task \"%@\" cannot be deleted";
 "msg unable to complete task" = "Task \"%@\" cannot be completed";
+"msg unable to delete category" = "Category %@ cannot be deleted";
+"msg unable to edit category" = "Category \"%@\" cannot be deleted";

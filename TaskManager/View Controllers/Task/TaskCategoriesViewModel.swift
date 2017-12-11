@@ -22,7 +22,6 @@ class TaskCategoriesViewModel {
         } catch {
             assertionFailure(error.localizedDescription)
         }
-
     }
 
     func index(of category: CategoryMO?) -> Int? {

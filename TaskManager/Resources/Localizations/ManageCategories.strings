@@ -1,0 +1,11 @@
+/* 
+  ManageCategories.strings
+  TaskManager
+
+  Created by Zlatna Nikolova on 11/12/2017.
+  Copyright © 2017 zlatnanikolova. All rights reserved.
+*/
+
+// MARK: - Sections
+"title custom category section" = "Custom categories";
+"title default category section" = "Default categories";

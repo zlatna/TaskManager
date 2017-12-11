@@ -1,0 +1,9 @@
+/* 
+  InitializationErrors.strings
+  TaskManager
+
+  Created by Zlatna Nikolova on 11/12/2017.
+  Copyright © 2017 zlatnanikolova. All rights reserved.
+*/
+
+"msg unable to initialize category" = "Cannot initialize categoryViewModel for mode: %@";

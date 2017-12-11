@@ -89,11 +89,38 @@ extension CoreDataTaskHandler {
 typealias CoreDataCategoryHandler = CoreDataHandler
 extension CoreDataCategoryHandler {
     // MARK: - altering
+    class func editCategory(category: CategoryMO, name: String?, color: UIColor?) throws {
+        if let newName = name {
+            category.setValue(newName, forKey: #keyPath(CategoryMO.name))
+        }
+
+        if let newColor = color {
+            category.setValue(newColor.toHexString, forKey: #keyPath(CategoryMO.color))
+        }
+
+        do {
+            let context = CoreDataManager.sharedInstance.viewContext
+            try context.save()
+        } catch {
+            throw CoreDataErrors.editCategory(message: R.string.coreDataErrors.msgUnableToEditCategory(category.name))
+        }
+    }
+
+    class func deleteCategory(_ category: CategoryMO) throws {
+        let context = CoreDataManager.sharedInstance.viewContext
+        context.delete(category)
+        do {
+            try context.save()
+        } catch {
+            throw CoreDataErrors.deleteCategory(message: R.string.coreDataErrors.msgUnableToDeleteCategory(category.name))
+        }
+    }
+
     class func addNewCategory(named name: String, color: String, custom: Bool = true) throws {
         let context = CoreDataManager.sharedInstance.viewContext
 
         let category = CategoryMO(context: context)
-        category.setValuesForKeys([#keyPath(CategoryMO.name) : name, #keyPath(CategoryMO.color) : color])
+        category.setValuesForKeys([#keyPath(CategoryMO.name) : name, #keyPath(CategoryMO.color) : color, #keyPath(CategoryMO.custom) : custom])
         do {
             try context.save()
         } catch let error {

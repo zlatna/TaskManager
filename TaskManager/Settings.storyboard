@@ -15,7 +15,7 @@
         <!--Categories-->
         <scene sceneID="hBv-Go-gP5">
             <objects>
-                <viewController storyboardIdentifier="SettingsStoryboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0qm-Bg-STF" customClass="ManageCategoriesViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ManageCategories" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0qm-Bg-STF" customClass="ManageCategoriesViewController" customModule="TaskManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PWm-mC-AGf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,16 +29,7 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="LsS-Xq-uak">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </view>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -153,12 +144,18 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meM-S8-UQG">
                                                     <rect key="frame" x="36" y="14" width="303" height="30"/>
                                                     <state key="normal" title="Add"/>
+                                                    <connections>
+                                                        <action selector="addCtegoryTouchUpInside:" destination="82t-Y2-9VU" eventType="touchUpInside" id="ShL-rx-HJJ"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Zx-Iu-dav">
                                                     <rect key="frame" x="20" y="14" width="335" height="30"/>
                                                     <state key="normal" title="Delete">
                                                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="deleteCtegoryTouchUpInside:" destination="82t-Y2-9VU" eventType="touchUpInside" id="DWB-AZ-Ulq"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -212,6 +209,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Vbc-x6-kRA"/>
+        <segue reference="ETw-aV-q0E"/>
     </inferredMetricsTieBreakers>
 </document>
