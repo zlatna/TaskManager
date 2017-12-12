@@ -7,6 +7,6 @@
 
 ## ToDo
 - [x] When open a date picker - the text field shows the initial selected date (Create task)
-- [ ] Add option to create new categories
+- [x] Add option to create new categories
 - [ ] store in iCloud
 - Cleanup the project
