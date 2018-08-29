@@ -35,22 +35,15 @@ class TasksListViewController: UIViewController, PresentAlertsProtocol, TasksLis
         if let segueIdentifier = SegueIdentifiers(rawValue: segue.identifier!) {
             switch segueIdentifier {
             case .addNewTask:
-                if let destinationViewController = segue.destination as? TaskViewController {
-                    do {
-                        destinationViewController.taskVM = try TaskViewModel(task: nil, to: .create)
-                    } catch let error {
-                        assertionFailure(error.localizedDescription)
-                    }
+                if let destinationViewController = segue.destination as? TaskViewController,
+                    let viewModel = TaskViewModel(task: nil, to: .create) {
+                        destinationViewController.taskVM = viewModel
                 }
             case .openExistingTask:
                 if let destinationViewController = segue.destination as? TaskViewController {
                     if let selectedIndexPath = tableView.indexPathForSelectedRow {
                         let task = taskListVM[selectedIndexPath.section, selectedIndexPath.row]
-                        do {
-                        destinationViewController.taskVM = try TaskViewModel(task: task, to: .update)
-                        } catch let error {
-                            assertionFailure(error.localizedDescription)
-                        }
+                        destinationViewController.taskVM = TaskViewModel(task: task, to: .update)
                     }
                 }
             }
@@ -58,13 +51,9 @@ class TasksListViewController: UIViewController, PresentAlertsProtocol, TasksLis
     }
 
     private func loadData() {
-        DispatchQueue.global(qos: DispatchQoS.userInitiated.qosClass).async {
-            self.taskListVM.loadData()
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.activityIndicator.stopAnimating()
-            }
-        }
+        self.taskListVM.loadData()
+        self.tableView.reloadData()
+        self.activityIndicator.stopAnimating()
     }
 }
 
@@ -117,12 +106,8 @@ extension TableConfig: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if TasksListViewModel.TasksStatusSection.pending.rawValue == indexPath.section {
             let done = UIContextualAction(style: .normal, title: R.string.tasksList.actionDone(), handler: { (_, _, _) in
-                DispatchQueue.global(qos: DispatchQoS.userInitiated.qosClass).async {
-                    self.taskListVM.completeTask(at: indexPath)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                }
+                self.taskListVM.completeTask(at: indexPath)
+                self.tableView.reloadData()
             })
             done.backgroundColor = UIColor.taskDone
             return UISwipeActionsConfiguration(actions:[done])
@@ -142,12 +127,8 @@ extension TableConfig: UITableViewDelegate {
 
         if TasksListViewModel.TasksStatusSection.pending.rawValue == indexPath.section {
             let done = UITableViewRowAction(style: .normal, title: R.string.tasksList.actionDone()) { (_, indexPath ) in
-                DispatchQueue.global(qos: DispatchQoS.userInitiated.qosClass).async {
-                    self.taskListVM.completeTask(at: indexPath)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                }
+                self.taskListVM.completeTask(at: indexPath)
+                self.tableView.reloadData()
             }
             done.backgroundColor = UIColor.taskDone
             return [done]

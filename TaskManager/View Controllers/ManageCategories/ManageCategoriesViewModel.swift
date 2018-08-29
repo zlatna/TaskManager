@@ -18,28 +18,23 @@ class ManageCategoriesViewModel {
         }
     }
 
-    fileprivate var customCategories: [CategoryMO] = []
-    fileprivate var defaultCategories: [CategoryMO] = []
+    fileprivate var customCategories: [TaskCategory] = []
+    fileprivate var defaultCategories: [TaskCategory] = []
 
     init?() {
         loadData()
     }
 
     func loadData() {
-        var categories: [CategoryMO] = []
-        do {
-            categories = try CoreDataHandler.fetchAllCategories()
-            customCategories = []
-            defaultCategories = []
-            for category in categories {
-                if category.custom {
-                    customCategories.append(category)
-                } else {
-                    defaultCategories.append(category)
-                }
+        let categories: [TaskCategory] = RealmManager().getCategories()
+        customCategories = []
+        defaultCategories = []
+        for category in categories {
+            if category.isCustom {
+                customCategories.append(category)
+            } else {
+                defaultCategories.append(category)
             }
-        } catch {
-            assertionFailure(error.localizedDescription)
         }
     }
 
@@ -54,7 +49,7 @@ class ManageCategoriesViewModel {
         }
     }
 
-    func categoryAtIndexPath(indexPath: IndexPath) -> CategoryMO? {
+    func categoryAtIndexPath(indexPath: IndexPath) -> TaskCategory? {
         switch indexPath.section {
         case ManageCategoriesViewModel.CategoriesSections.customCategpries.rawValue:
             return customCategories[indexPath.row]

@@ -82,7 +82,13 @@ class CategoryViewController: UITableViewController, PresentAlertsProtocol {
                 self.showInformationAlert(withTitle: R.string.categoryView.msgEnterCategoryName(), message: "")
                 return
             }
-            categoryViewModel.updateCategory(name: name, color: color)
+            
+            switch categoryViewModel.mode {
+            case .update:
+                categoryViewModel.updateCategory(name: name, color: color)
+            default:
+                return
+            }
         }
     }
 

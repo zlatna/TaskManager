@@ -63,7 +63,8 @@ extension NotificationsSetup {
 // MARK: - Notifications Management
 private typealias NotificationsManager = NotificationsHandler
 extension NotificationsManager {
-    class func addNotification(forTask task: TaskMO) {
+    
+    class func addNotification(forTask task: Task) {
         let notificatioRequest = createNotificationRequest(forTask: task)
         if notificationsLocalyEnabled {
             notificationCenter.add(notificatioRequest, withCompletionHandler: nil)
@@ -72,8 +73,8 @@ extension NotificationsManager {
         }
     }
 
-    class func removeNotification(forTask task: TaskMO) {
-        let taskID = "\(task.objectID)"
+    class func removeNotification(forTask task: Task) {
+        let taskID = "\(task.id)"
         if notificationsLocalyEnabled {
             notificationCenter.removePendingNotificationRequests(withIdentifiers: [taskID])
         } else {
@@ -83,6 +84,7 @@ extension NotificationsManager {
             }
         }
     }
+    
     class func suspendNotifications() {
         notificationsLocalyEnabled = false
         notificationCenter.getPendingNotificationRequests { (notificatioRequests) in
@@ -94,6 +96,7 @@ extension NotificationsManager {
             notificationCenter.removePendingNotificationRequests(withIdentifiers: requestIDs)
         }
     }
+    
     class func resumeNotifications() {
         notificationsLocalyEnabled = true
 
@@ -109,7 +112,8 @@ extension NotificationsManager {
 // MARK: - Notifications Helpers
 private typealias NotificationsHelper = NotificationsHandler
 extension NotificationsHelper {
-    class func createNotificationRequest(forTask task: TaskMO) -> UNNotificationRequest {
+    
+    class func createNotificationRequest(forTask task: Task) -> UNNotificationRequest {
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = task.title
         notificationContent.body = CustomDateFormatter.defaultFormatedDate(date: task.completionDate as Date)
@@ -118,13 +122,14 @@ extension NotificationsHelper {
 
         let timeinterval = task.completionDate.timeIntervalSince(Date())
         let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: timeinterval, repeats: false)
-        let notificationRequest = UNNotificationRequest(identifier: "\(task.objectID)", content: notificationContent, trigger: notificationTrigger)
+        let notificationRequest = UNNotificationRequest(identifier: "\(task.id)", content: notificationContent, trigger: notificationTrigger)
         return notificationRequest
     }
 }
 
 private typealias NotificationSuspendingHelper = NotificationsHandler
 extension NotificationSuspendingHelper {
+    
     private class func getRequestsFromUserDefaults() -> [UNNotificationRequest]? {
         if let archivedNotifications = UserDefaults.standard.data(forKey: userDefaultsKeyForNotifications),
             let notificationsArray = NSKeyedUnarchiver.unarchiveObject(with: archivedNotifications) as? [UNNotificationRequest] {

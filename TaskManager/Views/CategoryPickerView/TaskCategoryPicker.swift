@@ -21,7 +21,7 @@ class TaskCategoryPicker: UIView {
     weak var delegate: CategoryPickerDelegate?
 
     fileprivate let taskCategories = TaskCategoriesViewModel()
-    var selectedItem: CategoryMO?
+    var selectedItem: TaskCategory?
 
     override func awakeFromNib() {
         super.awakeFromNib()

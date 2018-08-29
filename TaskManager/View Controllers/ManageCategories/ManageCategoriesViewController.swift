@@ -30,12 +30,8 @@ class ManageCategoriesViewController: UIViewController, PresentAlertsProtocol {
     }
 
     func reloadData() {
-        DispatchQueue.global(qos: DispatchQoS.userInitiated.qosClass).async {
-            self.manageCategoriesViewModel?.loadData()
-            DispatchQueue.main.async {
-                self.categoriesCollectionView.reloadData()
-            }
-        }
+        self.manageCategoriesViewModel?.loadData()
+        self.categoriesCollectionView.reloadData()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

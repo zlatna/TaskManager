@@ -10,50 +10,48 @@ import Foundation
 import UIKit
 
 class CategoryViewModel {
-    private var category: CategoryMO?
+    private var category: TaskCategory?
     var mode: EditMode = .create
-
-    init?(category: CategoryMO?, mode: EditMode) throws {
+    
+    init?(category: TaskCategory?, mode: EditMode) throws {
         guard (category != nil && mode == .update) || (category == nil && mode == .create) else {
             throw InitializationErrors.wrongParameters(message: R.string.initializationErrors.msgUnableToInitializeCategory("\(mode)"))
         }
-        self.category = category
-        self.mode = mode
+        if let category = category {
+            self.category = category
+            self.mode = mode
+        }
     }
-
+    
     var color: UIColor? {
         return category?.uiColor
     }
-    var name: String? {
-        return category?.name
+    var name: String {
+        return category?.name ?? ""
     }
-
+    
     func createCategoryWith(name: String, andColor color: UIColor) {
-        do {
-            try CoreDataHandler.addNewCategory(named: name, color: color.toHexString)
-        } catch let error {
-            assertionFailure(error.localizedDescription)
-        }
+        let category = TaskCategory(color: color.toHexString, name: name)
+        RealmManager().addObject(object: category)
     }
-
-    func updateCategory(name: String?, color: UIColor?) {
+    
+    func updateCategory(name: String, color: UIColor) {
         do {
             if let categoryToUpdate = category,
-                categoryToUpdate.name != name || categoryToUpdate.color != color?.toHexString {
-            try CoreDataHandler.editCategory(category: categoryToUpdate, name: name, color: color)
+               categoryToUpdate.name != name || categoryToUpdate.color != color.toHexString {
+                let updatedCategory = TaskCategory(id: categoryToUpdate.id,
+                                                   color: color.toHexString,
+                                                   name: name,
+                                                   isCustom: categoryToUpdate.isCustom)
+                RealmManager().updateObject(object: updatedCategory)
             }
-        } catch let error {
-            assertionFailure(error.localizedDescription)
         }
     }
-
+    
     func deleteCurrentCategory() {
-        do {
-            if let categoryToDelete = category {
-                try CoreDataHandler.deleteCategory(categoryToDelete)
-            }
-        } catch let error {
-            assertionFailure(error.localizedDescription)
+        if let categoryToDelete = category {
+            RealmManager().deleteobject(object: categoryToDelete)
+            mode = .delete
         }
     }
 }

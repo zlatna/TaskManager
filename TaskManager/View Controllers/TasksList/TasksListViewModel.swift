@@ -10,36 +10,36 @@ import Foundation
 protocol TasksListVMDelegate: class, UserInformer {}
 
 class TasksListViewModel {
-    //    represents which tasks are shown in which section - completed or pending
+    //  NOTE: - represents which tasks are shown in which section - completed or pending
     enum TasksStatusSection: Int {
         case pending = 0
         case completed = 1
     }
-
-    private var tasks: [[TaskMO]] = []
+    
+    private var tasks: [[Task]] = []
     weak var delegate: TasksListVMDelegate?
-
+    
     init() {
         self.loadData()
     }
-
-    subscript (section: Int, index: Int) -> TaskMO {
+    
+    subscript (section: Int, index: Int) -> Task {
         return tasks[section][index]
     }
-
+    
     func countFor(section: Int) -> Int {
         return tasks[section].count
     }
-
+    
     var count: Int {
         return tasks.count
     }
-
+    
     private func remove(section: Int, index: Int) {
         tasks[section].remove(at: index)
     }
-
-    private func addTask(taskToAdd: TaskMO,to section: Int) {
+    
+    private func addTask(taskToAdd: Task,to section: Int) {
         if tasks[section].isEmpty {
             tasks[section].append(taskToAdd)
         } else {
@@ -55,57 +55,46 @@ class TasksListViewModel {
             }
         }
     }
-
+    
     func completeTask(at indexPath: IndexPath) {
         if indexPath.section == TasksStatusSection.pending.rawValue {
-            let taskToComplete = self[indexPath.section, indexPath.row]
-            do {
-                try CoreDataHandler.editTask(taskToComplete, isCompleted: true)
-                remove(section: indexPath.section, index: indexPath.row)
-                addTask(taskToAdd: taskToComplete,to: TasksStatusSection.completed.rawValue)
-            } catch {
-                delegate?.informUser(title: R.string.coreDataErrors.msgUnableToCompleteTask(taskToComplete.title), message: nil)
-                assertionFailure(error.localizedDescription)
-            }
+            let task = self[indexPath.section, indexPath.row]
+            let completedTask = Task(taskObject: task, toComplete: true)
+            RealmManager().updateObject(object: completedTask)
+            remove(section: indexPath.section, index: indexPath.row)
+            addTask(taskToAdd: completedTask,to: TasksStatusSection.completed.rawValue)
         }
     }
-
+    
     func deleteTask(at indexPath: IndexPath) {
         let taskToDelete = self[indexPath.section, indexPath.row]
         do {
-            try CoreDataHandler.deleteTask(taskToDelete)
+            RealmManager().deleteobject(object: taskToDelete)
             remove(section: indexPath.section, index: indexPath.row)
-        } catch {
-            delegate?.informUser(title: R.string.coreDataErrors.msgUnableToDeleteTask(taskToDelete.title), message: nil)
-            assertionFailure(error.localizedDescription)
         }
     }
-
+    
     func loadData() {
-        do {
-            let tasksMO = try CoreDataHandler.fetchAllTasks()
-            let sortedTasks = tasksMO.sorted(by: { (leftTask, righTask) -> Bool in
-                let descending = (leftTask.completionDate.compare(righTask.completionDate as Date) == .orderedDescending)
-                return descending
-            })
-            var completedTasks: [TaskMO] = []
-            var pendingTasks: [TaskMO] = []
-            for task in sortedTasks {
-                if task.isCompleted {
-                    completedTasks.append(task)
-                } else {
-                    pendingTasks.append(task)
-                }
-            }
-            // Pending tasks appear before the completed
-            if TasksStatusSection.pending.rawValue == 0 {
-                self.tasks = [pendingTasks, completedTasks]
+        let tasks = RealmManager().getTasks()
+        let sortedTasks = tasks.sorted(by: { (leftTask, righTask) -> Bool in
+            let descending = (leftTask.completionDate.compare(righTask.completionDate as Date) == .orderedDescending)
+            return descending
+        })
+        var completedTasks: [Task] = []
+        var pendingTasks: [Task] = []
+        for task in sortedTasks {
+            if task.isCompleted {
+                completedTasks.append(task)
             } else {
-                self.tasks = [completedTasks, pendingTasks]
+                pendingTasks.append(task)
             }
-        } catch {
-             delegate?.informUser(title: R.string.coreDataErrors.msgUnableToFetchData("Tasks"), message: nil)
-            assertionFailure(error.localizedDescription)
+        }
+        
+        // NOTE: Pending tasks appear before the completed
+        if TasksStatusSection.pending.rawValue == 0 {
+            self.tasks = [pendingTasks, completedTasks]
+        } else {
+            self.tasks = [completedTasks, pendingTasks]
         }
     }
 }

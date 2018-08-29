@@ -23,7 +23,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDe
     @IBOutlet weak var addTaskButton: UIButton!
     var taskVM: TaskViewModel!
 
-    fileprivate var isDeleting = false
+//    fileprivate var isDeleting = false
     fileprivate var dueDatePickerView: UIDatePicker?
     fileprivate var taskDueDate: Date? {
         didSet {
@@ -35,7 +35,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDe
     }
 
     fileprivate var categoryPickerView: TaskCategoryPicker?
-    fileprivate var taskCategory: CategoryMO? {
+    fileprivate var taskCategory: TaskCategory? {
         didSet {
             categoryTextField.text = taskCategory?.name
         }
@@ -55,24 +55,24 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDe
             switch taskVM.mode {
             case .update:
                 onSave()
-            case .create:
+            default:
                 break
             }
         }
     }
 
     func onSave() {
-        if !isDeleting && taskVM.mode == EditMode.update &&
-            (taskVM.title != titleTextView.text ||
+        switch taskVM.mode {
+        case .update:
+            if (taskVM.title != titleTextView.text ||
                 taskVM.completionDate.compare(taskDueDate ?? Date()) != .orderedSame ||
-                taskVM.category?.objectID != taskCategory?.objectID) {
-            checkFieldsAndSaveTask()
+                taskVM.category != taskCategory) {
+                checkFieldsAndSaveTask()
+            }
+        default:
+            return
         }
     }
-
-//    func onCloseButton() {
-//        self.navigationController?.popViewController(animated: true)
-//    }
 
     @IBAction func didEndTitleEdit(_ sender: UITextField) {
         self.resignFirstResponder()
@@ -80,7 +80,6 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDe
 
     @IBAction func deleteTask(_ sender: UIButton) {
         taskVM.deleteTask()
-        self.isDeleting = true
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -133,8 +132,10 @@ extension TaskViewController {
 
         case .create:
             navigationItem.title = R.string.taskView.labelCreateTaskTitle()
-//            navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.taskView.buttonAddTask(), style: .done, target: self, action: #selector(TaskViewController.onAddTask))
             deleteTaskButton.isHidden = true
+            
+        default:
+            break
         }
     }
 }
@@ -155,7 +156,7 @@ extension CategoryPickerConfig: CategoryPickerDelegate {
         return nil
     }
 
-    func didSelectItem(_ item: CategoryMO) {
+    func didSelectItem(_ item: TaskCategory) {
         taskCategory = item
     }
 }

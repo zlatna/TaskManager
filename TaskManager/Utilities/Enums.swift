@@ -11,4 +11,5 @@ import Foundation
 enum EditMode {
     case create
     case update
+    case delete
 }
