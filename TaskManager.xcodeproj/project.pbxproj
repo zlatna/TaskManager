@@ -43,7 +43,6 @@
 		9328EFC21FC82A7600D3C209 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328EFC11FC82A7600D3C209 /* UITableView.swift */; };
 		9328EFC41FC8317400D3C209 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328EFC31FC8317400D3C209 /* UICollectionView.swift */; };
 		932A2C2B1FCEEE09005A6CA4 /* Alert.strings in Resources */ = {isa = PBXBuildFile; fileRef = 932A2C2A1FCEEE09005A6CA4 /* Alert.strings */; };
-		932A2C2E1FCEEEA6005A6CA4 /* CoreDataErrors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 932A2C2D1FCEEEA6005A6CA4 /* CoreDataErrors.strings */; };
 		932E9A9D1FD151A500FE902A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 932E9A9C1FD151A500FE902A /* README.md */; };
 		932E9A9F1FD1641200FE902A /* ViewErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932E9A9E1FD1641200FE902A /* ViewErrors.swift */; };
 		932E9AA11FD164A400FE902A /* ViewErrors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 932E9AA01FD164A400FE902A /* ViewErrors.strings */; };
@@ -62,7 +61,6 @@
 		93FAFE9B1FD02E95005AD370 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FAFE9A1FD02E95005AD370 /* UIAlertController.swift */; };
 		93FAFE9F1FD05E8D005AD370 /* UserInformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FAFE9E1FD05E8D005AD370 /* UserInformer.swift */; };
 		93FB266C1FCD90BE0043CB38 /* InitializationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FB266B1FCD90BE0043CB38 /* InitializationErrors.swift */; };
-		93FCCE111FCC0A7F00FB7B4E /* CoreDataErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FCCE101FCC0A7F00FB7B4E /* CoreDataErrors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,7 +103,6 @@
 		9328EFC11FC82A7600D3C209 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		9328EFC31FC8317400D3C209 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		932A2C2A1FCEEE09005A6CA4 /* Alert.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Alert.strings; sourceTree = "<group>"; };
-		932A2C2D1FCEEEA6005A6CA4 /* CoreDataErrors.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = CoreDataErrors.strings; sourceTree = "<group>"; };
 		932E9A9C1FD151A500FE902A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		932E9A9E1FD1641200FE902A /* ViewErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewErrors.swift; sourceTree = "<group>"; };
 		932E9AA01FD164A400FE902A /* ViewErrors.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = ViewErrors.strings; sourceTree = "<group>"; };
@@ -124,7 +121,6 @@
 		93FAFE9A1FD02E95005AD370 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		93FAFE9E1FD05E8D005AD370 /* UserInformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformer.swift; sourceTree = "<group>"; };
 		93FB266B1FCD90BE0043CB38 /* InitializationErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationErrors.swift; sourceTree = "<group>"; };
-		93FCCE101FCC0A7F00FB7B4E /* CoreDataErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataErrors.swift; sourceTree = "<group>"; };
 		C920F567078E7116EA2DA1A8 /* Pods-TaskManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskManager/Pods-TaskManager.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -353,7 +349,6 @@
 		932A2C2C1FCEEE87005A6CA4 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				932A2C2D1FCEEEA6005A6CA4 /* CoreDataErrors.strings */,
 				932E9AA01FD164A400FE902A /* ViewErrors.strings */,
 				9306398A1FDE95DF00FDBC7B /* InitializationErrors.strings */,
 			);
@@ -410,7 +405,6 @@
 		93FCCE0F1FCC0A5400FB7B4E /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				93FCCE101FCC0A7F00FB7B4E /* CoreDataErrors.swift */,
 				93FB266B1FCD90BE0043CB38 /* InitializationErrors.swift */,
 				932E9A9E1FD1641200FE902A /* ViewErrors.swift */,
 			);
@@ -482,7 +476,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				932A2C2E1FCEEEA6005A6CA4 /* CoreDataErrors.strings in Resources */,
 				932A2C2B1FCEEE09005A6CA4 /* Alert.strings in Resources */,
 				932E9AA11FD164A400FE902A /* ViewErrors.strings in Resources */,
 				936C96291FB4B78E001FC35D /* .swiftlint.yml in Resources */,
@@ -619,7 +612,6 @@
 				9306398D1FDE9AC900FDBC7B /* ManageCategoriesViewModel.swift in Sources */,
 				93179F0B1FBC416600B404B2 /* TaskCategoryPicker.swift in Sources */,
 				931AB9E31FD8535B004DEC73 /* CategoryViewController.swift in Sources */,
-				93FCCE111FCC0A7F00FB7B4E /* CoreDataErrors.swift in Sources */,
 				21067D5A1F3C490C00DB93E6 /* AppDelegate.swift in Sources */,
 				936372472135DF54003ABDBB /* TaskCategory.swift in Sources */,
 			);
