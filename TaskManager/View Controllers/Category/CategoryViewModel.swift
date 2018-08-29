@@ -30,6 +30,10 @@ class CategoryViewModel {
         return category?.name ?? ""
     }
     
+    var isRelatedToTask: Bool {
+        return category?.tasks.isEmpty == false
+    }
+    
     func createCategoryWith(name: String, andColor color: UIColor) {
         let category = TaskCategory(color: color.toHexString, name: name)
         RealmManager().addObject(object: category)

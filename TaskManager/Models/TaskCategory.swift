@@ -13,6 +13,7 @@ class TaskCategory: Object {
     @objc dynamic private(set) var name: String = ""
     @objc dynamic private(set) var isCustom: Bool = false
     @objc dynamic private(set) var id: Int = 0
+    private(set) var tasks = LinkingObjects(fromType: Task.self, property: "category")
     
     override static func primaryKey() -> String {
         return "id"

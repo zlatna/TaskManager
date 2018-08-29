@@ -64,6 +64,12 @@ class CategoryViewController: UITableViewController, PresentAlertsProtocol {
     }
 
     @IBAction func deleteCtegoryTouchUpInside(_ sender: UIButton) {
+        if categoryViewModel.isRelatedToTask  {
+            self.showInformationAlert(withTitle: R.string.categoryView.titleTasksExistForCategory(),
+                                      message:  R.string.categoryView.msgTasksExistForCategory())
+            return
+        }
+        
         if categoryViewModel.mode == .update {
             categoryViewModel.deleteCurrentCategory()
         }
@@ -91,20 +97,6 @@ class CategoryViewController: UITableViewController, PresentAlertsProtocol {
             }
         }
     }
-
-//    fileprivate func canSave() -> Bool {
-//        guard let name = categoryNameTextField.text,
-//            !name.isEmpty else {
-//                self.showInformationAlert(withTitle: R.string.categoryView.msgEnterCategoryName(), message: "")
-//                return false
-//        }
-//
-//        guard let _ = chooseColorButton.backgroundColor else {
-//            self.showInformationAlert(withTitle: R.string.categoryView.msgEnterCategoryName(), message: "")
-//            return false
-//        }
-//        return true
-//    }
 }
 
 fileprivate typealias CategoryColorPickerConfig = CategoryViewController
