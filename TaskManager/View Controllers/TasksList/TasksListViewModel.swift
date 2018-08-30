@@ -7,7 +7,8 @@
 //
 
 import Foundation
-protocol TasksListVMDelegate: class, UserInformer {}
+
+protocol TasksListViewModelMDelegate: class, UserInformer {}
 
 class TasksListViewModel {
     //  NOTE: - represents which tasks are shown in which section - completed or pending
@@ -17,7 +18,7 @@ class TasksListViewModel {
     }
     
     private var tasks: [[Task]] = []
-    weak var delegate: TasksListVMDelegate?
+    weak var delegate: TasksListViewModelMDelegate?
     
     init() {
         self.loadData()
@@ -60,7 +61,11 @@ class TasksListViewModel {
         if indexPath.section == TasksStatusSection.pending.rawValue {
             let task = self[indexPath.section, indexPath.row]
             let completedTask = Task(taskObject: task, toComplete: true)
-            RealmManager().updateObject(object: completedTask)
+            do {
+                try RealmManager().updateObject(object: completedTask)
+            } catch {
+                
+            }
             remove(section: indexPath.section, index: indexPath.row)
             addTask(taskToAdd: completedTask,to: TasksStatusSection.completed.rawValue)
         }
@@ -69,32 +74,38 @@ class TasksListViewModel {
     func deleteTask(at indexPath: IndexPath) {
         let taskToDelete = self[indexPath.section, indexPath.row]
         do {
-            RealmManager().deleteobject(object: taskToDelete)
+            try RealmManager().deleteobject(object: taskToDelete)
             remove(section: indexPath.section, index: indexPath.row)
+        } catch {
+            delegate?.informUser(title: R.string.realmErrors.msgUnableToEditTask(taskToDelete.title), message: "")
         }
     }
     
     func loadData() {
-        let tasks = RealmManager().getTasks()
-        let sortedTasks = tasks.sorted(by: { (leftTask, righTask) -> Bool in
-            let descending = (leftTask.completionDate.compare(righTask.completionDate as Date) == .orderedDescending)
-            return descending
-        })
-        var completedTasks: [Task] = []
-        var pendingTasks: [Task] = []
-        for task in sortedTasks {
-            if task.isCompleted {
-                completedTasks.append(task)
-            } else {
-                pendingTasks.append(task)
+        do {
+            let tasks = try RealmManager().getTasks()
+            let sortedTasks = tasks.sorted(by: { (leftTask, righTask) -> Bool in
+                let descending = (leftTask.completionDate.compare(righTask.completionDate as Date) == .orderedDescending)
+                return descending
+            })
+            var completedTasks: [Task] = []
+            var pendingTasks: [Task] = []
+            for task in sortedTasks {
+                if task.isCompleted {
+                    completedTasks.append(task)
+                } else {
+                    pendingTasks.append(task)
+                }
             }
-        }
-        
-        // NOTE: Pending tasks appear before the completed
-        if TasksStatusSection.pending.rawValue == 0 {
-            self.tasks = [pendingTasks, completedTasks]
-        } else {
-            self.tasks = [completedTasks, pendingTasks]
+            
+            // NOTE: Pending tasks appear before the completed
+            if TasksStatusSection.pending.rawValue == 0 {
+                self.tasks = [pendingTasks, completedTasks]
+            } else {
+                self.tasks = [completedTasks, pendingTasks]
+            }
+        } catch {
+            delegate?.informUser(title: R.string.realmErrors.msgUnableToFetchData("tasks"), message: "")
         }
     }
 }

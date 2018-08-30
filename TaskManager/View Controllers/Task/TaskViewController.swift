@@ -22,8 +22,8 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDe
     @IBOutlet weak var categoryTextField: HoshiTextField!
     @IBOutlet weak var addTaskButton: UIButton!
     var taskVM: TaskViewModel!
-
-//    fileprivate var isDeleting = false
+    
+    //    fileprivate var isDeleting = false
     fileprivate var dueDatePickerView: UIDatePicker?
     fileprivate var taskDueDate: Date? {
         didSet {
@@ -33,14 +33,14 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDe
             }
         }
     }
-
+    
     fileprivate var categoryPickerView: TaskCategoryPicker?
     fileprivate var taskCategory: TaskCategory? {
         didSet {
             categoryTextField.text = taskCategory?.name
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDueDate()
@@ -48,7 +48,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDe
         titleTextView.autocorrectionType = .no
         setupModePreview()
     }
-
+    
     // MARK: - Actions
     override func willMove(toParentViewController parent: UIViewController?) {
         if parent == nil {
@@ -60,7 +60,7 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDe
             }
         }
     }
-
+    
     func onSave() {
         switch taskVM.mode {
         case .update:
@@ -73,21 +73,21 @@ class TaskViewController: UITableViewController, PresentAlertsProtocol, TaskVMDe
             return
         }
     }
-
+    
     @IBAction func didEndTitleEdit(_ sender: UITextField) {
         self.resignFirstResponder()
     }
-
+    
     @IBAction func deleteTask(_ sender: UIButton) {
         taskVM.deleteTask()
         self.navigationController?.popViewController(animated: true)
     }
-
+    
     @IBAction func addTask(_ sender: UIButton) {
         checkFieldsAndSaveTask()
         self.navigationController?.popViewController(animated: true)
     }
-
+    
     func checkFieldsAndSaveTask() {
         guard let title = titleTextView.text,
             title != "" else {
@@ -114,13 +114,13 @@ extension TaskViewController {
         categoryTextField.inputView = categoryPickerView
         categoryTextField.delegate = self
     }
-
+    
     func setupDueDate() {
         dueDatePickerView = createDatePickerView()
         taskDueDateTextField.inputView = dueDatePickerView
         taskDueDateTextField.delegate = self
     }
-
+    
     func setupModePreview() {
         switch taskVM.mode {
         case .update:
@@ -129,7 +129,7 @@ extension TaskViewController {
             titleTextView.text = taskVM.title
             taskCategory = taskVM.category
             addTaskButton.isHidden = true
-
+            
         case .create:
             navigationItem.title = R.string.taskView.labelCreateTaskTitle()
             deleteTaskButton.isHidden = true
@@ -155,7 +155,7 @@ extension CategoryPickerConfig: CategoryPickerDelegate {
         }
         return nil
     }
-
+    
     func didSelectItem(_ item: TaskCategory) {
         taskCategory = item
     }
@@ -185,7 +185,7 @@ extension TextFieldDisabledForUserEdition: UITextFieldDelegate {
         }
         return true
     }
-
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == self.taskDueDateTextField {
             switch taskVM.mode {

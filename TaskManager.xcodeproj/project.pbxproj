@@ -51,6 +51,8 @@
 		933935581FB600540068E483 /* CategoriesAndColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933935571FB600540068E483 /* CategoriesAndColors.swift */; };
 		933DA5A21FC43BA0007DDEC0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DA5A11FC43BA0007DDEC0 /* R.generated.swift */; };
 		9343AA331FD9A31D000EAAF0 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9343AA321FD9A31D000EAAF0 /* CategoryViewModel.swift */; };
+		9356BF8F21384BBA00864F92 /* RealmErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356BF8E21384BBA00864F92 /* RealmErrors.swift */; };
+		9356BF9121388C2500864F92 /* RealmErrors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9356BF9021388C2500864F92 /* RealmErrors.strings */; };
 		936372472135DF54003ABDBB /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936372462135DF54003ABDBB /* TaskCategory.swift */; };
 		936372492135E600003ABDBB /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936372482135E600003ABDBB /* Task.swift */; };
 		9363724C2135ECD7003ABDBB /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9363724B2135ECD7003ABDBB /* RealmManager.swift */; };
@@ -111,6 +113,8 @@
 		933935571FB600540068E483 /* CategoriesAndColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesAndColors.swift; sourceTree = "<group>"; };
 		933DA5A11FC43BA0007DDEC0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		9343AA321FD9A31D000EAAF0 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		9356BF8E21384BBA00864F92 /* RealmErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmErrors.swift; sourceTree = "<group>"; };
+		9356BF9021388C2500864F92 /* RealmErrors.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = RealmErrors.strings; sourceTree = "<group>"; };
 		936372462135DF54003ABDBB /* TaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategory.swift; sourceTree = "<group>"; };
 		936372482135E600003ABDBB /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		9363724B2135ECD7003ABDBB /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -351,6 +355,7 @@
 			children = (
 				932E9AA01FD164A400FE902A /* ViewErrors.strings */,
 				9306398A1FDE95DF00FDBC7B /* InitializationErrors.strings */,
+				9356BF9021388C2500864F92 /* RealmErrors.strings */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -407,6 +412,7 @@
 			children = (
 				93FB266B1FCD90BE0043CB38 /* InitializationErrors.swift */,
 				932E9A9E1FD1641200FE902A /* ViewErrors.swift */,
+				9356BF8E21384BBA00864F92 /* RealmErrors.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -481,6 +487,7 @@
 				936C96291FB4B78E001FC35D /* .swiftlint.yml in Resources */,
 				9310578E1FCEE5A900E8F7F6 /* Settings.strings in Resources */,
 				93179F091FBC414900B404B2 /* TaskCategoryPicker.xib in Resources */,
+				9356BF9121388C2500864F92 /* RealmErrors.strings in Resources */,
 				9310578C1FCEE0D100E8F7F6 /* TasksList.strings in Resources */,
 				930639981FDEC8F000FDBC7B /* CategoryCollectionSuplementaryView.xib in Resources */,
 				931057861FCEDD9600E8F7F6 /* TaskView.strings in Resources */,
@@ -589,6 +596,7 @@
 				932E9A9F1FD1641200FE902A /* ViewErrors.swift in Sources */,
 				93179F0F1FBC8F5300B404B2 /* CollectionViewPickerDelegate.swift in Sources */,
 				930639991FDEC8F000FDBC7B /* CategoryCollectionSuplementaryView.swift in Sources */,
+				9356BF8F21384BBA00864F92 /* RealmErrors.swift in Sources */,
 				93FAFE9B1FD02E95005AD370 /* UIAlertController.swift in Sources */,
 				9328EFBF1FC8255000D3C209 /* Reusable.swift in Sources */,
 				9328EFC21FC82A7600D3C209 /* UITableView.swift in Sources */,

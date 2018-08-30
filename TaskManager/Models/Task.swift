@@ -29,12 +29,17 @@ class Task: Object {
     }
     
     convenience init(completionDate: Date, title: String, isCompleted: Bool = false, category: TaskCategory?) {
-        let id = (RealmManager().getObjects(of: Task.self)?.max(ofProperty: "id") as Int? ?? 0 ) + 1
-        self.init(id: id,
-                  completionDate: completionDate,
-                  title: title,
-                  isCompleted: isCompleted,
-                  category: category)
+        do {
+            let id = try (RealmManager().getObjects(of: Task.self)?.max(ofProperty: "id") as Int? ?? 0 ) + 1
+            self.init(id: id,
+                      completionDate: completionDate,
+                      title: title,
+                      isCompleted: isCompleted,
+                      category: category)
+        } catch {
+            self.init()
+            assertionFailure("Task id can not be initialized")
+        }
     }
     
     convenience init(taskObject: Task, toComplete: Bool? = nil) {

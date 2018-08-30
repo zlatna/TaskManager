@@ -28,8 +28,13 @@ class TaskCategory: Object {
     }
     
     convenience init(color: String, name: String, isCustom: Bool = true) {
-        let id = (RealmManager().getObjects(of: TaskCategory.self)?.max(ofProperty: "id") as Int? ?? 0 ) + 1
-        self.init(id: id, color: color, name: name, isCustom: isCustom)
+        do {
+            let id = try (RealmManager().getObjects(of: TaskCategory.self)?.max(ofProperty: "id") as Int? ?? 0 ) + 1
+            self.init(id: id, color: color, name: name, isCustom: isCustom)
+        } catch {
+            self.init()
+            assertionFailure("TaskCategory id cannot be initialised")
+        }
     }
     
     var uiColor: UIColor {
@@ -43,7 +48,11 @@ class TaskCategory: Object {
             let categories = CategoriesAndColors().dictionary
             for (categoryName, categoryColor) in categories {
                 let category = TaskCategory(color: categoryColor, name: categoryName, isCustom: false)
-                RealmManager().addObject(object: category)
+                do {
+                    try RealmManager().addObject(object: category)
+                } catch {
+                    assertionFailure("Initial Categories cannot be created")
+                }
             }
             UserDefaults.standard.set(true, forKey: UserDefaultsIdentifiers.launchedBefore.rawValue)
         }

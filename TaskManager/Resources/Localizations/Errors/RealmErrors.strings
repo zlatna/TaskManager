@@ -1,0 +1,18 @@
+/* 
+  RealmErrors.strings
+  TaskManager
+
+  Created by Zlatna Nikolova on 30/08/2018.
+  Copyright © 2018 zlatnanikolova. All rights reserved.
+*/
+
+"msg unable to fetch data" = "The %@ cannot be fetched.";
+
+"msg unable to delete task" = "Task \"%@\" cannot be deleted";
+"msg unable to edit task" = "Task \"%@\" cannot be updated";
+"msg unable to add task" = "Task \"%@\" cannot be added";
+
+"msg unable to complete task" = "Task \"%@\" cannot be completed";
+"msg unable to delete category" = "Category %@ cannot be deleted";
+"msg unable to edit category" = "Category \"%@\" cannot be updated";
+"msg unable to add category" = "Category \"%@\" cannot be added";

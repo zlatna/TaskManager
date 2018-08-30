@@ -11,31 +11,34 @@ import RealmSwift
 class RealmManager {
     let realm = try? Realm()
     
-    func addObject(object: Object) {
-        try? realm?.write {
+    func addObject(object: Object) throws {
+        try realm?.write {
             realm?.add(object, update: false)
         }
     }
     
-    func updateObject(object: Object) {
-        try? realm?.write {
+    func updateObject(object: Object) throws {
+        try realm?.write {
             realm?.add(object, update: true)
         }
     }
     
-    func deleteobject(object: Object) {
-        try? realm!.write {
+    func deleteobject(object: Object) throws {
+        try realm?.write {
             realm?.delete(object)
         }
     }
     
-    func getObjects(of type: Object.Type) -> Results<Object>? {
-        return realm!.objects(type)
+    func getObjects(of type: Object.Type) throws -> Results<Object>? {
+        guard let objects = realm?.objects(type) else {
+            throw RealmErrors.fetchObjects
+        }
+        return objects
     }
     
-    func getTasks() -> [Task] {
+    func getTasks() throws -> [Task] {
         var tasks = [Task]()
-        if let tasksResult = getObjects(of: Task.self) {
+        if let tasksResult = try getObjects(of: Task.self) {
             for task in tasksResult {
                 if let task = task as? Task {
                     tasks.append(task)
@@ -45,9 +48,9 @@ class RealmManager {
         return tasks
     }
     
-    func getCategories() -> [TaskCategory] {
+    func getCategories() throws -> [TaskCategory] {
         var categories = [TaskCategory]()
-        if let categoryResult = getObjects(of: TaskCategory.self) {
+        if let categoryResult = try getObjects(of: TaskCategory.self) {
             for category in categoryResult {
                 if let category =  category as? TaskCategory {
                     categories.append(category)
