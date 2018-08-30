@@ -18,7 +18,7 @@ class TaskCategory: Object {
     override static func primaryKey() -> String {
         return "id"
     }
-    
+
     convenience init(id: Int, color: String, name: String, isCustom: Bool) {
         self.init()
         self.id = id
@@ -36,12 +36,12 @@ class TaskCategory: Object {
             assertionFailure("TaskCategory id cannot be initialised")
         }
     }
-    
+
     var uiColor: UIColor {
         let color = UIColor(fromHex: self.color)
         return color
     }
-    
+
     class func createAndStoreInitialCategories() {
         let waslaunchedBefore = UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.launchedBefore.rawValue)
         if (!waslaunchedBefore) {

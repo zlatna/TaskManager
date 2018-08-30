@@ -12,14 +12,14 @@ class TasksListViewController: UIViewController, PresentAlertsProtocol, TasksLis
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     fileprivate var taskListVM: TasksListViewModel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = R.string.tasksList.labelTasksListTitle()
         tableView.dataSource = self
         tableView.delegate = self
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if taskListVM != nil {
@@ -30,7 +30,7 @@ class TasksListViewController: UIViewController, PresentAlertsProtocol, TasksLis
             self.activityIndicator.stopAnimating()
         }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let segueIdentifier = SegueIdentifiers(rawValue: segue.identifier!) {
             switch segueIdentifier {
@@ -49,7 +49,7 @@ class TasksListViewController: UIViewController, PresentAlertsProtocol, TasksLis
             }
         }
     }
-    
+
     private func loadData() {
         self.taskListVM.loadData()
         self.tableView.reloadData()
@@ -64,18 +64,18 @@ extension TableConfig: UITableViewDataSource {
         let rowsNumber = taskListVM.countFor(section: section)
         return rowsNumber
     }
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return taskListVM.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeReusableCell(indexPath: indexPath) as TaskCell
         let task = taskListVM[indexPath.section, indexPath.row]
         cell.setup(task: task)
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if TasksListViewModel.TasksStatusSection.completed.rawValue == section {
             return R.string.tasksList.sectionTitleCompletedTasks()
@@ -92,7 +92,7 @@ extension TableConfig: UITableViewDelegate {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
+
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: R.string.tasksList.actionDelete(), handler: { (_, _, _) in
@@ -101,7 +101,7 @@ extension TableConfig: UITableViewDelegate {
         })
         return UISwipeActionsConfiguration(actions:[delete])
     }
-    
+
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if TasksListViewModel.TasksStatusSection.pending.rawValue == indexPath.section {
@@ -114,7 +114,7 @@ extension TableConfig: UITableViewDelegate {
         }
         return nil
     }
-    
+
     @available(iOS 10.0, *)
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if TasksListViewModel.TasksStatusSection.completed.rawValue == indexPath.section {
@@ -124,7 +124,7 @@ extension TableConfig: UITableViewDelegate {
             }
             return [delete]
         }
-        
+
         if TasksListViewModel.TasksStatusSection.pending.rawValue == indexPath.section {
             let done = UITableViewRowAction(style: .normal, title: R.string.tasksList.actionDone()) { (_, indexPath ) in
                 self.taskListVM.completeTask(at: indexPath)

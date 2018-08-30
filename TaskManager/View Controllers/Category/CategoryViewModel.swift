@@ -15,7 +15,7 @@ class CategoryViewModel {
     private var category: TaskCategory?
     var mode: EditMode = .create
     weak var delegate: CategoryViewModelDelegate?
-    
+
     init?(category: TaskCategory?, mode: EditMode, delegate: CategoryViewModelDelegate) throws {
         guard (category != nil && mode == .update) || (category == nil && mode == .create) else {
             throw InitializationErrors.wrongParameters(message: R.string.initializationErrors.msgUnableToInitializeCategory("\(mode)"))
@@ -26,18 +26,18 @@ class CategoryViewModel {
         }
         self.delegate = delegate
     }
-    
+
     var color: UIColor? {
         return category?.uiColor
     }
     var name: String {
         return category?.name ?? ""
     }
-    
+
     var isRelatedToTask: Bool {
         return category?.tasks.isEmpty == false
     }
-    
+
     func createCategoryWith(name: String, andColor color: UIColor) {
         let category = TaskCategory(color: color.toHexString, name: name)
         do {
@@ -46,7 +46,7 @@ class CategoryViewModel {
             delegate?.informUser(title: R.string.realmErrors.msgUnableToAddCategory(category.name), message: "")
         }
     }
-    
+
     func updateCategory(name: String, color: UIColor) {
         if let categoryToUpdate = category,
             categoryToUpdate.name != name || categoryToUpdate.color != color.toHexString {
@@ -61,7 +61,7 @@ class CategoryViewModel {
             }
         }
     }
-    
+
     func deleteCurrentCategory() {
         if let categoryToDelete = category {
             do {

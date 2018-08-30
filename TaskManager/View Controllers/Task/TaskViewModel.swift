@@ -13,7 +13,7 @@ class TaskViewModel {
     weak var delegate: TaskVMDelegate?
     private var task: Task?
     private(set) var mode: EditMode
-    
+
     init?(task: Task?, to mode: EditMode) {
         guard (task != nil && mode == .update) || (task == nil && mode == .create) else {
             assertionFailure("task: \(String(describing: task)), mode: \(mode)")
@@ -22,7 +22,7 @@ class TaskViewModel {
         self.task = task
         self.mode = mode
     }
-    
+
     var completionDate: Date {
         if let task = self.task {
             return task.completionDate as Date
@@ -30,15 +30,15 @@ class TaskViewModel {
             return Date()
         }
     }
-    
+
     var title: String {
         return self.task?.title ?? ""
     }
-    
+
     var category: TaskCategory? {
         return task?.category
     }
-    
+
     func saveTask(with title: String, completionDate: Date, category: TaskCategory) {
         if let taskToSave = task {
             let updatedTask = Task.init(id: taskToSave.id,
@@ -63,7 +63,7 @@ class TaskViewModel {
             }
         }
     }
-    
+
     func deleteTask() {
         if let currentTask = task {
             do {

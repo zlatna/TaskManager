@@ -16,30 +16,30 @@ class TasksListViewModel {
         case pending = 0
         case completed = 1
     }
-    
+
     private var tasks: [[Task]] = []
     weak var delegate: TasksListViewModelMDelegate?
-    
+
     init() {
         self.loadData()
     }
-    
+
     subscript (section: Int, index: Int) -> Task {
         return tasks[section][index]
     }
-    
+
     func countFor(section: Int) -> Int {
         return tasks[section].count
     }
-    
+
     var count: Int {
         return tasks.count
     }
-    
+
     private func remove(section: Int, index: Int) {
         tasks[section].remove(at: index)
     }
-    
+
     private func addTask(taskToAdd: Task,to section: Int) {
         if tasks[section].isEmpty {
             tasks[section].append(taskToAdd)
@@ -56,7 +56,7 @@ class TasksListViewModel {
             }
         }
     }
-    
+
     func completeTask(at indexPath: IndexPath) {
         if indexPath.section == TasksStatusSection.pending.rawValue {
             let task = self[indexPath.section, indexPath.row]
@@ -70,7 +70,7 @@ class TasksListViewModel {
             addTask(taskToAdd: completedTask,to: TasksStatusSection.completed.rawValue)
         }
     }
-    
+
     func deleteTask(at indexPath: IndexPath) {
         let taskToDelete = self[indexPath.section, indexPath.row]
         do {
@@ -80,7 +80,7 @@ class TasksListViewModel {
             delegate?.informUser(title: R.string.realmErrors.msgUnableToEditTask(taskToDelete.title), message: "")
         }
     }
-    
+
     func loadData() {
         do {
             let tasks = try RealmManager().getTasks()
@@ -97,7 +97,7 @@ class TasksListViewModel {
                     pendingTasks.append(task)
                 }
             }
-            
+
             // NOTE: Pending tasks appear before the completed
             if TasksStatusSection.pending.rawValue == 0 {
                 self.tasks = [pendingTasks, completedTasks]

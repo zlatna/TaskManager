@@ -16,25 +16,25 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         navigationItem.title = R.string.settings.labelSettingsTitle()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         NotificationsHandler.executeForNotification(enabled: {
-            DispatchQueue.main.sync {
-                self.notificationSwitch.isOn = NotificationsHandler.notificationsLocalyEnabled
-            }
-        }) {
-            DispatchQueue.main.sync {
-                self.notificationSwitch.isEnabled = false
-                NotificationsHandler.suspendNotifications()
-                self.notificationSwitch.isOn = false
-            }
-        }
-        
+                                                        DispatchQueue.main.sync {
+                                                            self.notificationSwitch.isOn = NotificationsHandler.notificationsLocalyEnabled
+                                                        }},
+                                                    disabled:  {
+                                                        DispatchQueue.main.sync {
+                                                            self.notificationSwitch.isEnabled = false
+                                                            NotificationsHandler.suspendNotifications()
+                                                            self.notificationSwitch.isOn = false
+                                                        }
+        })
+
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: true)
         }
     }
-    
+
     @IBAction func onNotificationSwitch(_ sender: UISwitch) {
         if sender.isOn {
             notificationSwitchLabel.text = R.string.settings.labelTurnOffNotifications()

@@ -9,14 +9,14 @@
 import UIKit
 
 class ManageCategoriesViewController: UIViewController, PresentAlertsProtocol, ManageCategoriesViewModelDelegate  {
-    
+
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     private var manageCategoriesViewModel = ManageCategoriesViewModel()
     struct CollectionConfig {
         static let maxCellWidth = 90
         static let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         manageCategoriesViewModel?.delegate = self
@@ -25,16 +25,16 @@ class ManageCategoriesViewController: UIViewController, PresentAlertsProtocol, M
         categoriesCollectionView.register(CategoryCell.nib, forCellWithReuseIdentifier: CategoryCell.reuseIdentifier)
         categoriesCollectionView.registerReusableSuplementaryView(elementKind: UICollectionElementKindSectionHeader, CategoryCollectionSuplementaryView.self)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         reloadData()
     }
-    
+
     func reloadData() {
         self.manageCategoriesViewModel?.loadData()
         self.categoriesCollectionView.reloadData()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case R.segue.manageCategoriesViewController.editCategory.identifier?:
@@ -137,7 +137,7 @@ extension CollectionViewConfig: UICollectionViewDelegateFlowLayout {
             return false
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == ManageCategoriesViewModel.CategoriesSections.customCategpries.rawValue {
             performSegue(withIdentifier: R.segue.manageCategoriesViewController.editCategory, sender: self)

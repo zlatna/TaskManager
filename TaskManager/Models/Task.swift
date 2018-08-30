@@ -18,7 +18,7 @@ class Task: Object {
     override static func primaryKey() -> String {
         return "id"
     }
-    
+
     convenience init(id: Int, completionDate: Date, title: String, isCompleted: Bool = false, category: TaskCategory?) {
         self.init()
         self.completionDate = completionDate
@@ -27,7 +27,7 @@ class Task: Object {
         self.category = category
         self.id = id
     }
-    
+
     convenience init(completionDate: Date, title: String, isCompleted: Bool = false, category: TaskCategory?) {
         do {
             let id = try (RealmManager().getObjects(of: Task.self)?.max(ofProperty: "id") as Int? ?? 0 ) + 1
@@ -41,7 +41,7 @@ class Task: Object {
             assertionFailure("Task id can not be initialized")
         }
     }
-    
+
     convenience init(taskObject: Task, toComplete: Bool? = nil) {
         self.init(id: taskObject.id,
                   completionDate: taskObject.completionDate,

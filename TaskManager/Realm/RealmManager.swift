@@ -16,26 +16,26 @@ class RealmManager {
             realm?.add(object, update: false)
         }
     }
-    
+
     func updateObject(object: Object) throws {
         try realm?.write {
             realm?.add(object, update: true)
         }
     }
-    
+
     func deleteobject(object: Object) throws {
         try realm?.write {
             realm?.delete(object)
         }
     }
-    
+
     func getObjects(of type: Object.Type) throws -> Results<Object>? {
         guard let objects = realm?.objects(type) else {
             throw RealmErrors.fetchObjects
         }
         return objects
     }
-    
+
     func getTasks() throws -> [Task] {
         var tasks = [Task]()
         if let tasksResult = try getObjects(of: Task.self) {
@@ -47,7 +47,7 @@ class RealmManager {
         }
         return tasks
     }
-    
+
     func getCategories() throws -> [TaskCategory] {
         var categories = [TaskCategory]()
         if let categoryResult = try getObjects(of: TaskCategory.self) {

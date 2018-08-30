@@ -27,7 +27,7 @@ class CategoryViewController: UITableViewController, PresentAlertsProtocol, Cate
         addCategory.isHidden = categoryViewModel.mode != .create
         deleteCategory.isHidden = categoryViewModel.mode != .update
     }
-    
+
     @IBAction func chooseColorTouchUpInside(_ sender: Any) {
         let alert = UIAlertController(title: R.string.alert.msgChooseCategoryColor(), message: "", preferredStyle: .alert)
         if let colorPicker = createColorPickerView() {
@@ -45,7 +45,7 @@ class CategoryViewController: UITableViewController, PresentAlertsProtocol, Cate
             self.present(alert, animated: true, completion: {})
         }
     }
-    
+
     @IBAction func addCtegoryTouchUpInside(_ sender: UIButton) {
         if categoryViewModel.mode == .create {
             guard let name = categoryNameTextField.text,
@@ -62,7 +62,7 @@ class CategoryViewController: UITableViewController, PresentAlertsProtocol, Cate
         }
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     @IBAction func deleteCtegoryTouchUpInside(_ sender: UIButton) {
         if categoryViewModel.isRelatedToTask  {
             self.showInformationAlert(withTitle: R.string.categoryView.titleTasksExistForCategory(),
@@ -75,7 +75,7 @@ class CategoryViewController: UITableViewController, PresentAlertsProtocol, Cate
         }
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     override func willMove(toParentViewController parent: UIViewController?) {
         if parent == nil && categoryViewModel.mode == .update {
             guard let name = categoryNameTextField.text,
@@ -111,7 +111,7 @@ extension CategoryColorPickerConfig {
         }
         return colorPicker
     }
-    
+
     func chooseColorButtonInitialSetup() {
         chooseColorButton.layer.cornerRadius = chooseColorButton.bounds.height / 2
         if categoryViewModel.mode == .update {
