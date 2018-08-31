@@ -9,7 +9,7 @@
 import UIKit
 import TextFieldEffects
 
-class CategoryViewController: UITableViewController, PresentAlertsProtocol {
+class CategoryViewController: UITableViewController, PresentAlertsProtocol, CategoryViewModelDelegate {
     private struct ColorPickerConfig {
         static let titleHeight: CGFloat = 40
         static let buttonsHeight: CGFloat = 40
@@ -19,7 +19,7 @@ class CategoryViewController: UITableViewController, PresentAlertsProtocol {
     var categoryViewModel: CategoryViewModel!
     @IBOutlet weak var addCategory: UIButton!
     @IBOutlet weak var deleteCategory: UIButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         categoryNameTextField.text = categoryViewModel?.name
@@ -36,7 +36,7 @@ class CategoryViewController: UITableViewController, PresentAlertsProtocol {
             let height = alert.view.bounds.height - ColorPickerConfig.titleHeight - ColorPickerConfig.buttonsHeight
             let viewFrame = CGRect(origin: CGPoint(x: alert.view.frame.origin.x, y: y), size: CGSize(width: width, height: height))
             colorPicker.frame = viewFrame
-
+            
             alert.view.addSubview(colorPicker)
             alert.addAction(UIAlertAction(title: R.string.alert.buttonOk() , style: UIAlertActionStyle.default, handler: {(_) in
                 self.chooseColorButton.backgroundColor = colorPicker.curentColor
@@ -53,7 +53,7 @@ class CategoryViewController: UITableViewController, PresentAlertsProtocol {
                     self.showInformationAlert(withTitle: R.string.categoryView.msgEnterCategoryName(), message: "")
                     return
             }
-
+            
             guard let color = chooseColorButton.backgroundColor else {
                 self.showInformationAlert(withTitle: R.string.categoryView.msgEnterCategoryName(), message: "")
                 return
@@ -64,6 +64,12 @@ class CategoryViewController: UITableViewController, PresentAlertsProtocol {
     }
 
     @IBAction func deleteCtegoryTouchUpInside(_ sender: UIButton) {
+        if categoryViewModel.isRelatedToTask  {
+            self.showInformationAlert(withTitle: R.string.categoryView.titleTasksExistForCategory(),
+                                      message:  R.string.categoryView.msgTasksExistForCategory())
+            return
+        }
+        
         if categoryViewModel.mode == .update {
             categoryViewModel.deleteCurrentCategory()
         }
@@ -77,28 +83,20 @@ class CategoryViewController: UITableViewController, PresentAlertsProtocol {
                     self.showInformationAlert(withTitle: R.string.categoryView.msgEnterCategoryName(), message: "")
                     return
             }
-
+            
             guard let color = chooseColorButton.backgroundColor else {
                 self.showInformationAlert(withTitle: R.string.categoryView.msgEnterCategoryName(), message: "")
                 return
             }
-            categoryViewModel.updateCategory(name: name, color: color)
+            
+            switch categoryViewModel.mode {
+            case .update:
+                categoryViewModel.updateCategory(name: name, color: color)
+            default:
+                return
+            }
         }
     }
-
-//    fileprivate func canSave() -> Bool {
-//        guard let name = categoryNameTextField.text,
-//            !name.isEmpty else {
-//                self.showInformationAlert(withTitle: R.string.categoryView.msgEnterCategoryName(), message: "")
-//                return false
-//        }
-//
-//        guard let _ = chooseColorButton.backgroundColor else {
-//            self.showInformationAlert(withTitle: R.string.categoryView.msgEnterCategoryName(), message: "")
-//            return false
-//        }
-//        return true
-//    }
 }
 
 fileprivate typealias CategoryColorPickerConfig = CategoryViewController

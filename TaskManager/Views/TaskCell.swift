@@ -14,8 +14,8 @@ class TaskCell: UITableViewCell {
     @IBOutlet weak var completionDateLabel: UILabel!
     @IBOutlet weak var customSeparator: UIView!
 
-    func setup(task: TaskMO) {
-        let categoryColor = task.category.uiColor
+    func setup(task: Task) {
+        let categoryColor = task.category?.uiColor ?? UIColor.black
         categoryColorView.backgroundColor = categoryColor
         customSeparator.backgroundColor = categoryColor
         taskTitleLabel.text = task.title

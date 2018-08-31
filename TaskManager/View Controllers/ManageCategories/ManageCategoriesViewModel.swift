@@ -7,6 +7,7 @@
 //
 
 import Foundation
+protocol ManageCategoriesViewModelDelegate: class, UserInformer { }
 
 class ManageCategoriesViewModel {
     enum CategoriesSections: Int {
@@ -18,28 +19,28 @@ class ManageCategoriesViewModel {
         }
     }
 
-    fileprivate var customCategories: [CategoryMO] = []
-    fileprivate var defaultCategories: [CategoryMO] = []
+    fileprivate var customCategories: [TaskCategory] = []
+    fileprivate var defaultCategories: [TaskCategory] = []
+    weak var delegate: ManageCategoriesViewModelDelegate?
 
     init?() {
         loadData()
     }
 
     func loadData() {
-        var categories: [CategoryMO] = []
         do {
-            categories = try CoreDataHandler.fetchAllCategories()
+            let categories: [TaskCategory] = try RealmManager().getCategories()
             customCategories = []
             defaultCategories = []
             for category in categories {
-                if category.custom {
+                if category.isCustom {
                     customCategories.append(category)
                 } else {
                     defaultCategories.append(category)
                 }
             }
         } catch {
-            assertionFailure(error.localizedDescription)
+            delegate?.informUser(title: R.string.realmErrors.msgUnableToFetchData("categories"), message: "")
         }
     }
 
@@ -54,7 +55,7 @@ class ManageCategoriesViewModel {
         }
     }
 
-    func categoryAtIndexPath(indexPath: IndexPath) -> CategoryMO? {
+    func categoryAtIndexPath(indexPath: IndexPath) -> TaskCategory? {
         switch indexPath.section {
         case ManageCategoriesViewModel.CategoriesSections.customCategpries.rawValue:
             return customCategories[indexPath.row]
@@ -64,5 +65,4 @@ class ManageCategoriesViewModel {
             return nil
         }
     }
-
 }

@@ -7,5 +7,5 @@
 //
 
 protocol CategoryPickerDelegate: class {
-    func didSelectItem(_ item: CategoryMO)
+    func didSelectItem(_ item: TaskCategory)
 }

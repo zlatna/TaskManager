@@ -19,16 +19,16 @@ class SettingsViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         NotificationsHandler.executeForNotification(enabled: {
-            DispatchQueue.main.sync {
-                self.notificationSwitch.isOn = NotificationsHandler.notificationsLocalyEnabled
-            }
-        }) {
-            DispatchQueue.main.sync {
-                self.notificationSwitch.isEnabled = false
-                NotificationsHandler.suspendNotifications()
-                self.notificationSwitch.isOn = false
-            }
-        }
+                                                        DispatchQueue.main.sync {
+                                                            self.notificationSwitch.isOn = NotificationsHandler.notificationsLocalyEnabled
+                                                        }},
+                                                    disabled:  {
+                                                        DispatchQueue.main.sync {
+                                                            self.notificationSwitch.isEnabled = false
+                                                            NotificationsHandler.suspendNotifications()
+                                                            self.notificationSwitch.isOn = false
+                                                        }
+        })
 
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: true)

@@ -7,23 +7,24 @@
 //
 
 import Foundation
-protocol TasksListVMDelegate: class, UserInformer {}
+
+protocol TasksListViewModelMDelegate: class, UserInformer {}
 
 class TasksListViewModel {
-    //    represents which tasks are shown in which section - completed or pending
+    //  NOTE: - represents which tasks are shown in which section - completed or pending
     enum TasksStatusSection: Int {
         case pending = 0
         case completed = 1
     }
 
-    private var tasks: [[TaskMO]] = []
-    weak var delegate: TasksListVMDelegate?
+    private var tasks: [[Task]] = []
+    weak var delegate: TasksListViewModelMDelegate?
 
     init() {
         self.loadData()
     }
 
-    subscript (section: Int, index: Int) -> TaskMO {
+    subscript (section: Int, index: Int) -> Task {
         return tasks[section][index]
     }
 
@@ -39,7 +40,7 @@ class TasksListViewModel {
         tasks[section].remove(at: index)
     }
 
-    private func addTask(taskToAdd: TaskMO,to section: Int) {
+    private func addTask(taskToAdd: Task,to section: Int) {
         if tasks[section].isEmpty {
             tasks[section].append(taskToAdd)
         } else {
@@ -58,38 +59,37 @@ class TasksListViewModel {
 
     func completeTask(at indexPath: IndexPath) {
         if indexPath.section == TasksStatusSection.pending.rawValue {
-            let taskToComplete = self[indexPath.section, indexPath.row]
+            let task = self[indexPath.section, indexPath.row]
+            let completedTask = Task(taskObject: task, toComplete: true)
             do {
-                try CoreDataHandler.editTask(taskToComplete, isCompleted: true)
-                remove(section: indexPath.section, index: indexPath.row)
-                addTask(taskToAdd: taskToComplete,to: TasksStatusSection.completed.rawValue)
+                try RealmManager().updateObject(object: completedTask)
             } catch {
-                delegate?.informUser(title: R.string.coreDataErrors.msgUnableToCompleteTask(taskToComplete.title), message: nil)
-                assertionFailure(error.localizedDescription)
+                
             }
+            remove(section: indexPath.section, index: indexPath.row)
+            addTask(taskToAdd: completedTask,to: TasksStatusSection.completed.rawValue)
         }
     }
 
     func deleteTask(at indexPath: IndexPath) {
         let taskToDelete = self[indexPath.section, indexPath.row]
         do {
-            try CoreDataHandler.deleteTask(taskToDelete)
+            try RealmManager().deleteobject(object: taskToDelete)
             remove(section: indexPath.section, index: indexPath.row)
         } catch {
-            delegate?.informUser(title: R.string.coreDataErrors.msgUnableToDeleteTask(taskToDelete.title), message: nil)
-            assertionFailure(error.localizedDescription)
+            delegate?.informUser(title: R.string.realmErrors.msgUnableToEditTask(taskToDelete.title), message: "")
         }
     }
 
     func loadData() {
         do {
-            let tasksMO = try CoreDataHandler.fetchAllTasks()
-            let sortedTasks = tasksMO.sorted(by: { (leftTask, righTask) -> Bool in
+            let tasks = try RealmManager().getTasks()
+            let sortedTasks = tasks.sorted(by: { (leftTask, righTask) -> Bool in
                 let descending = (leftTask.completionDate.compare(righTask.completionDate as Date) == .orderedDescending)
                 return descending
             })
-            var completedTasks: [TaskMO] = []
-            var pendingTasks: [TaskMO] = []
+            var completedTasks: [Task] = []
+            var pendingTasks: [Task] = []
             for task in sortedTasks {
                 if task.isCompleted {
                     completedTasks.append(task)
@@ -97,15 +97,15 @@ class TasksListViewModel {
                     pendingTasks.append(task)
                 }
             }
-            // Pending tasks appear before the completed
+
+            // NOTE: Pending tasks appear before the completed
             if TasksStatusSection.pending.rawValue == 0 {
                 self.tasks = [pendingTasks, completedTasks]
             } else {
                 self.tasks = [completedTasks, pendingTasks]
             }
         } catch {
-             delegate?.informUser(title: R.string.coreDataErrors.msgUnableToFetchData("Tasks"), message: nil)
-            assertionFailure(error.localizedDescription)
+            delegate?.informUser(title: R.string.realmErrors.msgUnableToFetchData("tasks"), message: "")
         }
     }
 }

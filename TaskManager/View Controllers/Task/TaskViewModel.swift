@@ -11,11 +11,13 @@ protocol TaskVMDelegate: class, UserInformer {}
 
 class TaskViewModel {
     weak var delegate: TaskVMDelegate?
-    private var task: TaskMO?
+    private var task: Task?
     private(set) var mode: EditMode
-    init?(task: TaskMO?, to mode: EditMode) throws {
+
+    init?(task: Task?, to mode: EditMode) {
         guard (task != nil && mode == .update) || (task == nil && mode == .create) else {
-            throw InitializationErrors.wrongParameters(message: "task: \(String(describing: task)), mode: \(mode)")
+            assertionFailure("task: \(String(describing: task)), mode: \(mode)")
+            return nil
         }
         self.task = task
         self.mode = mode
@@ -33,36 +35,45 @@ class TaskViewModel {
         return self.task?.title ?? ""
     }
 
-    var category: CategoryMO? {
+    var category: TaskCategory? {
         return task?.category
     }
 
-    func saveTask(with title: String, completionDate: Date, category: CategoryMO) {
+    func saveTask(with title: String, completionDate: Date, category: TaskCategory) {
         if let taskToSave = task {
+            let updatedTask = Task.init(id: taskToSave.id,
+                                        completionDate: completionDate,
+                                        title: title,
+                                        isCompleted: false,
+                                        category: category)
             do {
-                try CoreDataHandler.editTask(taskToSave, title: title, completionDate: completionDate, category: category)
-                NotificationsHandler.removeNotification(forTask: taskToSave)
-                NotificationsHandler.addNotification(forTask: taskToSave)
-            } catch let error {
-                assertionFailure(error.localizedDescription)
+                try RealmManager().updateObject(object: updatedTask)
+            } catch {
+                delegate?.informUser(title: R.string.realmErrors.msgUnableToEditTask(taskToSave.title), message: "")
             }
+            NotificationsHandler.removeNotification(forTask: taskToSave)
+            NotificationsHandler.addNotification(forTask: updatedTask)
         } else {
             do {
-                let newTask = try CoreDataHandler.addNewTask(withTitle: title, completionDate: completionDate, category: category)
+                let newTask = Task(completionDate: completionDate, title: title, isCompleted: false, category: category)
+                try RealmManager().addObject(object: newTask)
                 NotificationsHandler.addNotification(forTask: newTask)
-            } catch let error {
-                assertionFailure(error.localizedDescription)
+            } catch {
+                delegate?.informUser(title: R.string.realmErrors.msgUnableToAddTask(title), message: "")
             }
         }
     }
 
     func deleteTask() {
-        do {
-            if let currentTask = task {
-                try CoreDataHandler.deleteTask(currentTask)
+        if let currentTask = task {
+            do {
+                try RealmManager().deleteobject(object: currentTask)
+                mode = .delete
+            } catch {
+                delegate?.informUser(title: R.string.realmErrors.msgUnableToDeleteTask(currentTask.title), message: "")
             }
-        } catch let error {
-            assertionFailure(error.localizedDescription)
+        } else {
+            assertionFailure("Deleting non existing task")
         }
     }
 }

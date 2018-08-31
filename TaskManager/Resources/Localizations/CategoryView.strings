@@ -9,3 +9,5 @@
 // MARK: - Alerts
 "msg enter category name" = "Enter category name";
 "msg select category color" = "Select category color";
+"title tasks exist for category" = "Attention";
+"msg tasks exist for category" = "There are existing tasks related to this category";

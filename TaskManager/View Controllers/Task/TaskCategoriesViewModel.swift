@@ -9,22 +9,21 @@
 import Foundation
 
 class TaskCategoriesViewModel {
-    private var list: [CategoryMO]
+    private var list: [TaskCategory]
 
     var count: Int {
         return list.count
     }
 
     init?() {
-        list = []
         do {
-            list = try CoreDataHandler.fetchAllCategories()
+            try list = RealmManager().getCategories()
         } catch {
-            assertionFailure(error.localizedDescription)
+            return nil
         }
     }
 
-    func index(of category: CategoryMO?) -> Int? {
+    func index(of category: TaskCategory?) -> Int? {
         guard let category = category else {
             return 0
         }
@@ -32,7 +31,7 @@ class TaskCategoriesViewModel {
         return index
     }
 
-    subscript(index: Int) -> CategoryMO {
-            return list[index]
+    subscript(index: Int) -> TaskCategory {
+        return list[index]
     }
 }

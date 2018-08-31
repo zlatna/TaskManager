@@ -8,10 +8,10 @@
 
 import UIKit
 
-class ManageCategoriesViewController: UIViewController, PresentAlertsProtocol {
+class ManageCategoriesViewController: UIViewController, PresentAlertsProtocol, ManageCategoriesViewModelDelegate  {
 
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
-    var manageCategoriesViewModel = ManageCategoriesViewModel()
+    private var manageCategoriesViewModel = ManageCategoriesViewModel()
     struct CollectionConfig {
         static let maxCellWidth = 90
         static let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
@@ -19,6 +19,7 @@ class ManageCategoriesViewController: UIViewController, PresentAlertsProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        manageCategoriesViewModel?.delegate = self
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
         categoriesCollectionView.register(CategoryCell.nib, forCellWithReuseIdentifier: CategoryCell.reuseIdentifier)
@@ -30,12 +31,8 @@ class ManageCategoriesViewController: UIViewController, PresentAlertsProtocol {
     }
 
     func reloadData() {
-        DispatchQueue.global(qos: DispatchQoS.userInitiated.qosClass).async {
-            self.manageCategoriesViewModel?.loadData()
-            DispatchQueue.main.async {
-                self.categoriesCollectionView.reloadData()
-            }
-        }
+        self.manageCategoriesViewModel?.loadData()
+        self.categoriesCollectionView.reloadData()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -45,7 +42,7 @@ class ManageCategoriesViewController: UIViewController, PresentAlertsProtocol {
                 let selectionIndexPath = categoriesCollectionView.indexPathsForSelectedItems?.first,
                 let category = manageCategoriesViewModel?.categoryAtIndexPath(indexPath: selectionIndexPath) {
                 do {
-                    let categoryVM = try CategoryViewModel(category: category, mode: .update)
+                    let categoryVM = try CategoryViewModel(category: category, mode: .update, delegate: destinationViewController)
                     destinationViewController.categoryViewModel = categoryVM
                 } catch let error {
                     assertionFailure(error.localizedDescription)
@@ -54,7 +51,7 @@ class ManageCategoriesViewController: UIViewController, PresentAlertsProtocol {
         case R.segue.manageCategoriesViewController.createCategory.identifier?:
             if let destinationViewController = segue.destination as? CategoryViewController {
                 do {
-                    let categoryVM = try CategoryViewModel(category: nil, mode: .create)
+                    let categoryVM = try CategoryViewModel(category: nil, mode: .create, delegate: destinationViewController)
                     destinationViewController.categoryViewModel = categoryVM
                 } catch let error {
                     assertionFailure(error.localizedDescription)
@@ -72,14 +69,14 @@ extension CollectionViewConfig: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return ManageCategoriesViewModel.CategoriesSections.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let manageCategoriesVM = manageCategoriesViewModel else {
             return 0
         }
         return manageCategoriesVM.countForSection(section: section)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         assert(manageCategoriesViewModel != nil)
         let cell = categoriesCollectionView.dequeReusableCell(indexPath: indexPath) as CategoryCell
@@ -88,7 +85,7 @@ extension CollectionViewConfig: UICollectionViewDataSource {
         cell.setup(color: category!.uiColor, name: category!.name)
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionElementKindSectionHeader:
@@ -110,7 +107,7 @@ extension CollectionViewConfig: UICollectionViewDataSource {
         default:
             assert(false)
         }
-
+        
     }
 }
 
@@ -123,15 +120,15 @@ extension CollectionViewConfig: UICollectionViewDelegateFlowLayout {
         let itemWidth = availableWidth / CGFloat(itemsPerRow)
         return CGSize(width: itemWidth, height: itemWidth)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return CollectionConfig.sectionInsets.top
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return CollectionConfig.sectionInsets
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         switch indexPath.section {
         case ManageCategoriesViewModel.CategoriesSections.customCategpries.rawValue:
@@ -146,7 +143,7 @@ extension CollectionViewConfig: UICollectionViewDelegateFlowLayout {
             performSegue(withIdentifier: R.segue.manageCategoriesViewController.editCategory, sender: self)
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.bounds.width, height: 40)
     }
